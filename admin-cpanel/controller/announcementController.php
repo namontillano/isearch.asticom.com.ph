@@ -6,6 +6,15 @@
     if($_REQUEST['command'] == 'addAnnouncement') {
         $announcementController->create();
     }
+    else if($_REQUEST['command'] == 'showAnnouncement') {
+        if(isset($_GET['post_id'])) {
+            $announcementController->showAnnouncement($_GET['post_id']);
+        }
+    }else if($_REQUEST['command'] == 'updateAnnouncement') {
+        if(isset($_GET['post_id'])) {
+            $announcementController->updateAnnouncement($_GET['post_id']);
+        }
+    }
 }
 
 
@@ -25,12 +34,12 @@
         $status = $_POST['status'];
         $link = $_POST['link'];
         $content = $_POST['content'];
-
+        $thumbnail = 0;
         //Tumbnail 
-        if(!empty($_FILES['thumbnail'])) {
+        if($_FILES['thumbnail']['size'] != 0) {
             $thumbnail = $this->uploadFile($_FILES['thumbnail'], '../../uploads/posts/');
-            if($thumbnail == 'error') {
-                echo 'Invalid uploading of Thumnail';
+            if($thumbnail == 'errors') {
+                echo 'Invalid uploading of Embedded';
                 exit;
             }
         }
@@ -42,7 +51,7 @@
         // Image
         else if(!empty($_FILES['image']) ) {
             $image = $this->uploadFile($_FILES['image'], '../../uploads/posts/');
-            if($image == 'error') {
+            if($image == 'errors') {
                 echo 'Invalid uploading of Embedded';
                 exit;
             }
@@ -85,6 +94,76 @@
         } else {
             return 'errors';
         }
+    }
+
+    public function showAnnouncement($id){
+        $query = "SELECT * FROM posts WHERE id =".$id;
+        $res = $this->conn->query($query);
+        
+        if($res->rowCount()) {
+            foreach($res as $data) {
+                echo json_encode($data);
+            }
+        }
+    }
+
+    public function updateAnnouncement($id) {
+        $title = $_POST['u_title'];
+        $types = $_POST['u_types'];
+        $category = $_POST['u_category'];
+        $status = $_POST['u_status'];
+        $link = $_POST['u_link'];
+        $content = $_POST['content'];
+
+        $updateThumbnail = $_POST['ex_thumbnail'];
+        $updateEmbed = $_POST['ex_embed_post'];
+
+        
+
+        if($updateThumbnail == '') {
+            //Tumbnail 
+            if($_FILES['u_thumbnail']['size'] != 0) {
+                $updateThumbnail = $this->uploadFile($_FILES['u_thumbnail'], '../../uploads/posts/');
+                if($updateThumbnail == 'errors') {
+                    echo 'Invalid uploading of Embedded';
+                    exit;
+                }
+            }
+        }
+
+        if($updateEmbed == '') {
+            if($_POST['u_link'] != '') {
+                $updateEmbed = $link;
+            }
+            // Image
+            else if(!empty($_FILES['u_image']) ) {
+                $updateEmbed = $this->uploadFile($_FILES['u_image'], '../../uploads/posts/');
+                if($updateEmbed == 'errors') {
+                    echo 'Invalid uploading of Embedded';
+                    exit;
+                }
+            }
+        }
+
+        $query = "UPDATE posts SET post_title=:post_title, post_type = :post_type, post_category = :post_category, display_status = :display_status, post_thumb = :post_thumb, post_embed = :post_embed, post_content = :post_content WHERE id = :id";
+        $res = $this->conn->prepare($query);
+        $res->execute(array(
+            ':id' => $id,
+            ':post_title' => $title,
+            ':post_type' => $types,
+            ':post_category' => $category,
+            ':display_status' => $status,
+            ':post_thumb' => $updateThumbnail,
+            ':post_embed' => $updateEmbed,
+            ':post_content' => $content,
+        ));
+        
+        if($res) {
+            echo 'success';
+        } else {
+            echo 'error';
+        }
+
     }
  }
 

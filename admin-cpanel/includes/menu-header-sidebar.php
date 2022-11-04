@@ -57,18 +57,19 @@
 					<span class="nk-menu-icon"><em class="icon ni ni-file"></em></span>
 					<span class="nk-menu-text">News & Announcements</span>
 				</a>
-			</li>
-			<li class="nk-menu-item has-sub">
-				<a href="#" class="nk-menu-link nk-menu-toggle">
-					<span class="nk-menu-icon"><em class="icon ni ni-alarm-alt"></em></span>
-					<span class="nk-menu-text">Link Dropdown</span>
+			</li> 
+			<li class="nk-menu-item">
+				<a href="profanity-list.php" class="nk-menu-link">
+					<span class="nk-menu-icon"><em class="icon ni ni-na"></em></span>
+					<span class="nk-menu-text">Profanity List</span>
 				</a>
-				<ul class="nk-menu-sub">
-					<li class="nk-menu-item">
-						<a href="dropdown-link-1.php" class="nk-menu-link" data-bs-original-title="" title=""><span class="nk-menu-text">Dropdown Link 1</span></a>
-					</li>
-				</ul>
-			</li>
+			</li> 
+			<li class="nk-menu-item">
+				<a href="user-management.php" class="nk-menu-link">
+					<span class="nk-menu-icon"><em class="icon ni ni-users"></em></span>
+					<span class="nk-menu-text">User Management</span>
+				</a>
+			</li> 
 		</ul>
 	</div>
 </div>
