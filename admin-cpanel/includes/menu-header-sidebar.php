@@ -59,7 +59,18 @@
 				</a>
 			</li>
 
-
+			<li class="nk-menu-item">
+				<a href="profanity-list.php" class="nk-menu-link">
+					<span class="nk-menu-icon"><em class="icon ni ni-na"></em></span>
+					<span class="nk-menu-text">Profanity List</span>
+				</a>
+			</li> 
+			<li class="nk-menu-item">
+				<a href="user-management.php" class="nk-menu-link">
+					<span class="nk-menu-icon"><em class="icon ni ni-users"></em></span>
+					<span class="nk-menu-text">User Management</span>
+				</a>
+			</li> 
 			<?php if (array_intersect(array(99), preg_split ("/\,/", trim($_SESSION['user_level'])))){ ?>
 				<li class="nk-menu-heading">
 					<h6 class="overline-title text-primary-alt">AstiGo Navigations</h6>
@@ -110,4 +121,4 @@
 				<?php } ?>
 			</ul>
 		</div>
-	</div>
+</div>

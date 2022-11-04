@@ -1,0 +1,59 @@
+[02-Nov-2022 18:12:27 HongKong] PHP Fatal error:  Uncaught Error: Object of class PDOStatement could not be converted to string in C:\xampp\htdocs\isearch.asticom.com.ph\admin-cpanel\controller\announcementController.php:99
+Stack trace:
+#0 C:\xampp\htdocs\isearch.asticom.com.ph\admin-cpanel\controller\announcementController.php(11): announcementController->showAnnouncement('1')
+#1 {main}
+  thrown in C:\xampp\htdocs\isearch.asticom.com.ph\admin-cpanel\controller\announcementController.php on line 99
+[02-Nov-2022 18:13:22 HongKong] PHP Fatal error:  Uncaught Error: Object of class PDOStatement could not be converted to string in C:\xampp\htdocs\isearch.asticom.com.ph\admin-cpanel\controller\announcementController.php:99
+Stack trace:
+#0 C:\xampp\htdocs\isearch.asticom.com.ph\admin-cpanel\controller\announcementController.php(11): announcementController->showAnnouncement('2')
+#1 {main}
+  thrown in C:\xampp\htdocs\isearch.asticom.com.ph\admin-cpanel\controller\announcementController.php on line 99
+[02-Nov-2022 18:15:35 HongKong] PHP Fatal error:  Uncaught Error: Object of class PDOStatement could not be converted to string in C:\xampp\htdocs\isearch.asticom.com.ph\admin-cpanel\controller\announcementController.php:99
+Stack trace:
+#0 C:\xampp\htdocs\isearch.asticom.com.ph\admin-cpanel\controller\announcementController.php(11): announcementController->showAnnouncement('7')
+#1 {main}
+  thrown in C:\xampp\htdocs\isearch.asticom.com.ph\admin-cpanel\controller\announcementController.php on line 99
+[02-Nov-2022 18:16:00 HongKong] PHP Fatal error:  Uncaught Error: Object of class PDOStatement could not be converted to string in C:\xampp\htdocs\isearch.asticom.com.ph\admin-cpanel\controller\announcementController.php:99
+Stack trace:
+#0 C:\xampp\htdocs\isearch.asticom.com.ph\admin-cpanel\controller\announcementController.php(11): announcementController->showAnnouncement('6')
+#1 {main}
+  thrown in C:\xampp\htdocs\isearch.asticom.com.ph\admin-cpanel\controller\announcementController.php on line 99
+[02-Nov-2022 18:16:24 HongKong] PHP Fatal error:  Uncaught Error: Object of class PDOStatement could not be converted to string in C:\xampp\htdocs\isearch.asticom.com.ph\admin-cpanel\controller\announcementController.php:99
+Stack trace:
+#0 C:\xampp\htdocs\isearch.asticom.com.ph\admin-cpanel\controller\announcementController.php(11): announcementController->showAnnouncement('1')
+#1 {main}
+  thrown in C:\xampp\htdocs\isearch.asticom.com.ph\admin-cpanel\controller\announcementController.php on line 99
+[02-Nov-2022 18:16:47 HongKong] PHP Fatal error:  Uncaught Error: Object of class PDOStatement could not be converted to string in C:\xampp\htdocs\isearch.asticom.com.ph\admin-cpanel\controller\announcementController.php:99
+Stack trace:
+#0 C:\xampp\htdocs\isearch.asticom.com.ph\admin-cpanel\controller\announcementController.php(11): announcementController->showAnnouncement('2')
+#1 {main}
+  thrown in C:\xampp\htdocs\isearch.asticom.com.ph\admin-cpanel\controller\announcementController.php on line 99
+[02-Nov-2022 18:20:42 HongKong] PHP Notice:  Array to string conversion in C:\xampp\htdocs\isearch.asticom.com.ph\admin-cpanel\controller\announcementController.php on line 101
+[02-Nov-2022 18:21:03 HongKong] PHP Notice:  Array to string conversion in C:\xampp\htdocs\isearch.asticom.com.ph\admin-cpanel\controller\announcementController.php on line 101
+[02-Nov-2022 18:21:35 HongKong] PHP Notice:  Array to string conversion in C:\xampp\htdocs\isearch.asticom.com.ph\admin-cpanel\controller\announcementController.php on line 99
+[02-Nov-2022 18:31:53 HongKong] PHP Notice:  Array to string conversion in C:\xampp\htdocs\isearch.asticom.com.ph\admin-cpanel\controller\announcementController.php on line 101
+[03-Nov-2022 11:29:37 HongKong] PHP Notice:  Undefined index: extension in C:\xampp\htdocs\isearch.asticom.com.ph\admin-cpanel\controller\announcementController.php on line 85
+[03-Nov-2022 11:29:37 HongKong] PHP Notice:  Undefined index: extension in C:\xampp\htdocs\isearch.asticom.com.ph\admin-cpanel\controller\announcementController.php on line 86
+[03-Nov-2022 11:29:39 HongKong] PHP Notice:  Undefined index: extension in C:\xampp\htdocs\isearch.asticom.com.ph\admin-cpanel\controller\announcementController.php on line 85
+[03-Nov-2022 11:29:39 HongKong] PHP Notice:  Undefined index: extension in C:\xampp\htdocs\isearch.asticom.com.ph\admin-cpanel\controller\announcementController.php on line 86
+[03-Nov-2022 11:31:58 HongKong] PHP Notice:  Undefined index: extension in C:\xampp\htdocs\isearch.asticom.com.ph\admin-cpanel\controller\announcementController.php on line 84
+[03-Nov-2022 11:31:58 HongKong] PHP Notice:  Undefined index: extension in C:\xampp\htdocs\isearch.asticom.com.ph\admin-cpanel\controller\announcementController.php on line 85
+[03-Nov-2022 11:32:19 HongKong] PHP Notice:  Undefined index: extension in C:\xampp\htdocs\isearch.asticom.com.ph\admin-cpanel\controller\announcementController.php on line 84
+[03-Nov-2022 11:32:19 HongKong] PHP Notice:  Undefined index: extension in C:\xampp\htdocs\isearch.asticom.com.ph\admin-cpanel\controller\announcementController.php on line 85
+[03-Nov-2022 11:34:06 HongKong] PHP Notice:  Undefined index: extension in C:\xampp\htdocs\isearch.asticom.com.ph\admin-cpanel\controller\announcementController.php on line 83
+[03-Nov-2022 11:34:06 HongKong] PHP Notice:  Undefined index: extension in C:\xampp\htdocs\isearch.asticom.com.ph\admin-cpanel\controller\announcementController.php on line 84
+[03-Nov-2022 19:08:39 HongKong] PHP Notice:  Undefined index: u_content in C:\xampp\htdocs\isearch.asticom.com.ph\admin-cpanel\controller\announcementController.php on line 116
+[04-Nov-2022 00:12:35 HongKong] PHP Notice:  Undefined index: profanities in C:\xampp\htdocs\isearch.asticom.com.ph\admin-cpanel\controller\profanityController.php on line 22
+[04-Nov-2022 00:17:42 HongKong] PHP Notice:  Undefined index: profanities in C:\xampp\htdocs\isearch.asticom.com.ph\admin-cpanel\controller\profanityController.php on line 22
+[04-Nov-2022 00:28:01 HongKong] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY093]: Invalid parameter number: parameter was not defined in C:\xampp\htdocs\isearch.asticom.com.ph\admin-cpanel\controller\profanityController.php:24
+Stack trace:
+#0 C:\xampp\htdocs\isearch.asticom.com.ph\admin-cpanel\controller\profanityController.php(24): PDOStatement->execute(Array)
+#1 C:\xampp\htdocs\isearch.asticom.com.ph\admin-cpanel\controller\profanityController.php(7): profanityController->update()
+#2 {main}
+  thrown in C:\xampp\htdocs\isearch.asticom.com.ph\admin-cpanel\controller\profanityController.php on line 24
+[04-Nov-2022 00:29:27 HongKong] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY093]: Invalid parameter number: parameter was not defined in C:\xampp\htdocs\isearch.asticom.com.ph\admin-cpanel\controller\profanityController.php:24
+Stack trace:
+#0 C:\xampp\htdocs\isearch.asticom.com.ph\admin-cpanel\controller\profanityController.php(24): PDOStatement->execute(Array)
+#1 C:\xampp\htdocs\isearch.asticom.com.ph\admin-cpanel\controller\profanityController.php(7): profanityController->update()
+#2 {main}
+  thrown in C:\xampp\htdocs\isearch.asticom.com.ph\admin-cpanel\controller\profanityController.php on line 24
