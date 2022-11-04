@@ -1,6 +1,6 @@
 <?php
     require_once("../core/dbcon.php");
-    require "../functions/session-admin.php";
+    require "../functions/session.php";
 
     class onLoadController 
     {

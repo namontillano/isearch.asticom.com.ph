@@ -14,6 +14,14 @@ if(isset($_COOKIE['authenticated'])) {
             $_SESSION['google_email_address'] = $row['google_email_address'];
             $_SESSION['google_image'] = $row['google_image'];
             $_SESSION['user_level'] = $row['user_level'];
+
+            // AstiGo Sessions
+            $_SESSION['user_first_name'] = $row['google_first_name'];
+            $_SESSION['user_last_name'] =  $row['google_last_name'];
+            $_SESSION['user_email_address'] = $row['google_email_address'];
+            $_SESSION['user_picture'] = $row['google_image'];
+            // AstiGo Sessions
+
         }
         
     }

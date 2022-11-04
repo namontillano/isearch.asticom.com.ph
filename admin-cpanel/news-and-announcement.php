@@ -24,13 +24,14 @@ $getUserCategories = $onloadData->getUserCategories();
     <meta name="description" content="">
     <link rel="shortcut icon" href="images/favicon.png">
     <title><?= APP_NAME . " | " . $pagetitle; ?></title>
+
     <?php include "includes/styles.php" ?>
 
     <!-- Include stylesheet -->
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
     <!-- Include the Quill library -->
     <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
-
+    
     <style>
         .error {
             color: #e85347;
@@ -69,6 +70,7 @@ $getUserCategories = $onloadData->getUserCategories();
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="nk-block">
                                     <div class="card card-bordered card-stretch">
                                         <div class="card-inner-group">
@@ -160,6 +162,9 @@ $getUserCategories = $onloadData->getUserCategories();
             </div>
         </div>
     </div>
+
+    
+
     <div class="modal fade" tabindex="-1" role="dialog" id="addAnnouncement">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content"><a href="#" class="close" data-bs-dismiss="modal"><em class="icon ni ni-cross-sm"></em></a>
@@ -260,6 +265,8 @@ $getUserCategories = $onloadData->getUserCategories();
         </div>
     </div>
     <?php include "includes/script.php" ?>
+
+
     <script>
         $(document).ready(function() {
             $('#example').DataTable();

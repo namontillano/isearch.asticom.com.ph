@@ -13,7 +13,7 @@ try{
 	$sql = $db->query('SELECT comments.comment_post_id,comments.id,comments.comment_user_id, comments.comment_message, comments.comment_date_posted,  accounts.google_first_name, accounts.google_last_name, accounts.google_image FROM comments INNER JOIN accounts ON comments.comment_user_id = accounts.google_id WHERE comments.comment_post_id = "'.$_POST['postid'].'" ORDER BY comments.comment_date_posted DESC');
 	$commentallcount = $sql->rowCount();
 
-	$sql = 'SELECT comments.comment_post_id,comments.id,comments.comment_user_id, comments.comment_message, comments.comment_date_posted,  accounts.google_first_name, accounts.google_last_name, accounts.google_image FROM comments INNER JOIN accounts ON comments.comment_user_id = accounts.google_id WHERE comments.comment_post_id = "'.$_POST['postid'].'" ORDER BY comments.comment_date_posted DESC LIMIT 0,'.$commentrowperpage;
+	$sql = 'SELECT comments.comment_status,comments.comment_post_id,comments.id,comments.comment_user_id, comments.comment_message, comments.comment_date_posted,  accounts.google_first_name, accounts.google_last_name, accounts.google_image FROM comments INNER JOIN accounts ON comments.comment_user_id = accounts.google_id WHERE comments.comment_post_id = "'.$_POST['postid'].'" ORDER BY comments.comment_date_posted DESC LIMIT 0,'.$commentrowperpage;
 	foreach ($db->query($sql) as $row) {
 		?>
 		<div class="comment-replay-cont commentlist pb-20 pt-20 border-top border-1 brd-gray">
@@ -22,13 +22,20 @@ try{
 			if (isset($_SESSION['google_id'])) {
 				if ($_SESSION['google_id'] == $row['comment_user_id']) {
 					?>
-					<div class="dropdown" style="float: right;position: relative;right: 5px;">
-						<a class="" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-gear"></i></a>
-						<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-							<li><a class="dropdown-item editcomment" id="editcomment" data-editpostid="<?php echo $row['comment_post_id'] ?>" data-editcommentid="<?php echo $row['id'] ?>" data-editmessage="<?php echo strip_tags($row['comment_message']);?>">Edit</a></li>
-							<li><a class="dropdown-item deletecomment" id="deletecomment" data-bs-toggle="modal" data-bs-target="#Modaldeletecomments" data-deletepostid="<?php echo $row['comment_post_id'] ?>" data-deletecommentid="<?php echo $row['id'] ?>">Delete</a></li>
-						</ul>
-					</div>
+					<?php
+					if ($row['comment_status'] != '0') {
+						?>
+						<div class="dropdown" style="float: right;position: relative;right: 5px;">
+							<a class="" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-gear"></i></a>
+							<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+								<li><a class="dropdown-item editcomment" id="editcomment" data-editpostid="<?php echo $row['comment_post_id'] ?>" data-editcommentid="<?php echo $row['id'] ?>" data-editmessage="<?php echo strip_tags($row['comment_message']);?>">Edit</a></li>
+								<li><a class="dropdown-item deletecomment" id="deletecomment" data-bs-toggle="modal" data-bs-target="#Modaldeletecomments" data-deletepostid="<?php echo $row['comment_post_id'] ?>" data-deletecommentid="<?php echo $row['id'] ?>">Delete</a></li>
+							</ul>
+						</div>
+						<?php
+					}
+					?>
+					
 					<?php
 				}
 			}
@@ -48,7 +55,13 @@ try{
 					</div>
 					<div class="mt-10" style="line-height: 1.5;">
 						<div id="commentcontainer<?php echo $row['id'] ?>">
-							<?php echo nl2br(htmlentities($row['comment_message'], ENT_QUOTES, 'UTF-8'));?>
+							<?php
+							if ($row['comment_status'] == '0') {
+								echo "<i class='text-muted'>***Comment deleted by administrator***</i>";
+							} else {
+								echo nl2br(htmlentities($row['comment_message'], ENT_QUOTES, 'UTF-8'));
+							}
+							?>
 						</div>
 					</div>
 				</div>

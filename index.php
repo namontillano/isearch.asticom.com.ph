@@ -1,6 +1,6 @@
 <?php
 $pagetitle="Home";
-$pageuserlevel=array("0","2");
+$pageuserlevel=array("0" );
 require 'core/dbcon.php';
 require "functions/session.php";
 include_once "functions/token.php";

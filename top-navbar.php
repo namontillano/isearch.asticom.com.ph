@@ -36,7 +36,7 @@
                         <b class="text-white fs-12px" ><?php echo $_SESSION["google_first_name"]; ?> <?php echo $_SESSION["google_last_name"]; ?></b>
                     </span>
                     <ul class="dropdown-menu" aria-labelledby="usermenubutton" style="border-radius: 5px;">
-                        <?php if (array_intersect(array(1,2,3,4,5), preg_split ("/\,/", trim($_SESSION['user_level'])))){ ?>
+                        <?php if (array_intersect(array(1,2,3,4,5,99), preg_split ("/\,/", trim($_SESSION['user_level'])))){ ?>
                             <li><a class="dropdown-item" href="<?=URL_ROOT;?>admin-cpanel/news-and-announcement.php">Dashboard</a></li>
                         <?php } ?>
                         <li><a class="dropdown-item" href="<?=URL_ROOT;?>logout.php">Logout</a></li>

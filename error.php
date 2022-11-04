@@ -9,7 +9,7 @@ if (!empty($_GET["code"])) {
     case "403":
     $code = "403";
     $title = "Access Forbidden";
-    $desc = "Access to this resource o the server is denied!";
+    $desc = "Access to this resource of the server is denied!";
     break;
     case '404':
     $code = '404';

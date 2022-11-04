@@ -1,13 +1,13 @@
-<div class="nk-header nk-header-fixed is-light">
-	<div class="container-fluid">
-		<div class="nk-header-wrap">
+<div class="nk-header nk-header-fixed is-light" style="background-image: url('../assets/img/top_nav_s4.png'); background-size: cover; background-position: top; color: white;">
+	<div class="container-fluid" >
+		<div class="nk-header-wrap" >
 			<div class="nk-menu-trigger d-xl-none ms-n1">
 				<a href="#" class="nk-nav-toggle nk-quick-nav-icon" data-target="sidebarMenu">
 					<em class="icon ni ni-menu"></em>
 				</a>
 			</div>
 			<div class="nk-header-app-name">
-				<img class="logo-dark logo-img" src="../assets/custom/img/asticom-group-of-companies.png" alt="logo">
+				<img class="logo-dark logo-img" src="../assets/custom/img/asticom-white.png" alt="logo" style="max-height: 60px;">
 			</div>
 
 			<div class="nk-header-tools">
@@ -50,25 +50,64 @@
 	<div class="nk-sidebar-inner" data-simplebar>
 		<ul class="nk-menu nk-menu-md">
 			<li class="nk-menu-heading">
-				<h6 class="overline-title text-primary-alt">Navigations</h6>
+				<h6 class="overline-title text-primary-alt">i-Search Navigations</h6>
 			</li>
 			<li class="nk-menu-item">
 				<a href="news-and-announcement.php" class="nk-menu-link">
-					<span class="nk-menu-icon"><em class="icon ni ni-file"></em></span>
+					<span class="nk-menu-icon"><em class="icon ni ni-bell"></em></span>
 					<span class="nk-menu-text">News & Announcements</span>
 				</a>
 			</li>
-			<li class="nk-menu-item has-sub">
-				<a href="#" class="nk-menu-link nk-menu-toggle">
-					<span class="nk-menu-icon"><em class="icon ni ni-alarm-alt"></em></span>
-					<span class="nk-menu-text">Link Dropdown</span>
-				</a>
-				<ul class="nk-menu-sub">
+
+
+			<?php if (array_intersect(array(99), preg_split ("/\,/", trim($_SESSION['user_level'])))){ ?>
+				<li class="nk-menu-heading">
+					<h6 class="overline-title text-primary-alt">AstiGo Navigations</h6>
+				</li>
+
+
 					<li class="nk-menu-item">
-						<a href="dropdown-link-1.php" class="nk-menu-link" data-bs-original-title="" title=""><span class="nk-menu-text">Dropdown Link 1</span></a>
+						<a href="management-account.php" class="nk-menu-link">
+							<span class="nk-menu-icon"><em class="icon ni ni-users"></em></span>
+							<span class="nk-menu-text">Management Account</span>
+						</a>
 					</li>
-				</ul>
-			</li>
-		</ul>
+
+					<li class="nk-menu-item">
+						<a href="contact-tracer-account.php" class="nk-menu-link">
+							<span class="nk-menu-icon"><em class="icon ni ni-contact"></em></span>
+							<span class="nk-menu-text">Contact Tracer Account</span>
+						</a>
+					</li>
+
+					<li class="nk-menu-item">
+						<a href="calltree.php" class="nk-menu-link">
+							<span class="nk-menu-icon"><em class="icon ni ni-call"></em></span>
+							<span class="nk-menu-text">Call Tree</span>
+						</a>
+					</li>
+
+					<li class="nk-menu-item">
+						<a href="quotes.php" class="nk-menu-link">
+							<span class="nk-menu-icon"><em class="icon ni ni-file"></em></span>
+							<span class="nk-menu-text">List of Quotes</span>
+						</a>
+					</li>
+
+					<li class="nk-menu-item">
+						<a href="dailytips.php" class="nk-menu-link">
+							<span class="nk-menu-icon"><em class="icon ni ni-calendar"></em></span>
+							<span class="nk-menu-text">Daily Tips</span>
+						</a>
+					</li>
+
+
+
+
+
+
+
+				<?php } ?>
+			</ul>
+		</div>
 	</div>
-</div>

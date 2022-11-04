@@ -92,6 +92,9 @@ FRED Chatbot (Pixelated QR Code)
 <!-- SIR VAUGHN  -->
 <!-------------------------------------------------------->
 
+Join Users Name instead of userid in Announcement List
+
+
 /* Inan */
 - Administrator Dashobard
     - Add News & Announcemnts
