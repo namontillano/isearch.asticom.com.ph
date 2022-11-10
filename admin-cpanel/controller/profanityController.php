@@ -2,9 +2,9 @@
  require_once("../../core/dbcon.php");
 
  if(isset($_REQUEST['command'])) {
-    $announcementController = new profanityController();
+    $classController = new profanityController();
     if($_REQUEST['command'] == 'updateProfanity') {
-        $announcementController->update();
+        $classController->update();
     }
 }
 

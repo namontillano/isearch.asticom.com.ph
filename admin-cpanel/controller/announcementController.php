@@ -64,7 +64,11 @@
         $res = $this->conn->query($query);
         
         if($res) {
-            echo 'success';
+            echo json_encode(array(
+                'message' => 'success',
+                'image' => $thumbnail,
+                'content' => strip_tags($content, '<br>')
+            ));
         } else {
             echo 'error';
         }
@@ -108,6 +112,7 @@
     }
 
     public function updateAnnouncement($id) {
+        $astigo_status = $_POST['astigo_status'];
         $title = $_POST['u_title'];
         $types = $_POST['u_types'];
         $category = $_POST['u_category'];
@@ -145,10 +150,11 @@
             }
         }
 
-        $query = "UPDATE posts SET post_title=:post_title, post_type = :post_type, post_category = :post_category, display_status = :display_status, post_thumb = :post_thumb, post_embed = :post_embed, post_content = :post_content WHERE id = :id";
+        $query = "UPDATE posts SET astigo_status=:astigo_status, post_title=:post_title, post_type = :post_type, post_category = :post_category, display_status = :display_status, post_thumb = :post_thumb, post_embed = :post_embed, post_content = :post_content WHERE id = :id";
         $res = $this->conn->prepare($query);
         $res->execute(array(
             ':id' => $id,
+            ':astigo_status' => $astigo_status,
             ':post_title' => $title,
             ':post_type' => $types,
             ':post_category' => $category,
@@ -159,7 +165,11 @@
         ));
         
         if($res) {
-            echo 'success';
+            echo json_encode(array(
+                'message' => 'success',
+                'image' => $updateThumbnail,
+                'content' => strip_tags($content, '<br>')
+            ));
         } else {
             echo 'error';
         }

@@ -94,6 +94,9 @@ $getUserCategories2 = $onloadData->getUserCategories();
                                                             <th class="nk-tb-col tb-col-mb">
                                                                 <span class="sub-text">Status</span>
                                                             </th>
+                                                            <th class="nk-tb-col tb-col-mb">
+                                                                <span class="sub-text">Posted Date</span>
+                                                            </th>
                                                             <th class="nk-tb-col nk-tb-col-tools text-end">
                                                             </th>
                                                         </tr>
@@ -129,6 +132,7 @@ $getUserCategories2 = $onloadData->getUserCategories();
                                                             <?php } else { ?>
                                                                 <span class="badge badge-dim bg-danger">Hidden</span></td>
                                                             <?php } ?>
+                                                            <td class="nk-tb-col tb-col-lg"><?php echo date("M d, Y", strtotime($data['post_postedon']))?></td>
                                                             <td class="nk-tb-col nk-tb-col-tools">
                                                                 <ul class="nk-tb-actions gx-1">
                                                                     <li>
@@ -206,7 +210,7 @@ $getUserCategories2 = $onloadData->getUserCategories();
                                                 <?php
                                                     $arr = explode(",", $_SESSION['user_level']);
                                                     while ($cat = $getUserCategories->fetch(PDO::FETCH_ASSOC)) { 
-                                                        if (in_array($cat['id'], $arr)) { ?>
+                                                        if (in_array($cat['id'], $arr) && $cat['id'] != '99') { ?>
                                                             <option value="<?php echo $cat['categories_code'] ?>"><?php echo $cat['categories_name'] ?></option>
                                                 <?php   }  
                                                     }  
@@ -306,7 +310,7 @@ $getUserCategories2 = $onloadData->getUserCategories();
                                                 <?php
                                                     $arr = explode(",", $_SESSION['user_level']);
                                                     while ($cat = $getUserCategories2->fetch(PDO::FETCH_ASSOC)) { 
-                                                        if (in_array($cat['id'], $arr)) { ?>
+                                                        if (in_array($cat['id'], $arr) && $cat['id'] != '99') { ?>
                                                             <option value="<?php echo $cat['categories_code'] ?>"><?php echo $cat['categories_name'] ?></option>
                                                 <?php   }  
                                                     }  
@@ -380,8 +384,10 @@ $getUserCategories2 = $onloadData->getUserCategories();
     <script>
         $(document).ready(function() {
             //dataTable 
+
             $('#example').DataTable();
             var id_to_update = '';
+            var astigo_status = '';
             var url = 'controller/announcementController.php';
             //value of content
             var editor = new Quill('#editor', {
@@ -395,12 +401,12 @@ $getUserCategories2 = $onloadData->getUserCategories();
 
             
 
-            function broadcastToAstigo(){
+            function broadcastToAstigo(title, message, image){
                 let link = 'https://dev.astigo.agc.com.ph/purego_api/isearch_notification.php';
                 let astigoData = {
-                    "title": "Test from iSearch",
-                    "message": "Message Sample",
-                    "image_path": "https://picsum.photos/200/300"
+                    "title": title,
+                    "message": message,
+                    "image_path": image,
                 }
                 
                 $.SystemScript.executePost(link, astigoData).done((response) => {
@@ -485,18 +491,28 @@ $getUserCategories2 = $onloadData->getUserCategories();
                     } 
                     
                     if($valid){
-
                         var data = new FormData(form);
                         let path = url + '?command=addAnnouncement';
                         let content = editor.root.innerHTML;
                         data.append('content', content);
                         $.SystemScript.executePost(path, data).done((response) => {
                             console.log(response.data);
-                            if(response.data == 'success') {
+                            if(response.data.message == 'success') {
+                                if($('#status').val() == '1'){
+                                    let image_link = `http://${window.location.hostname}/isearch.asticom.com.ph/uploads/posts/${response.data.image}`;
+                                    if(response.data.image == 0) {
+                                        image_link = '';
+                                    }
+                                    let str = response.data.content;
+                                    let regex = /<br\s*[\/]?>/gi;
+                                    let cont = str.replace(regex, " ");
+                                    broadcastToAstigo($('#title').val(), cont, image_link);
+                                }
                                 $.SystemScript.swalAlertMessage('Successfully',`Added Announcement/News Post`, 'success');
                                 $('.swal2-confirm').click(function(){
                                     location.reload();
-                                })
+                                });
+                                
                             }   
                             $('.btn-submit').prop('disabled', false);
                             $('.btn-submit').html('Submit');
@@ -521,7 +537,7 @@ $getUserCategories2 = $onloadData->getUserCategories();
                 const id = this.id.split('_')[1];
                 let path = url + `?command=showAnnouncement&post_id=${id}`;
                 $.SystemScript.executeGet(path).done((res) => {
-                    console.log(res.data);
+                    astigo_status = res.data.astigo_status; 
                     id_to_update = res.data.id;
                     $('#u_title').val(res.data.post_title);
                     $(`#u_types option[value="${res.data.post_type}"]`).prop('selected', true);
@@ -580,22 +596,53 @@ $getUserCategories2 = $onloadData->getUserCategories();
                             $('#ex_embed_post').val('');
                         }
                         
+                        var astigo_broadcast = 0;
+                        if(astigo_status == 1 && $('#u_status').val() == '1') {
+                            $.SystemScript.swalConfirmMessage('Are you sure?', 
+                            'This post was already broadcasted on go mobile, do you want to broadcast it again?', 'question').done(function(response) {
+                                if(response) {
+                                    astigo_broadcast = 1;
+                                } 
+                                executeFunction();
+                            });
+                        } else {
+                            executeFunction();
+                        }
 
-                        var data = new FormData(form);
-                        let path = url + `?command=updateAnnouncement&post_id=${id_to_update}`;
-                        let u_content = u_editor.root.innerHTML;
-                        data.append('content', u_content);
-                        $.SystemScript.executePost(path, data).done((response) => {
-                            console.log(response.data);
-                            if(response.data == 'success') {
-                                $.SystemScript.swalAlertMessage('Successfully',`Updated a Announcement/News Post`, 'success');
-                                $('.swal2-confirm').click(function(){
-                                    location.reload();
-                                })
-                            }   
-                            $('.btn-submit').prop('disabled', false);
-                            $('.btn-submit').html('Submit');
-                        });
+                        function executeFunction() {
+                            var data = new FormData(form);
+                            let path = url + `?command=updateAnnouncement&post_id=${id_to_update}`;
+                            let u_content = u_editor.root.innerHTML;
+                            data.append('content', u_content);
+                            if($('#u_status').val() == '1') {
+                                astigo_broadcast = 1;
+                                data.append('astigo_status', astigo_broadcast);
+                            } else {
+                                data.append('astigo_status', astigo_status);
+                            }
+                            
+                            $.SystemScript.executePost(path, data).done((response) => {
+                                if(response.data.message == 'success') {
+                                    if(astigo_broadcast){
+                                        let image_link = `http://${window.location.hostname}/isearch.asticom.com.ph/uploads/posts/${response.data.image}`;
+                                        if(response.data.image == 0) {
+                                            image_link = '';
+                                        }
+                                        let str = response.data.content;
+                                        let regex = /<br\s*[\/]?>/gi;
+                                        let cont = str.replace(regex, " ");
+                                        broadcastToAstigo($('#u_title').val(), cont, image_link);
+                                    }
+                                    $.SystemScript.swalAlertMessage('Successfully',`Updated a Announcement/News Post`, 'success');
+                                    $('.swal2-confirm').click(function(){
+                                        location.reload();
+                                    });
+                                }   
+                                $('.btn-submit').prop('disabled', false);
+                                $('.btn-submit').html('Submit');
+                            });
+                        }
+                       
                     }
                     
                 }

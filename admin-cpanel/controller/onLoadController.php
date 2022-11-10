@@ -51,6 +51,15 @@
             $res->execute();
             return $res;
         }
+
+        public function getComment() {
+            $query = "SELECT c.*, a.google_email_address, 
+            a.google_first_name,a.google_last_name,a.google_image FROM comments c
+            LEFT JOIN accounts a ON c.comment_user_id = a.google_id GROUP BY c.id ORDER BY c.comment_date_posted DESC";
+            $res = $this->conn->prepare($query);
+            $res->execute();
+            return $res;
+        }
     }
 
 ?>

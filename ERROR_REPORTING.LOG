@@ -5,3 +5,29 @@
 [02-Nov-2022 16:08:51 HongKong] PHP Notice:  Undefined index: user_level in C:\xampp\htdocs\isearch.asticom.com.ph\functions\userlevel.php on line 2
 [02-Nov-2022 16:09:18 HongKong] PHP Notice:  Undefined index: user_level in C:\xampp\htdocs\isearch.asticom.com.ph\functions\userlevel.php on line 2
 [02-Nov-2022 16:09:22 HongKong] PHP Notice:  Undefined index: user_level in C:\xampp\htdocs\isearch.asticom.com.ph\functions\userlevel.php on line 2
+[04-Nov-2022 17:18:22 HongKong] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'isearch.posts' doesn't exist in C:\xampp\htdocs\isearch.asticom.com.ph\post.php:11
+Stack trace:
+#0 C:\xampp\htdocs\isearch.asticom.com.ph\post.php(11): PDO->query('SELECT * FROM p...')
+#1 {main}
+  thrown in C:\xampp\htdocs\isearch.asticom.com.ph\post.php on line 11
+[04-Nov-2022 17:18:30 HongKong] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'isearch.accounts' doesn't exist in C:\xampp\htdocs\isearch.asticom.com.ph\login.php:32
+Stack trace:
+#0 C:\xampp\htdocs\isearch.asticom.com.ph\login.php(32): PDO->query('SELECT * FROM a...')
+#1 {main}
+  thrown in C:\xampp\htdocs\isearch.asticom.com.ph\login.php on line 32
+[04-Nov-2022 17:21:18 HongKong] PHP Notice:  Undefined index: user_level in C:\xampp\htdocs\isearch.asticom.com.ph\functions\userlevel.php on line 2
+[04-Nov-2022 17:21:25 HongKong] PHP Notice:  Undefined index: user_level in C:\xampp\htdocs\isearch.asticom.com.ph\functions\userlevel.php on line 2
+[04-Nov-2022 17:21:36 HongKong] PHP Notice:  Undefined index: user_level in C:\xampp\htdocs\isearch.asticom.com.ph\functions\userlevel.php on line 2
+[04-Nov-2022 17:22:47 HongKong] PHP Notice:  Undefined index: user_level in C:\xampp\htdocs\isearch.asticom.com.ph\functions\userlevel.php on line 2
+[04-Nov-2022 17:23:15 HongKong] PHP Notice:  Undefined index: user_level in C:\xampp\htdocs\isearch.asticom.com.ph\functions\userlevel.php on line 2
+[04-Nov-2022 17:33:04 HongKong] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'isearch.accounts' doesn't exist in C:\xampp\htdocs\isearch.asticom.com.ph\functions\session.php:9
+Stack trace:
+#0 C:\xampp\htdocs\isearch.asticom.com.ph\functions\session.php(9): PDOStatement->execute()
+#1 C:\xampp\htdocs\isearch.asticom.com.ph\index.php(5): require('C:\\xampp\\htdocs...')
+#2 {main}
+  thrown in C:\xampp\htdocs\isearch.asticom.com.ph\functions\session.php on line 9
+[04-Nov-2022 17:33:21 HongKong] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'isearch.accounts' doesn't exist in C:\xampp\htdocs\isearch.asticom.com.ph\login.php:32
+Stack trace:
+#0 C:\xampp\htdocs\isearch.asticom.com.ph\login.php(32): PDO->query('SELECT * FROM a...')
+#1 {main}
+  thrown in C:\xampp\htdocs\isearch.asticom.com.ph\login.php on line 32

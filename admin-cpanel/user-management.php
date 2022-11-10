@@ -144,7 +144,7 @@ $getUserAccount = $onloadData->getUserAccount();
                                                                                    
                                                                                     
                                                                                     <li>
-                                                                                        <a href="#" class="showUpdateModal" id="">
+                                                                                        <a href="#" class="showUpdateAccessModal" id="<?php echo $data['google_id'];?>">
                                                                                             <em class="icon ni ni-edit"></em><span>Edit Access</span>
                                                                                         </a>
                                                                                     </li>
@@ -152,13 +152,13 @@ $getUserAccount = $onloadData->getUserAccount();
                                                                                         if($data['google_id'] != $_SESSION['google_id']) {
                                                                                             if ($data['status'] == 0) { 
                                                                                                 echo'<li>
-                                                                                                        <a href="#" class="block" id="'.$data['google_id'].'">
+                                                                                                        <a style="cursor: pointer;" class="block" id="'.$data['google_id'].'">
                                                                                                         <em class="icon ni ni-na"></em>Block User</span>
                                                                                                         </a>
                                                                                                     </li>';
                                                                                             } else if($data['status'] == 1) {
                                                                                                 echo'<li>
-                                                                                                        <a href="#" class="unblock" id="'.$data['google_id'].'"">
+                                                                                                        <a style="cursor: pointer;" class="unblock" id="'.$data['google_id'].'"">
                                                                                                         <em class="icon ni ni-check-circle"></em><span>Unblock User</span>
                                                                                                         </a>
                                                                                                     </li>';
@@ -187,12 +187,112 @@ $getUserAccount = $onloadData->getUserAccount();
         </div>
     </div>
 
-
+    <div class="modal fade" tabindex="-1" role="dialog" id="showUpdateAccess">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content"><a href="#" class="close" data-bs-dismiss="modal"><em class="icon ni ni-cross-sm"></em></a>
+                <div class="modal-body modal-body-md">
+                    <h5 class="modal-title">Update Access Category</h5>
+                    <form action="#" id="submitUpdateAccess" class="mt-4" method="POST" enctype="multipart/form-data">
+                        <div class="row g-gs">
+                            
+                            <div class="col-sm-12">
+                                <div class="form-group"><label class="form-label">Categories</label>
+                                    <div class="form-control-wrap">
+                                        <select class="form-select js-select2" name="access_categories" multiple="multiple"
+                                            data-placeholder="Select Multiple options" id="access_categories">
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <ul class="align-center flex-wrap flex-sm-nowrap gx-4 gy-2">
+                                    <li><button type="submit" class="btn btn-primary btn-submit">Submit</button></li>
+                                    <li><a href="#" class="link link-light" data-bs-dismiss="modal">Cancel</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>                                                                                       
     <?php include "includes/script.php" ?>
     <script>
         $(document).ready(function() {
             //dataTable 
             $('#example').DataTable();
+            var url = 'controller/userManagementController.php';
+            var status = null;
+            var access_user_id = '';
+            $(document).on('click', '.block', function(){
+                const id = this.id;
+                $.SystemScript.swalConfirmMessage('Are you sure?', 
+                            'Do you want to block this user?', 'question').done(function(response) {
+                    if(response) {
+                        status = 1;
+                        let path = url + `?command=updateUserStatus&user_id=${id}&status=${status}`;
+                        let action = "Blocked";
+                        updateStatus(path, action);
+                    }
+                });
+            });
+
+            $(document).on('click', '.unblock', function(){
+                const id = this.id;
+                $.SystemScript.swalConfirmMessage('Are you sure?', 
+                            'Do you want to unblock this user?', 'question').done(function(response) {
+                    if(response) {
+                        status = 0;
+                        let path = url + `?command=updateUserStatus&user_id=${id}&status=${status}`;
+                        let action = "Unlocked";
+                        updateStatus(path, action);
+                    }
+                });
+            });
+
+            const updateStatus  = (path, action) => {
+                $.SystemScript.executeGet(path).done((res) => {
+                    if(res.data.message == 'success') {
+                        $.SystemScript.swalAlertMessage('Successfully',`User has been ${action}`, 'success');
+                        $('.swal2-confirm').click(function(){
+                            location.reload();
+                        });
+                    }
+                });
+            }
+
+            $(document).on('click', '.showUpdateAccessModal', function(){
+                const id = this.id;
+                let path = url + `?command=getCategories&user_id=${id}`;
+                $.SystemScript.executeGet(path).done((res) => {
+                    // console.log(res.data)
+                    $('#access_categories').html('');
+                    let cat_data = res.data.categories;
+                    var options = cat_data.map(function(val, ind){
+                        let ex = res.data.existing_access;
+                        return $(`<option ${ex.indexOf(val.id) != -1 ? 'selected' : ''}></option>`).val(val.id).html(val.categories_name);
+                    });
+                    $('#access_categories').append(options);
+                })
+                $('#showUpdateAccess').modal('show');
+                access_user_id = id;
+            })
+            
+            $("#submitUpdateAccess").submit(function(e) {
+                e.preventDefault();
+                var data = new FormData(this);
+                let path = url + '?command=updateUserAccessCategory';
+                data.append('google_id', access_user_id);
+                data.append('access', $('#access_categories').val());
+                $.SystemScript.executePost(path, data).done((response) => {
+                    if(response.data == 'success') {
+                        $.SystemScript.swalAlertMessage('Successfully',`Updated the User Access categories`, 'success');
+                        $('.swal2-confirm').click(function(){
+                            location.reload();
+                        });
+                    }
+                });
+            });
 
         });
     </script>
