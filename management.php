@@ -1,6 +1,6 @@
 <?php
 $pagetitle="Management";
-$pageuserlevel=array("0");
+$pageuserlevel=array("5");
 require 'core/dbcon.php';
 require "functions/session.php";
 require ("functions/userlevel.php");
@@ -211,8 +211,8 @@ require ("functions/userlevel.php");
     <!-- ====== end footer ====== -->
 
 
-    <!-- ====== chat-support ====== -->
-    <?php include "chat-support.php"; ?>
+    <!-- ====== widgets ====== -->
+    <?php include "widgets.php"; ?>
     <!-- ====== chat-support  ====== -->
 
     <!-- ====== start to top button ====== -->

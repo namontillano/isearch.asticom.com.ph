@@ -21,7 +21,7 @@ $getUserCategories2 = $onloadData->getUserCategories();
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="author" content="">
     <meta name="description" content="">
-    <link rel="shortcut icon" href="images/favicon.png">
+    <link rel="shortcut icon" href="../assets/custom/img/favicon.png" title="Favicon" sizes="16x16" />
     <title><?= APP_NAME . " | " . $pagetitle; ?></title>
 
     <?php include "includes/styles.php" ?>
@@ -32,11 +32,8 @@ $getUserCategories2 = $onloadData->getUserCategories();
     <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
     
     <style>
-        .error {
-            color: #e85347;
-            font-size: 11px;
-            font-style: italic;
-        }
+        .error { color: #e85347; font-size: 11px; font-style: italic; }
+        div.dataTables_wrapper div.dataTables_length select { margin-left: 10px; margin-right: 10px; }
     </style>
 </head>
 
@@ -104,22 +101,22 @@ $getUserCategories2 = $onloadData->getUserCategories();
                                                     <tbody>
                                                         <?php
                                                         while ($data = $getAnnouncement->fetch(PDO::FETCH_ASSOC)) {
-                                                        ?>
+                                                            ?>
                                                             <tr class="nk-tb-item">
                                                                 <td class="d-none"><?php echo $data['id']; ?></td>
-                                                                <td class="nk-tb-col">
+                                                                <td class="nk-tb-col" style="cursor: pointer;">
                                                                     <?php if ($data['post_pin'] == 1) { ?>
-                                                                        <em class="icon ni ni-star-fill text-warning"></em>
+                                                                        <em class="icon ni ni-star-fill text-warning unpin" id="pin_<?php echo $data['id']?>"></em>
                                                                     <?php } else { ?>
-                                                                        <em class="icon ni ni-star"></em>
+                                                                        <em class="icon ni ni-star pin" id="pin_<?php echo $data['id']?>"></em>
                                                                     <?php } ?>
 
                                                                 </td>
                                                                 <td class="nk-tb-col"><a href="#" class="project-title">
-                                                                        <div class="project-info">
-                                                                            <strong class="text-dark"><?php echo $data['post_title']; ?></strong>
-                                                                        </div>
-                                                                    </a></td>
+                                                                    <div class="project-info">
+                                                                        <strong class="text-dark"><?php echo $data['post_title']; ?></strong>
+                                                                    </div>
+                                                                </a></td>
                                                                 <td class="nk-tb-col tb-col-lg"><span><?php echo $data['post_type']; ?></span>
                                                                 </td>
                                                                 <td class="nk-tb-col tb-col-lg"><span><?php echo $data['post_category']; ?></span>
@@ -128,37 +125,59 @@ $getUserCategories2 = $onloadData->getUserCategories();
                                                                 <td class="nk-tb-col tb-col-mb">
                                                                     <?php if ($data['display_status'] == 1) { ?>
                                                                         <span class="badge badge-dim bg-success">Displayed</span>
+                                                                        
+                                                                    <?php } else { ?>
+                                                                        <span class="badge badge-dim bg-danger">Hidden</span></td>
+                                                                    <?php } ?>
                                                                 </td>
-                                                            <?php } else { ?>
-                                                                <span class="badge badge-dim bg-danger">Hidden</span></td>
-                                                            <?php } ?>
-                                                            <td class="nk-tb-col tb-col-lg"><?php echo date("M d, Y", strtotime($data['post_postedon']))?></td>
-                                                            <td class="nk-tb-col nk-tb-col-tools">
-                                                                <ul class="nk-tb-actions gx-1">
-                                                                    <li>
-                                                                        <div class="drodown"><a href="#" class="dropdown-toggle btn btn-sm btn-icon btn-trigger" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
-                                                                            <div class="dropdown-menu dropdown-menu-end">
-                                                                                <ul class="link-list-opt no-bdr">
-                                                                                    <li>
-                                                                                        <a href="../post.php?view=<?php echo $data['id'] ?>" target="_blank"><em class="icon ni ni-eye"></em><span>View
+                                                                <td class="nk-tb-col tb-col-lg"><?php echo date("M d, Y", strtotime($data['post_postedon']))?></td>
+                                                                <td class="nk-tb-col nk-tb-col-tools">
+                                                                    <ul class="nk-tb-actions gx-1">
+                                                                        <li>
+                                                                            <div class="drodown"><a href="#" class="dropdown-toggle btn btn-sm btn-icon btn-trigger" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
+                                                                                <div class="dropdown-menu dropdown-menu-end">
+                                                                                    <ul class="link-list-opt no-bdr">
+                                                                                        <li>
+                                                                                            <a href="../post.php?view=<?php echo $data['id'] ?>" target="_blank"><em class="icon ni ni-eye"></em><span>View
                                                                                             </span></a>
-                                                                                    </li>
-                                                                                    <?php  
-                                                                                     
-                                                                                    if($onloadData->checkPostCategories($data['post_category'])) { ?>
-                                                                                    <li>
-                                                                                        <a href="#" class="showUpdateModal" id="edit-news_<?php echo $data['id']; ?>">
-                                                                                            <em class="icon ni ni-edit"></em><span>Edit Announcement</span>
-                                                                                        </a>
-                                                                                    </li>
-                                                                                    <?php } ?>
-                                                                                </ul>
+                                                                                        </li>
+                                                                                        <?php  
+
+                                                                                        if($onloadData->checkPostCategories($data['post_category'])) { ?>
+                                                                                            <li>
+                                                                                                <a href="#" class="showUpdateModal" id="edit-news_<?php echo $data['id']; ?>">
+                                                                                                    <em class="icon ni ni-edit"></em><span>Edit Announcement</span>
+                                                                                                </a>
+                                                                                            </li>
+                                                                                        <?php } ?>
+
+
+
+
+
+                                                                                        <?php if ($data['deleted_status'] == 1) { ?>
+                                                                                            <li>
+                                                                                                <a href="#" class="undel_status" id="del_<?php echo $data['id']?>">
+                                                                                                    <em class="icon ni ni-trash"></em><span>Retrieve</span>
+                                                                                                </a>
+                                                                                            </li>
+                                                                                        <?php } else { ?>
+                                                                                            <li>
+                                                                                                <a href="#" class="del_status" id="del_<?php echo $data['id']?>">
+                                                                                                    <em class="icon ni ni-trash"></em><span>Delete</span>
+                                                                                                </a>
+                                                                                            </li>
+                                                                                        <?php } ?>
+
+
+
+                                                                                    </ul>
+                                                                                </div>
                                                                             </div>
-                                                                        </div>
-                                                                    </li>
-                                                                </ul>
-                                                            </td>
-                                                        </tr>
+                                                                        </li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
                                                         <?php } ?>
 
                                                     </tbody>
@@ -206,15 +225,15 @@ $getUserCategories2 = $onloadData->getUserCategories();
                                     <label class="form-label">Categories</label>
                                     <div class="form-control-wrap">
                                         <select name="category" id="category" class="form-select" data-placeholder="Select Category">
-                                                <option value="" selected hidden >-- Select Category --</option>
-                                                <?php
-                                                    $arr = explode(",", $_SESSION['user_level']);
-                                                    while ($cat = $getUserCategories->fetch(PDO::FETCH_ASSOC)) { 
-                                                        if (in_array($cat['id'], $arr) && $cat['id'] != '99') { ?>
-                                                            <option value="<?php echo $cat['categories_code'] ?>"><?php echo $cat['categories_name'] ?></option>
+                                            <option value="" selected hidden >-- Select Category --</option>
+                                            <?php
+                                            $arr = explode(",", $_SESSION['user_level']);
+                                            while ($cat = $getUserCategories->fetch(PDO::FETCH_ASSOC)) { 
+                                                if (in_array($cat['id'], $arr) && $cat['id'] != '99' && $cat['id'] != '5') { ?>
+                                                    <option value="<?php echo $cat['categories_code'] ?>"><?php echo $cat['categories_name'] ?></option>
                                                 <?php   }  
-                                                    }  
-                                                ?>
+                                            }  
+                                            ?>
                                         </select>
                                     </div>
                                 </div>
@@ -232,6 +251,10 @@ $getUserCategories2 = $onloadData->getUserCategories();
                                 </div>
                             </div>
                             <div class="col-md-12">
+                                <div class="form-label">Thumbnail</div>
+                                <input type="file" class="form-control mt-3" accept="image/*" name="thumbnail" id="thumbnail" placeholder="Paste the link here" >
+                            </div>
+                            <!-- <div class="col-md-12">
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-label">Thumbnail</div>
@@ -244,7 +267,7 @@ $getUserCategories2 = $onloadData->getUserCategories();
                                         <input type="file" class="form-control d-none mt-3" accept="image/*" name="thumbnail" id="thumbnail" placeholder="Paste the link here" >
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="col-md-12">
                                 <div class="form-label">Embed Post</div>
                                 <div class="custom-control custom-switch pb-3">
@@ -306,15 +329,15 @@ $getUserCategories2 = $onloadData->getUserCategories();
                                     <label class="form-label">Categories</label>
                                     <div class="form-control-wrap">
                                         <select name="u_category" id="u_category" class="form-select" data-placeholder="Select Category">
-                                        <option value="" selected hidden >-- Select Category --</option>
-                                                <?php
-                                                    $arr = explode(",", $_SESSION['user_level']);
-                                                    while ($cat = $getUserCategories2->fetch(PDO::FETCH_ASSOC)) { 
-                                                        if (in_array($cat['id'], $arr) && $cat['id'] != '99') { ?>
-                                                            <option value="<?php echo $cat['categories_code'] ?>"><?php echo $cat['categories_name'] ?></option>
+                                            <option value="" selected hidden >-- Select Category --</option>
+                                            <?php
+                                            $arr = explode(",", $_SESSION['user_level']);
+                                            while ($cat = $getUserCategories2->fetch(PDO::FETCH_ASSOC)) { 
+                                                if (in_array($cat['id'], $arr) && $cat['id'] != '99') { ?>
+                                                    <option value="<?php echo $cat['categories_code'] ?>"><?php echo $cat['categories_name'] ?></option>
                                                 <?php   }  
-                                                    }  
-                                                ?>
+                                            }  
+                                            ?>
                                         </select>
                                     </div>
                                 </div>
@@ -330,7 +353,16 @@ $getUserCategories2 = $onloadData->getUserCategories();
                                     </div>
                                 </div>
                             </div>
+
                             <div class="col-md-12">
+                                <div class="form-label">Thumbnail</div>
+                                <div id="thumbnail-link" class="mb-1"></div>
+                                <input type="hidden" name="ex_thumbnail" id="ex_thumbnail">
+                                <input type="file" class="form-control mt-3" accept="image/*" name="u_thumbnail" id="u_thumbnail" placeholder="Paste the link here" >
+                            </div>
+
+
+                            <!-- <div class="col-md-12">
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-label">Thumbnail</div>
@@ -345,7 +377,7 @@ $getUserCategories2 = $onloadData->getUserCategories();
                                         <input type="file" class="form-control d-none mt-3" accept="image/*" name="u_thumbnail" id="u_thumbnail" placeholder="Paste the link here" >
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="col-md-12">
                                 <div class="form-label">Embed Post</div>
                                 <div id="embedded-link" class="mb-1"></div>
@@ -385,7 +417,9 @@ $getUserCategories2 = $onloadData->getUserCategories();
         $(document).ready(function() {
             //dataTable 
 
-            $('#example').DataTable();
+
+            $('#example').DataTable({ "aaSorting": [[6,'desc']],});
+
             var id_to_update = '';
             var astigo_status = '';
             var url = 'controller/announcementController.php';
@@ -399,6 +433,65 @@ $getUserCategories2 = $onloadData->getUserCategories();
                 placeholder: `What's on your mind?`
             });
 
+            
+            $(document).on('click', '.pin', function() {
+                const id = this.id.split('_')[1]; 
+                $(`#${this.id}`).removeClass('ni-star pin').addClass('ni-star-fill text-warning unpin');
+                let status_to = 1;
+                pinStatus(id, status_to);
+            });
+
+            $(document).on('click', '.unpin', function() {
+                const id = this.id.split('_')[1]; 
+                $(`#${this.id}`).addClass('ni-star pin').removeClass('ni-star-fill text-warning unpin');
+                let status_to = 0;
+                pinStatus(id, status_to);
+            });
+
+            const pinStatus = (id, status) => {
+                let path = url + `?command=updatePinStatus&post_id=${id}&status=${status}`;
+                $.SystemScript.executeGet(path).done((res) => {
+                    console.log(res);
+                });
+            }
+
+
+            // delete
+            $(document).on('click', '.del_status', function() {
+                const id = this.id.split('_')[1]; 
+                $.SystemScript.swalConfirmMessage('Are you sure?', 
+                    'Do you want to delete this post?', 'question').done(function(response) {
+                        if(response) {
+                            let status_to = 1;
+                            delStatus(id, status_to, 'Deleted');
+                        }
+                    });
+
+                });
+
+            $(document).on('click', '.undel_status', function() {
+                const id = this.id.split('_')[1]; 
+                $.SystemScript.swalConfirmMessage('Are you sure?', 
+                    'Do you want to Retrieve this post?', 'question').done(function(response) {
+                        if(response) {
+                            let status_to = 0;
+                            delStatus(id, status_to, 'Retrieved');
+                        }
+                    });
+                });
+
+            const delStatus = (id, status, action) => {
+                let path = url + `?command=updateDelStatus&post_id=${id}&status=${status}`;
+                $.SystemScript.executeGet(path).done((res) => {
+                    console.log(res);
+                    if(res.data.message == 'success') {                   
+                        $.SystemScript.swalAlertMessage('Successfully',`Post Successfully ${action}`, 'success');
+                        $('.swal2-confirm').click(function(){
+                            location.reload();
+                        });
+                    }
+                });
+            }
             
 
             function broadcastToAstigo(title, message, image){
@@ -440,22 +533,22 @@ $getUserCategories2 = $onloadData->getUserCategories();
             });
 
             //toggle for choosing thumbnail type
-            $('#thumbnail-check').change(function() {
-                if(this.checked) {
-                    $('#thumbnail').removeClass('d-none');
-                } else {
-                    $('#thumbnail').addClass('d-none');
-                } 
-            });
+            // $('#thumbnail-check').change(function() {
+            //     if(this.checked) {
+            //         $('#thumbnail').removeClass('d-none');
+            //     } else {
+            //         $('#thumbnail').addClass('d-none');
+            //     } 
+            // });
 
-            $('#u_thumbnail-check').change(function() {
-                if(this.checked) {
-                    $('#u_thumbnail').removeClass('d-none');
-                } else {
-                    $('#u_thumbnail').addClass('d-none');
-                } 
-            });
- 
+            // $('#u_thumbnail-check').change(function() {
+            //     if(this.checked) {
+            //         $('#u_thumbnail').removeClass('d-none');
+            //     } else {
+            //         $('#u_thumbnail').addClass('d-none');
+            //     } 
+            // });
+
 
 
             // adding news/announcement
@@ -467,19 +560,21 @@ $getUserCategories2 = $onloadData->getUserCategories();
                     types : "required",
                     category : "required",
                     status : "required",
+                    thumbnail : "required"
                 },
                 messages: {
                     title: "This is required field.",
                     types: "This is required field.",
                     category: "This is required field.",
                     status: "This is required field.",
+                    thumbnail: "This is required field.",
                 },
                 submitHandler: function(form) {
                     $('.btn-submit').prop('disabled', true);
                     $('.btn-submit').html('Please wait...');
                     $('#embed-post-error').css('display', 'none');
                     $('#editor-error').css('display', 'none');
-                
+
                     $valid = true;
                     if($('#image').val() == '' && $('#link').val() == '') {
                         $('#embed-post-error').css('display', 'block');
@@ -488,7 +583,7 @@ $getUserCategories2 = $onloadData->getUserCategories();
                     if(editor.root.innerHTML == '<p><br></p>') {
                         $('#editor-error').css('display', 'block');
                         $valid = false;
-                    } 
+                    }
                     
                     if($valid){
                         var data = new FormData(form);
@@ -499,13 +594,14 @@ $getUserCategories2 = $onloadData->getUserCategories();
                             console.log(response.data);
                             if(response.data.message == 'success') {
                                 if($('#status').val() == '1'){
-                                    let image_link = `http://${window.location.hostname}/isearch.asticom.com.ph/uploads/posts/${response.data.image}`;
+                                    let image_link = `https://${window.location.hostname}/uploads/posts/${response.data.image}`;
                                     if(response.data.image == 0) {
                                         image_link = '';
                                     }
                                     let str = response.data.content;
                                     let regex = /<br\s*[\/]?>/gi;
                                     let cont = str.replace(regex, " ");
+                                    console.log(image_link);
                                     broadcastToAstigo($('#title').val(), cont, image_link);
                                 }
                                 $.SystemScript.swalAlertMessage('Successfully',`Added Announcement/News Post`, 'success');
@@ -514,10 +610,12 @@ $getUserCategories2 = $onloadData->getUserCategories();
                                 });
                                 
                             }   
-                            $('.btn-submit').prop('disabled', false);
-                            $('.btn-submit').html('Submit');
+                            
                         });
                     }
+
+                    $('.btn-submit').prop('disabled', false);
+                    $('.btn-submit').html('Submit');
                     
                 }
             });
@@ -580,7 +678,7 @@ $getUserCategories2 = $onloadData->getUserCategories();
                     $('.btn-submit').html('Please wait...');
                     $('#u_embed-post-error').css('display', 'none');
                     $('#u_editor-error').css('display', 'none');
-                
+
                     $valid = true;
                     if(u_editor.root.innerHTML == '<p><br></p>') {
                         $('#u_editor-error').css('display', 'block');
@@ -599,56 +697,56 @@ $getUserCategories2 = $onloadData->getUserCategories();
                         var astigo_broadcast = 0;
                         if(astigo_status == 1 && $('#u_status').val() == '1') {
                             $.SystemScript.swalConfirmMessage('Are you sure?', 
-                            'This post was already broadcasted on go mobile, do you want to broadcast it again?', 'question').done(function(response) {
-                                if(response) {
-                                    astigo_broadcast = 1;
-                                } 
+                                'This post was already broadcasted on go mobile, do you want to broadcast it again?', 'question').done(function(response) {
+                                    if(response) {
+                                        astigo_broadcast = 1;
+                                    } 
+                                    executeFunction();
+                                });
+                            } else {
                                 executeFunction();
-                            });
-                        } else {
-                            executeFunction();
+                            }
+
+                            function executeFunction() {
+                                var data = new FormData(form);
+                                let path = url + `?command=updateAnnouncement&post_id=${id_to_update}`;
+                                let u_content = u_editor.root.innerHTML;
+                                data.append('content', u_content);
+                                if($('#u_status').val() == '1') {
+                                    astigo_broadcast = 1;
+                                    data.append('astigo_status', astigo_broadcast);
+                                } else {
+                                    data.append('astigo_status', astigo_status);
+                                }
+
+                                $.SystemScript.executePost(path, data).done((response) => {
+                                    if(response.data.message == 'success') {
+                                        if(astigo_broadcast){
+                                            let image_link = `https://${window.location.hostname}/uploads/posts/${response.data.image}`;
+                                            if(response.data.image == 0) {
+                                                image_link = '';
+                                            }
+                                            let str = response.data.content;
+                                            let regex = /<br\s*[\/]?>/gi;
+                                            let cont = str.replace(regex, " ");
+                                            broadcastToAstigo($('#u_title').val(), cont, image_link);
+                                        }
+                                        $.SystemScript.swalAlertMessage('Successfully',`Updated a Announcement/News Post`, 'success');
+                                        $('.swal2-confirm').click(function(){
+                                            location.reload();
+                                        });
+                                    }   
+                                    $('.btn-submit').prop('disabled', false);
+                                    $('.btn-submit').html('Submit');
+                                });
+                            }
+
                         }
 
-                        function executeFunction() {
-                            var data = new FormData(form);
-                            let path = url + `?command=updateAnnouncement&post_id=${id_to_update}`;
-                            let u_content = u_editor.root.innerHTML;
-                            data.append('content', u_content);
-                            if($('#u_status').val() == '1') {
-                                astigo_broadcast = 1;
-                                data.append('astigo_status', astigo_broadcast);
-                            } else {
-                                data.append('astigo_status', astigo_status);
-                            }
-                            
-                            $.SystemScript.executePost(path, data).done((response) => {
-                                if(response.data.message == 'success') {
-                                    if(astigo_broadcast){
-                                        let image_link = `http://${window.location.hostname}/isearch.asticom.com.ph/uploads/posts/${response.data.image}`;
-                                        if(response.data.image == 0) {
-                                            image_link = '';
-                                        }
-                                        let str = response.data.content;
-                                        let regex = /<br\s*[\/]?>/gi;
-                                        let cont = str.replace(regex, " ");
-                                        broadcastToAstigo($('#u_title').val(), cont, image_link);
-                                    }
-                                    $.SystemScript.swalAlertMessage('Successfully',`Updated a Announcement/News Post`, 'success');
-                                    $('.swal2-confirm').click(function(){
-                                        location.reload();
-                                    });
-                                }   
-                                $('.btn-submit').prop('disabled', false);
-                                $('.btn-submit').html('Submit');
-                            });
-                        }
-                       
                     }
-                    
-                }
-            });
-        });
-    </script>
+                });
+});
+</script>
 </body>
 
 </html>

@@ -8,43 +8,32 @@ require ("../functions/userlevel.php");
 ?>
 
 <?php
-include('purego_login/environment.php');
 include('purego_functions/generate_uuid.php');
-//SAVE
-@session_start();
 
-if(isset($_SESSION['user_email_address'])){ $emailAddress = $_SESSION['user_email_address']; }
-if(isset($_SESSION['user_picture'])){ $userPicture = $_SESSION['user_picture']; }
-if(isset($_SESSION['user_first_name'])){ $userFirstName = $_SESSION['user_first_name']; }
-if(isset($_SESSION['user_last_name'])){ $userLastName = $_SESSION['user_last_name']; }
 
-if(!isset($_SESSION['access_token'])){ header('location:'.$_ENV['REDIRECT_URI'].''); }
-else {
+$curl = curl_init();
+curl_setopt_array($curl, array(
+  CURLOPT_URL => 'https://f0j3ofwbmf.execute-api.ap-southeast-1.amazonaws.com/latest/items/viber_cms/dailytips',
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => '',
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 0,
+  CURLOPT_FOLLOWLOCATION => true,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => 'GET',
+));
 
-  $curl = curl_init();
-  curl_setopt_array($curl, array(
-    CURLOPT_URL => 'https://f0j3ofwbmf.execute-api.ap-southeast-1.amazonaws.com/latest/items/viber_cms/dailytips',
-    CURLOPT_RETURNTRANSFER => true,
-    CURLOPT_ENCODING => '',
-    CURLOPT_MAXREDIRS => 10,
-    CURLOPT_TIMEOUT => 0,
-    CURLOPT_FOLLOWLOCATION => true,
-    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-    CURLOPT_CUSTOMREQUEST => 'GET',
-  ));
-
-  $response = curl_exec($curl);
-  $httpcode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-  curl_close($curl);
-  if(json_encode($httpcode) == "200" || json_encode($httpcode) == "201")
-  {
-    $user_data = json_decode($response);
-    $counter = 0;
-  }
-  else
-  {
-    header('location: error_pages/error_saving.html');  
-  }
+$response = curl_exec($curl);
+$httpcode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+curl_close($curl);
+if(json_encode($httpcode) == "200" || json_encode($httpcode) == "201")
+{
+  $user_data = json_decode($response);
+  $counter = 0;
+}
+else
+{
+  header('location: error_pages/error_saving.html');  
 }
 
 ?>
@@ -58,7 +47,7 @@ else {
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="author" content="">
   <meta name="description" content="">
-  <link rel="shortcut icon" href="images/favicon.png">
+  <link rel="shortcut icon" href="../assets/custom/img/favicon.png" title="Favicon" sizes="16x16" />
   <title><?= APP_NAME . " | " . $pagetitle; ?></title>
   <?php include "includes/styles.php" ?>
 

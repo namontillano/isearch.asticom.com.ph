@@ -65,17 +65,16 @@ if ($_SESSION['google_id'] != '') {
 }
 
 if ($countreacts == "0") {
-	echo "<a class='signinrequired' style='cursor:pointer'><img src='assets/custom/img/reactions/noreactions.png' style='height:16px;width:16px;margin-top:-3px'> 0</a>";
+	echo "<a class='view-reactors-list'  data-bs-toggle='modal' data-bs-target='#modalreactors' data-postid='".$_POST['postid']."' style='cursor:pointer'><img src='assets/custom/img/reactions/noreactions.png' style='height:16px;width:16px;margin-top:-3px'> 0</a>";
 } else {
+	echo "<a class='view-reactors-list'  data-bs-toggle='modal' data-bs-target='#modalreactors' data-postid='".$_POST['postid']."' style='cursor:pointer'>";
 	$sql = "SELECT react_type, count(*) as react_count FROM reacts WHERE react_post = '".$_POST['postid']."' GROUP BY react_type";
 	foreach ($db->query($sql) as $contentreacts) {
 		echo "<img src='assets/custom/img/reactions/reactions_".$contentreacts['react_type'].".png' style='height:16px;width:16px;margin-top:-3px' title='".react_type($contentreacts['react_type'])." : ".$contentreacts['react_count']."'>";
 	}
 
-	echo " ".$countreacts;
+	echo " ".$countreacts."</a>";
 }
-
-
 
 
 $database->close();

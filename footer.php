@@ -7,7 +7,7 @@
         </div>
         <section class="community mt-20 style-4">
             <div class="container">
-               
+             
                 <div class="content">
                     <a href="https://www.facebook.com/asticominc/" target="_blank" class="commun-card">
                         <div class="icon">
@@ -77,13 +77,19 @@
                     <ul class="links">
                         <li><a class="<?=($pagetitle=="Home") ? 'active':''; ?>" href="<?=URL_ROOT;?>index.php">Home</a></li>
 
+                        <?php
+                        if ($subsidiaries == true) {
+                            ?>
+                            <li><a class="<?=($pagetitle=="Subsidiaries") ? 'active':''; ?>" href="<?=URL_ROOT;?>subsidiaries.php">Subsidiaries</a></li>
+                        <?php }
+                        ?>
+
                         <li><a class="<?=($pagetitle=="Community") ? 'active':''; ?>" href="<?=URL_ROOT;?>community.php">Community</a></li>
 
                         <li><a class="<?=($pagetitle=="HR") ? 'active':''; ?>" href="<?=URL_ROOT;?>hr.php">HR</a></li>
                         <li><a class="<?=($pagetitle=="Recruitment") ? 'active':''; ?>" href="<?=URL_ROOT;?>recruitment.php">Recruitment</a></li>
                         <li><a class="<?=($pagetitle=="Finance") ? 'active':''; ?>" href="<?=URL_ROOT;?>finance.php">Finance</a></li>
                         <li><a class="<?=($pagetitle=="CyberTech") ? 'active':''; ?>" href="<?=URL_ROOT;?>cybertech.php">CyberTech</a></li>
-                        <li><a class="<?=($pagetitle=="Management") ? 'active':''; ?>" href="<?=URL_ROOT;?>management.php">Management</a></li>
                         <li><a class="<?=($pagetitle=="About") ? 'active':''; ?>" href="<?=URL_ROOT;?>about.php">About</a></li>
                     </ul>
                 </div>

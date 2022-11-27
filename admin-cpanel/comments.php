@@ -1,5 +1,5 @@
 <?php
-$pagetitle = "User Management";
+$pagetitle = "Post Comments";
 $pageuserlevel = array("1", "2", "3", "4", "5");
 
 
@@ -18,7 +18,7 @@ $getComment = $onloadData->getComment();
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="author" content="">
     <meta name="description" content="">
-    <link rel="shortcut icon" href="images/favicon.png">
+    <link rel="shortcut icon" href="../assets/custom/img/favicon.png" title="Favicon" sizes="16x16" />
     <title><?= APP_NAME . " | " . $pagetitle; ?></title>
     <?php include "includes/styles.php" ?>
 
@@ -27,6 +27,10 @@ $getComment = $onloadData->getComment();
     <!-- Include the Quill library -->
     <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 
+    <style>
+        .error { color: #e85347; font-size: 11px; font-style: italic; }
+        div.dataTables_wrapper div.dataTables_length select { margin-left: 10px; margin-right: 10px; }
+    </style>
 </head>
 
 <body class="nk-body npc-default has-sidebar ">
@@ -56,7 +60,7 @@ $getComment = $onloadData->getComment();
                                                 <table id="example" class="table table-hover p-0 nk-tb-list nk-tb-ulist" style="width:100%">
                                                     <thead>
                                                         <tr class="nk-tb-item nk-tb-head">
-                                                            <th class="nk-tb-col">ID</th>
+                                                            <th class="nk-tb-col">Date</th>
                                                             <th class="nk-tb-col"><span class="sub-text">Users</span></th>
                                                             <th class="nk-tb-col ">
                                                                 <span class="sub-text">Message</span>
@@ -69,75 +73,76 @@ $getComment = $onloadData->getComment();
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                    <?php
+                                                        <?php
                                                         while ($data = $getComment->fetch(PDO::FETCH_ASSOC)) {
-                                                        ?>
-                                                        <tr>
-                                                            <td class="nk-tb-col"><?php echo $data['id'] ?></td>
-                                                            <td class="nk-tb-col">
-                                                                <div class="nk-tb-col">
-                                                                    <div class="user-card">
-                                                                        <div class="user-avatar bg-primary">
-                                                                            <img src="<?php echo $data['google_image'] ?>" alt="">
-                                                                        </div>
-                                                                        <div class="user-info">
-                                                                            <span class="tb-lead h6">
-                                                                                <?php echo $data['google_first_name'].' '.$data['google_last_name'] ?> 
-                                                                            </span>
-                                                                            <?php echo $data['google_email_address'] ?>
+                                                            ?>
+                                                            <tr>
+                                                                <td class="nk-tb-col"><?php echo $data['comment_date_posted'] ?></td>
+                                                                <td class="nk-tb-col">
+                                                                    <div class="nk-tb-col">
+                                                                        <div class="user-card">
+                                                                            <div class="user-avatar bg-primary">
+                                                                                <img src="<?php echo $data['google_image'] ?>" alt="">
+                                                                            </div>
+                                                                            <div class="user-info">
+                                                                                <span class="tb-lead h6">
+                                                                                    <?php echo $data['google_first_name'].' '.$data['google_last_name'] ?> 
+                                                                                </span>
+                                                                                <?php echo $data['google_email_address'] ?>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
-                                                                </div>
-                                                            </td>
-                                                            <td class="nk-tb-col">
-                                                                <span style="cursor: pointer;" data-toggle="tooltip" data-placement="top" title="<?php echo $data['comment_message']; ?>">
-                                                                    <?php echo substr_replace(strip_tags($data['comment_message']), "...", 75) ?>
-                                                                </span>
-                                                            </td>
-                                                            <td class="nk-tb-col">
-                                                                <?php 
+                                                                </td>
+                                                                <td class="nk-tb-col">
+                                                                    <span style="cursor: pointer;" data-toggle="tooltip" data-placement="top" title="<?php echo $data['comment_message']; ?>">
+                                                                        <?php echo substr_replace(strip_tags($data['comment_message']), "...", 75) ?>
+                                                                    </span>
+                                                                </td>
+                                                                <td class="nk-tb-col">
+                                                                    <?php 
                                                                     if ($data['comment_status'] == 0) { 
                                                                         echo '<span class="badge bg-danger m-1">Hidden</span>';
                                                                     }
                                                                     else { 
                                                                         echo '<span class="badge bg-success m-1">Active</span>';
                                                                     }
-                                                                ?>
-                                                            </td>
-                                                            <td class="nk-tb-col nk-tb-col-tools">
-                                                                <ul class="nk-tb-actions gx-1">
-                                                                    <li>
-                                                                        <div class="drodown"><a href="#" class="dropdown-toggle btn btn-sm btn-icon btn-trigger" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
-                                                                            <div class="dropdown-menu dropdown-menu-end">
-                                                                                <ul class="link-list-opt no-bdr">
-                                                                                   
-                                                                                    
-                                                                                    <li>
-                                                                                        <a href="../post.php?view=<?php echo $data['comment_post_id'] ?>" target="_blank" class="showUpdateAccessModal" id="<?php echo $data['google_id'];?>">
-                                                                                            <em class="icon ni ni-eye"></em><span>View Post</span>
-                                                                                        </a>
-                                                                                        <?php 
+                                                                    ?>
+                                                                </td>
+                                                                <td class="nk-tb-col nk-tb-col-tools">
+                                                                    <ul class="nk-tb-actions gx-1">
+                                                                        <li>
+                                                                            <div class="drodown"><a href="#" class="dropdown-toggle btn btn-sm btn-icon btn-trigger" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
+                                                                                <div class="dropdown-menu dropdown-menu-end">
+                                                                                    <ul class="link-list-opt no-bdr">
+                                                                                     
+                                                                                        
+                                                                                        <li>
+                                                                                            <a href="../post.php?view=<?php echo $data['comment_post_id'] ?>" target="_blank" >
+                                                                                                <em class="icon ni ni-eye"></em><span>View Post</span>
+                                                                                            </a>
+                                                                                            <?php 
+
                                                                                             if ($data['comment_status'] == 0) { 
-                                                                                                echo '<a style="cursor: pointer;" class="unhide_comment" id="'.$data['id'].'">
-                                                                                                        <em class="icon ni ni-edit"></em><span>Unhide Comment</span>
-                                                                                                    </a>';
+                                                                                                echo '<a style="cursor: pointer;" class="unhide_comment" id="'.$data['comment_row_id'].'">
+                                                                                                <em class="icon ni ni-edit"></em><span>Unhide Comment</span>
+                                                                                                </a>';
                                                                                             }
                                                                                             else { 
-                                                                                                echo '<a style="cursor: pointer;" class="hide_comment" id="'.$data['id'].'">
-                                                                                                        <em class="icon ni ni-edit"></em><span>Hide Comment</span>
-                                                                                                    </a>';
+                                                                                                echo '<a style="cursor: pointer;" class="hide_comment" id="'.$data['comment_row_id'].'">
+                                                                                                <em class="icon ni ni-edit"></em><span>Hide Comment</span>
+                                                                                                </a>';
                                                                                             }
-                                                                                        ?>
-                                                                                        
-                                                                                    </li>
-                                                                                </ul>
+                                                                                            ?>
+                                                                                            
+                                                                                        </li>
+                                                                                    </ul>
+                                                                                </div>
                                                                             </div>
-                                                                        </div>
-                                                                    </li>
-                                                                </ul>
-                                                            </td>
-                                                        </tr>
-                                                          <?php } ?>
+                                                                        </li>
+                                                                    </ul>
+                                                                </td>
+                                                            </tr>
+                                                        <?php } ?>
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -151,41 +156,40 @@ $getComment = $onloadData->getComment();
             </div>
         </div>
     </div>
-                                                                                   
+    
     <?php include "includes/script.php" ?>
     <script>
         $(document).ready(function() {
             //dataTable 
-            $('#example').DataTable({
-                order: [[1, 'desc']],
-            });
-            
+            $('#example').DataTable({ "aaSorting": [[0,'desc']],});
+            var url = 'controller/announcementController.php';
             var url = 'controller/commentsController.php';
+
             $(document).on('click', '.hide_comment', function(){
                 const id = this.id;
                 $.SystemScript.swalConfirmMessage('Are you sure?', 
-                            'Do you want to hide this comment?', 'question').done(function(response) {
-                    if(response) {
-                        let status = 0;
-                        let path = url + `?command=updateCommentStatus&comment_id=${id}&status=${status}`;
-                        let action = "Hide";
-                        updateStatus(path, action);
-                    }
+                    'Do you want to hide this comment?', 'question').done(function(response) {
+                        if(response) {
+                            let status = 0;
+                            let path = url + `?command=updateCommentStatus&comment_id=${id}&status=${status}`;
+                            let action = "Hide";
+                            updateStatus(path, action);
+                        }
+                    });
                 });
-            });
 
             $(document).on('click', '.unhide_comment', function(){
                 const id = this.id;
                 $.SystemScript.swalConfirmMessage('Are you sure?', 
-                            'Do you want to unhide this comment?', 'question').done(function(response) {
-                    if(response) {
-                        let status = 1;
-                        let path = url + `?command=updateCommentStatus&comment_id=${id}&status=${status}`;
-                        let action = "Unhide";
-                        updateStatus(path, action);
-                    }
+                    'Do you want to unhide this comment?', 'question').done(function(response) {
+                        if(response) {
+                            let status = 1;
+                            let path = url + `?command=updateCommentStatus&comment_id=${id}&status=${status}`;
+                            let action = "Unhide";
+                            updateStatus(path, action);
+                        }
+                    });
                 });
-            });
 
             const updateStatus  = (path, action) => {
                 $.SystemScript.executeGet(path).done((res) => {

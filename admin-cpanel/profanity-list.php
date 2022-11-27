@@ -18,7 +18,7 @@ $onloadData = new onLoadController();
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="author" content="">
     <meta name="description" content="">
-    <link rel="shortcut icon" href="images/favicon.png">
+    <link rel="shortcut icon" href="../assets/custom/img/favicon.png" title="Favicon" sizes="16x16" />
     <title><?= APP_NAME . " | " . $pagetitle; ?></title>
     <link rel="stylesheet" href="assets/bootstrap.min.css">
     <link rel="stylesheet" href="assets/bootstrap-tagsinput.css">
@@ -96,24 +96,24 @@ $onloadData = new onLoadController();
     <script src="assets/bootstrap-tagsinput.min.js"></script>
     <script>
         $(document).ready(function() {
-           var url = 'controller/profanityController.php';
-           $(document).on('click', '#update_profanity', function(){
+         var url = 'controller/profanityController.php';
+         $(document).on('click', '#update_profanity', function(){
                 // var profanities = $('#profanities').val();
                 $.SystemScript.swalConfirmMessage('Are you sure?',
                     'Do you want to update the profanity lists?', 'question').done(function(response) {
-                    if (response) {
-                        var data = new FormData($('#updateProfanities')[0]);
-                        let path = url + `?command=updateProfanity`;
-                        $.SystemScript.executePost(path, data).done((res) => {
-                            if(res.data == 'success') {
-                                $.SystemScript.swalAlertMessage('Successfully',`Updated the Profanity List`, 'success');
-                            }  
-                        });
-                    }
-                });
-           })
-        });
-    </script>
+                        if (response) {
+                            var data = new FormData($('#updateProfanities')[0]);
+                            let path = url + `?command=updateProfanity`;
+                            $.SystemScript.executePost(path, data).done((res) => {
+                                if(res.data == 'success') {
+                                    $.SystemScript.swalAlertMessage('Successfully',`Updated the Profanity List`, 'success');
+                                }  
+                            });
+                        }
+                    });
+                })
+     });
+ </script>
 </body>
 
 </html>

@@ -12,6 +12,66 @@
             <ul class="navbar-nav m-auto mb-2 mb-lg-0 text-uppercase">
                 <li class="nav-item"><a class="nav-link <?=($pagetitle=="Home") ? 'active':''; ?>" href="<?=URL_ROOT;?>index.php">Home</a></li>
 
+                <?php
+                if (preg_match('/\b@acquiro\b/', $_SESSION['google_email_address'])) { $acquiro = true; } else { $acquiro = false; }
+                if (preg_match('/\b@absi\b/', $_SESSION['google_email_address'])) { $absi = true; } else { $absi = false; }
+                if (preg_match('/\b@finsi\b/', $_SESSION['google_email_address'])) { $finsi = true; } else { $finsi = false; }
+                if (preg_match('/\b@hxc\b/', $_SESSION['google_email_address'])) { $hxc = true; } else { $hxc = false; }
+
+                if (array_intersect(array(5), preg_split ("/\,/", trim($_SESSION['user_level'])))){
+                    $subsidiaries = true;
+                    $acquiro = true;
+                    $absi = true;
+                    $finsi = true;
+                    $hxc = true;
+                } else {
+                    if ($acquiro == true || $absi == true || $finsi == true || $hxc == true) {
+                        $subsidiaries = true;
+                    } else {
+                        $subsidiaries = false;
+                    }
+                }
+
+                if ($subsidiaries == true) {
+                ?>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle <?=($pagetitle=="Subsidiaries" || $pagetitle=="Acquiro" || $pagetitle=="ABSI" || $pagetitle=="FINSI" || $pagetitle=="HCX") ? 'active':''; ?>" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Subsidiaries
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                        <?php
+                        if ($acquiro == true) {
+                        ?>
+                        <li><a class="dropdown-item <?=($pagetitle=="Acquiro") ? 'active':''; ?>" href="<?=URL_ROOT;?>acquiro.php"> Acquiro </a></li>
+                        <?php
+                        }
+                        ?> 
+                        <?php
+                        if ($absi == true) {
+                        ?>
+                        <li><a class="dropdown-item <?=($pagetitle=="ABSI") ? 'active':''; ?>" href="<?=URL_ROOT;?>absi.php"> ABSI </a></li>
+                        <?php
+                        }
+                        ?> 
+                        <?php
+                        if ($finsi == true) {
+                        ?>
+                        <li><a class="dropdown-item <?=($pagetitle=="FINSI") ? 'active':''; ?>" href="<?=URL_ROOT;?>finsi.php"> FINSI </a></li>
+                        <?php
+                        }
+                        ?> 
+                        <?php
+                        if ($hxc == true) {
+                        ?>
+                        <li><a class="dropdown-item <?=($pagetitle=="HCX") ? 'active':''; ?>" href="<?=URL_ROOT;?>hcx.php"> HCX </a></li>
+                        <?php
+                        }
+                        ?> 
+                    </ul>
+                </li>
+                <?php } ?> 
+
+
                 <li class="nav-item"><a class="nav-link <?=($pagetitle=="Community") ? 'active':''; ?>" href="<?=URL_ROOT;?>community.php">Community</a></li>
                 
                 <li class="nav-item"><a class="nav-link <?=($pagetitle=="HR" || $pagetitle=="HR Offboarding") ? 'active':''; ?>" href="<?=URL_ROOT;?>hr.php">HR</a></li>
@@ -27,7 +87,7 @@
                         <li><a class="dropdown-item <?=($pagetitle=="Project Vega: Policies, Procedures and Guidelines") ? 'active':''; ?>" href="<?=URL_ROOT;?>project-vega.php"> Project Vega: Policies, Procedures and Guidelines </a></li>
                     </ul>
                 </li>
-                <li class="nav-item"><a class="nav-link <?=($pagetitle=="Management") ? 'active':''; ?>" href="<?=URL_ROOT;?>management.php">Management</a></li>
+
                 <li class="nav-item"><a class="nav-link <?=($pagetitle=="About") ? 'active':''; ?>" href="<?=URL_ROOT;?>about.php">About</a></li>
             </ul>
 

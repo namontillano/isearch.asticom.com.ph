@@ -14,7 +14,18 @@
         if(isset($_GET['post_id'])) {
             $announcementController->updateAnnouncement($_GET['post_id']);
         }
+    } else if($_REQUEST['command'] == 'updatePinStatus') {
+        if(isset($_GET['post_id']) && isset($_GET['status'])) {
+            $announcementController->updatePinStatus($_GET['post_id'], $_GET['status']);
+        }
+    } else if($_REQUEST['command'] == 'updateDelStatus') {
+        if(isset($_GET['post_id']) && isset($_GET['status'])) {
+            $announcementController->updateDelStatus($_GET['post_id'], $_GET['status']);
+        }
     }
+
+
+    
 }
 
 
@@ -59,8 +70,8 @@
 
 
         $posted_by = $_SESSION['google_id'];
-        $query = "INSERT INTO posts (post_title,post_type,post_category,display_status,post_thumb,post_embed,post_content, post_postedby)
-                  VALUES ('$title','$types','$category','$status','$thumbnail','$image','$content', '$posted_by')";
+        $query = "INSERT INTO posts (post_title,post_type,post_category,display_status,post_thumb,post_embed,post_content, post_postedby, post_pin)
+                  VALUES ('$title','$types','$category','$status','$thumbnail','$image','$content', '$posted_by','1')";
         $res = $this->conn->query($query);
         
         if($res) {
@@ -175,6 +186,49 @@
         }
 
     }
+
+
+    public function updatePinStatus($id, $status)
+    {
+        $query = "UPDATE posts SET post_pin=:status WHERE id = :id";
+        $res = $this->conn->prepare($query);
+        $res->execute(array(
+            ':id' => $id,
+            ':status' => $status,
+        ));
+        if($res) {
+            echo json_encode(array(
+                'message' => 'success',
+                'post_id' => $id,
+                'status' => $status
+            ));
+        } else {
+            echo 'error';
+        }
+        
+    }
+
+    public function updateDelStatus($id, $status)
+    {
+        $query = "UPDATE posts SET deleted_status=:status WHERE id = :id";
+        $res = $this->conn->prepare($query);
+        $res->execute(array(
+            ':id' => $id,
+            ':status' => $status,
+        ));
+        if($res) {
+            echo json_encode(array(
+                'message' => 'success',
+                'post_id' => $id,
+                'status' => $status
+            ));
+        } else {
+            echo 'error';
+        }
+        
+    }
+
+
  }
 
 

@@ -88,45 +88,175 @@ FRED Chatbot (Pixelated QR Code)
 
 
 
-<!-------------------------------------------------------->
-<!-- SIR VAUGHN  -->
-<!-------------------------------------------------------->
-
-Join Users Name instead of userid in Announcement List
-
-
-/* Inan */
-- Administrator Dashobard
-    - Add News & Announcemnts
-        - CRUD
-    - Add New Post to Community page
-        - CRUS
-    - Reactors List
-    - Commentors 
-        - Hide Comment
-    - User Management List
-    - Profanity List (Bad Words)
-
-
-
-API need help!
-- cdate
-- image_path
-- message (htmlentities)
-- title
 
 
 
 
 
-Phase 2:
-- Laravel
-- Theme Standard
-- Admin
-- Community Posting
 
 
 
-- copy share link
-- show more details enhancement
-- fix height based on 
+
+
+
+<!-- Phase 2 iSearch -->
+
+Super Administrator
+- Account Management
+- Post Management (Approval)
+
+Community
+- User can attach multiple photos / videos
+- User can edit their own post
+- User can delete their own post
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1,
+'Announcements',
+'cybertech',
+'https://docs.google.com/presentation/d/1y-aXhKWJYrLHBW3HMS0HGSgYAai79DgUoQZDjdtvZuA/embed?authuser=0&amp;delayms=3000&amp;loop=true&amp;start=true',
+'How-to-Use Jira Work Management',
+'From roadmaps to workflows, power team collaboration and move work forward with the #1 project management tool used by agile teams.',
+'CyberTech'
+
+
+(2,
+'Announcements',
+'cybertech',
+'https://drive.google.com/file/d/13GP_YFR_ZwdK5EbnMUf2l10fNgZCdKYK/preview',
+'Jira Work Management',
+'The #1 tool software teams use to get s#1t done. Jira is now for all teams.',
+'CyberTech'
+
+
+(3,
+'Announcements',
+'cybertech',
+'https://www.youtube.com/embed/WTH5zMmLZeg',
+'iServe CTG Live Chat support',
+'Introducing Live Chat on iServe (IT Services)',
+'CyberTech'
+
+
+(4,
+'Announcements',
+'cybertech',
+'https://drive.google.com/file/d/19fHksIMlVv_Ck_lo0nyOdFGUOslBkZBY/preview',
+'Project Trace',
+'Service Level Up with Trace Non-Laptop / PC activities',
+'CyberTech'
+
+
+(5,
+'Announcements',
+'cybertech',
+'https://docs.google.com/presentation/d/1gRq9cAfbJDy_u9Qm39-ajpp3VXvubUIG001K_QJzBmk/embed?delayms=3000&start=true&slide=id.g13fca2fbe37_0_0',
+'Project Vega: ISO Certification',
+'Project Vega is an ISO Certification that covers Integrated Management Systems (IMS), ISO 27001 (ISMS) Information Security Management System and ISO 20000 (ITSM) Information Technology Service Management.',
+'CyberTech'
+
+
+(6,
+'Announcements',
+'cybertech',
+'https://drive.google.com/file/d/1SAn8VkSslSgfzgo60-jqGLgj2h2HDqTq/preview',
+'Project Vega',
+'Project Vega is an ISO Certification that covers Integrated Management Systems (IMS), ISO 27001 (ISMS) Information Security Management System and ISO 20000 (ITSM) Information Technology Service Management.',
+'CyberTech'
+
+
+(7,
+'Announcements',
+'cybertech',
+'https://drive.google.com/file/d/1EFVQt1IYPCewfEEmy1HKmd5eS7FWJSVr/preview',
+'Acquishare Walkthrough',
+'Get ready for Acquishare MVP 2',
+'CyberTech'
+
+
+(8,
+'Announcements',
+'cybertech',
+'1qhi7pbd0f48znwot6jglc2x95sevm.gif',
+'Acquishare MVP2',
+'An Encrypted, Internal Recruitment Platform with an Application Form Now Available to the Public.',
+'CyberTech'
+
+
+(9,
+'Announcements',
+'cybertech',
+'https://drive.google.com/file/d/17OQ-KuP3mOnFQqfBnNw3v9IE8V4RejrU/preview',
+'Project Vega Infomercial Guide',
+'Lorem ipssapien eget accumsan.',
+'CyberTech'
+
+
+(10,
+'Announcements',
+'cybertech',
+'0utwy1inxoq9verdk64h2c5p8fazjm.gif',
+'Project Vega',
+'Lorem ipssapien eget accumsan.',
+'CyberTech'
+
+
+(11,
+'Announcements',
+'cybertech',
+'https://drive.google.com/file/d/1SBbIAn_Oyl2dqgbyVqzmx2XxCs3aX1Iy/preview',
+'Internal Quality Audit (IQA) Guide Infomercial',
+'Lorem ipssapien eget accumsan.',
+'CyberTech'
+
+
+(12,
+'Announcements',
+'cybertech',
+'https://drive.google.com/file/d/1TmpObFYPjHQ7QSNrWfa70bMcW9gmRMvj/preview',
+'Project Vega Internal Quality Audit (IQA) -\r\nPost Audit Activities',
+'Lorem ipssapien eget accumsan.',
+'CyberTech'
+
+
+(13,
+'Announcements',
+'cybertech',
+'2st83hpug4l1kyjd6xrbavwnq0zf79.gif',
+'Project Vega Internal Quality Audit (IQA) is now COMPLETED, but what\'s next!?',
+'Lorem ipssapien eget accumsan.',
+'CyberTech'
+
+
+(14,
+'Announcements',
+'hr',
+'https://drive.google.com/file/d/1V1v65_A9Mi4-N_bJUNMj_iZz6j5lejUj/preview',
+'DigiOffice Training Roadshow',
+'Lorem ipssapien eget accumsan.',
+'HR'
+
+
+(15,
+'Announcements',
+'hr',
+'1usgv3op6lanzdikfmj42rq0by9etw.png',
+'DIGIOFFICE IS NOW LIVE!',
+'Lorem ipssapien eget accumsan.',
+'HR'

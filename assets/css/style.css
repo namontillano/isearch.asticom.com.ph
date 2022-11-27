@@ -3238,8 +3238,9 @@ header.style-6 {
         height: 100%;
         -o-object-fit: cover;
         object-position: top;
-        /*object-fit: cover; */
-        object-fit: fill; }
+        object-fit: cover; 
+        /*object-fit: fill; */
+        }
     .portfolio.style-1 .portfolio-card .info {
       padding: 15px; }
       .portfolio.style-1 .portfolio-card .info h5 a {

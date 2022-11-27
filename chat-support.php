@@ -1,1 +1,0 @@
-<!-- <script id="pingpilot" type="text/javascript" src="https://widget.pingpilot.com/widget-button.js" data-signal="483c60" async></script> -->

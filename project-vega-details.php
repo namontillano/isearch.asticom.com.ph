@@ -210,8 +210,8 @@ if (empty($_GET['view'])) {
     <!-- ====== end footer ====== -->
 
 
-    <!-- ====== chat-support ====== -->
-    <?php include "chat-support.php"; ?>
+    <!-- ====== widgets ====== -->
+    <?php include "widgets.php"; ?>
     <!-- ====== chat-support  ====== -->
 
     <!-- ====== start to top button ====== -->

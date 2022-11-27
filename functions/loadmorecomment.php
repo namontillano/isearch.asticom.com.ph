@@ -7,14 +7,15 @@ $db = $database->open();
 
 
 $commentrow = $_POST['commentrow'];
+$commentpostid = $_POST['commentpostid'];
 $commentrowperpage = 5;
 
-$sql = $db->query('SELECT comments.comment_post_id,comments.id,comments.comment_user_id, comments.comment_message, comments.comment_date_posted,  accounts.google_first_name, accounts.google_last_name, accounts.google_image FROM comments INNER JOIN accounts ON comments.comment_user_id = accounts.google_id WHERE comments.comment_post_id = "11" ORDER BY comments.comment_date_posted DESC');
+$sql = $db->query('SELECT comments.comment_post_id,comments.id,comments.comment_user_id, comments.comment_message, comments.comment_date_posted,  accounts.google_first_name, accounts.google_last_name, accounts.google_image FROM comments INNER JOIN accounts ON comments.comment_user_id = accounts.google_id WHERE comments.comment_post_id = "'.$commentpostid.'" ORDER BY comments.comment_date_posted DESC');
 $allcount = $sql->rowCount();
 $additionalcomment = '';
 
 try{    
-    $sql = 'SELECT comments.comment_post_id,comments.id,comments.comment_user_id, comments.comment_message, comments.comment_date_posted,  accounts.google_first_name, accounts.google_last_name, accounts.google_image FROM comments INNER JOIN accounts ON comments.comment_user_id = accounts.google_id WHERE comments.comment_post_id = "11" ORDER BY comments.comment_date_posted DESC LIMIT '.$commentrow.','.$commentrowperpage;
+    $sql = 'SELECT comments.comment_post_id,comments.id,comments.comment_user_id, comments.comment_message, comments.comment_date_posted,  accounts.google_first_name, accounts.google_last_name, accounts.google_image FROM comments INNER JOIN accounts ON comments.comment_user_id = accounts.google_id WHERE comments.comment_post_id = "'.$commentpostid.'" ORDER BY comments.comment_date_posted DESC LIMIT '.$commentrow.','.$commentrowperpage;
     foreach ($db->query($sql) as $row) {
 
 

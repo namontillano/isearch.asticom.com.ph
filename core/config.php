@@ -14,12 +14,23 @@ $configs = [
         'VENDORS' => URL_ROOT.'vendors/'
     ],
 
+    // LOCALHOST CONFIG //
     'database' => [
         'DB_HOST' => 'localhost',
         'DB_USERNAME' => 'root',
         'DB_PASSWORD' => '',
-        'DB_NAME' => 'isearch'
+        'DB_NAME' => 'isearch',
+        'GOOGLE_URI' => 'http://localhost/isearch.asticom.com.ph/login.php'
     ],
+
+    // DEV SERVER CONFIG //
+    // 'database' => [
+    //     'DB_HOST' => 'localhost',
+    //     'DB_USERNAME' => 'root',
+    //     'DB_PASSWORD' => '',
+    //     'DB_NAME' => 'isearchdb',
+    //     'GOOGLE_URI' => 'https://dev-isearch.agc.com.ph/login.php'
+    // ],
 
     'config' => [
         'APP_NAME' => 'i-Search',

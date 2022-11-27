@@ -60,6 +60,13 @@
 			</li>
 
 			<li class="nk-menu-item">
+				<a href="community.php" class="nk-menu-link">
+					<span class="nk-menu-icon"><em class="icon ni ni-bell"></em></span>
+					<span class="nk-menu-text">Community</span>
+				</a>
+			</li>
+
+			<li class="nk-menu-item">
 				<a href="profanity-list.php" class="nk-menu-link">
 					<span class="nk-menu-icon"><em class="icon ni ni-na"></em></span>
 					<span class="nk-menu-text">Profanity List</span>
@@ -101,6 +108,13 @@
 						<a href="calltree.php" class="nk-menu-link">
 							<span class="nk-menu-icon"><em class="icon ni ni-call"></em></span>
 							<span class="nk-menu-text">Call Tree</span>
+						</a>
+					</li>
+
+					<li class="nk-menu-item">
+						<a href="health-declaration.php" class="nk-menu-link">
+							<span class="nk-menu-icon"><em class="icon ni ni-heart"></em></span>
+							<span class="nk-menu-text">Health Declaration</span>
 						</a>
 					</li>
 

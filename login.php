@@ -10,7 +10,9 @@
   $google_client = new Google_Client();
   $google_client->setClientId('192477195005-higoth89l4ce2gs6if56lblkg75pcq5j.apps.googleusercontent.com');
   $google_client->setClientSecret('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');
-  $google_client->setRedirectUri('http://localhost/isearch.asticom.com.ph/login.php');
+
+  $google_client->setRedirectUri(GOOGLE_URI);
+
   $google_client->addScope('email');
   $google_client->addScope('profile');
 

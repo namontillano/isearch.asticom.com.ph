@@ -1,7 +1,12 @@
     <div class="top-navbar style-4">
         <div class="container" style="position: initial;">
             <div class="row">
-                <div class="col-md-4">
+
+                <div class="col-md-2 mres">
+                <a href="<?=URL_ROOT;?>index.php"><img src="<?=ASSETS?>custom/img/isearchlogo.png" style="max-height: 30px;"></a>
+              </div>
+
+                <div class="col-md-3 mres">
                    <div class="searchbar">
                       <input type="text" class="searchbarTerm" name="keyword" id="findkeyword" placeholder="What are you looking for?">
                       <button type="submit" class="searchButton"><i class="fa fa-search"></i></button>
@@ -10,14 +15,14 @@
 
               </div>
 
-              <div class="col-md-4">
+              <div class="col-md-4 mres">
                 <div class="text-white text-center">
                     <a title="Asticom DigiOffice" href="https://www.google.com/url?q=https%3A%2F%2Fasticom.digiofficeapp.com&sa=D&sntz=1&usg=AOvVaw1FosEvbo8H1tzoEvFXzZpt" target="_blank" class="btn sm-butn bg-white py-0 px-2 me-2 fs-10px"><img src="<?=ASSETS?>custom/img/digioffice-button.png" style="max-height: 30px;"></a>
                     <a title="i-Serve" href="https://www.google.com/url?q=https%3A%2F%2Fasticom.atlassian.net%2Fservicedesk%2Fcustomer%2Fportals&amp;sa=D&amp;sntz=1&amp;usg=AOvVaw1cqRpYE4pblmFQd9FP844M" data-url="https://www.google.com/url?q=https%3A%2F%2Fasticom.atlassian.net%2Fservicedesk%2Fcustomer%2Fportals&amp;sa=D&amp;sntz=1&amp;usg=AOvVaw1cqRpYE4pblmFQd9FP844M" target="_blank" class="btn sm-butn bg-white py-0 px-2 me-2 fs-10px"><img src="<?=ASSETS?>custom/img/i-serve-button.png" style="max-height: 30px;"></a>
                 </div>
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-3" style="cursor: pointer;">
                 <?php
                 if(!isset($_SESSION['google_id'])){
                     ?>
@@ -37,7 +42,10 @@
                     </span>
                     <ul class="dropdown-menu" aria-labelledby="usermenubutton" style="border-radius: 5px;">
                         <?php if (array_intersect(array(1,2,3,4,5,99), preg_split ("/\,/", trim($_SESSION['user_level'])))){ ?>
-                            <li><a class="dropdown-item" href="<?=URL_ROOT;?>admin-cpanel/news-and-announcement.php">Dashboard</a></li>
+                            <li><a class="dropdown-item" href="<?=URL_ROOT;?>admin-cpanel/news-and-announcement.php">Administration</a></li>
+                        <?php } ?>
+                        <?php if (array_intersect(array(5), preg_split ("/\,/", trim($_SESSION['user_level'])))){ ?>
+                            <li><a class="dropdown-item" href="<?=URL_ROOT;?>management.php">Management</a></li>
                         <?php } ?>
                         <li><a class="dropdown-item" href="<?=URL_ROOT;?>logout.php">Logout</a></li>
                     </ul>

@@ -12,7 +12,7 @@ if(!empty($_GET['view'])){
     $checkpost = $stmt->rowCount();
 
     if ($checkpost != '0') {
-        $query = "SELECT * FROM posts WHERE id = '".$_GET['view']."'";
+        $query = "SELECT posts.id as id , posts.post_type as post_type , posts.post_category as post_category , posts.post_embed as post_embed , posts.post_thumb as post_thumb , posts.post_title as post_title , posts.post_content as post_content , posts.post_postedby as post_postedby , posts.post_postedon as post_postedon , posts.post_pin as post_pin , posts.post_views as post_views , posts.display_status as display_status , posts.deleted_status as deleted_status ,  accounts.google_first_name, accounts.google_last_name, accounts.google_image FROM posts INNER JOIN accounts ON posts.post_postedby = accounts.google_id WHERE posts.id = '".$_GET['view']."'";
         $res=$db->prepare($query);
         $res->execute();    
         while($row = $res->fetch(PDO::FETCH_ASSOC)){
@@ -25,6 +25,17 @@ if(!empty($_GET['view'])){
             $view_post_embed = $row['post_embed'];
             $view_post_thumb = $row['post_thumb'];
             $view_post_postedon = $row['post_postedon'];
+            $view_deleted_status = $row['deleted_status'];
+            $view_display_status = $row['display_status']; 
+            $view_google_first_name = $row['google_first_name']; 
+            $view_google_last_name = $row['google_last_name']; 
+            $view_google_image = $row['google_image']; 
+
+        }
+
+        if ($view_deleted_status == "1" ) {
+            header('Location: error.php?code=404');
+            exit;
         }
 
         if ($view_post_type == "Broadcast") {
@@ -64,7 +75,13 @@ if(!empty($_GET['view'])){
     exit;
 }
 ?>
-<?php $pagetitle=$view_post_title;?>
+<?php
+if ($view_post_type == "Community") {
+    $pagetitle = "Community";
+} else {
+    $pagetitle=$view_post_title;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -123,7 +140,9 @@ if(!empty($_GET['view'])){
     <!-- ====== start content ====== -->
     <main>
 
-        <div id='loadpostcontent' class='view-post-details' data-postid="<?php echo htmlentities($view_id, ENT_QUOTES, 'UTF-8') ?>" data-posttitle="<?php echo htmlentities($view_post_title, ENT_QUOTES, 'UTF-8'); ?>" data-posttype="<?php echo $posttype?>" data-postsrc="<?php echo $postsrc?>" data-postannounce="<?php echo htmlentities($view_post_type, ENT_QUOTES, 'UTF-8'); ?>" data-postcontent="<?php echo htmlentities($view_post_content, ENT_QUOTES, 'UTF-8'); ?>" data-postpostedby="<?php echo htmlentities($view_post_postedby, ENT_QUOTES, 'UTF-8'); ?>" data-postpostedon="<?php echo strtoupper(date_format($dateinwords, "F d, Y")); ?>" data-postviews="<?php echo htmlentities($view_post_views, ENT_QUOTES, 'UTF-8'); ?>"></div>
+
+
+        <div id='loadpostcontent' class='view-post-details' data-postid="<?php echo htmlentities($view_id, ENT_QUOTES, 'UTF-8') ?>" data-posttitle="<?php echo htmlentities($view_post_title, ENT_QUOTES, 'UTF-8'); ?>" data-posttype="<?php echo $posttype?>" data-postsrc="<?php echo $postsrc?>" data-postannounce="<?php echo htmlentities($view_post_type, ENT_QUOTES, 'UTF-8'); ?>" data-postcontent="<?php echo htmlentities($view_post_content, ENT_QUOTES, 'UTF-8'); ?>" data-postpostedby="<?php echo htmlentities($view_post_postedby, ENT_QUOTES, 'UTF-8'); ?>" data-postpostedon="<?php echo strtoupper(date_format($dateinwords, "F d, Y")); ?>" data-postviews="<?php echo htmlentities($view_post_views, ENT_QUOTES, 'UTF-8'); ?>"  data-googlepic="<?php echo htmlentities($view_google_image, ENT_QUOTES, 'UTF-8'); ?>"  data-firstname="<?php echo htmlentities($view_google_first_name, ENT_QUOTES, 'UTF-8'); ?>"  data-lastname="<?php echo htmlentities($view_google_last_name, ENT_QUOTES, 'UTF-8'); ?>"  data-postembed="<?php echo htmlentities($view_post_embed, ENT_QUOTES, 'UTF-8'); ?>"></div>
 
         <section class="all-news section-padding pt-50 blog bg-transparent style-3">
             <div class="container">
@@ -131,24 +150,67 @@ if(!empty($_GET['view'])){
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-lg-8">
 
-                        <div class="blog-details-slider">
-                            <div class="section-head text-center mb-10 style-5">
-                                <small class="d-block date text">
-                                    <a href="#" class="text-uppercase border-end brd-gray pe-3 me-3 color-blue5 fw-bold"> <span class="info-group modal-span-announce"></span> </a>
-                                    <i class="bi bi-clock me-1"></i>
-                                    <span class="op-8"><span class="info-group modal-span-postedon"></span></span>
-                                </small>
-                                <h4 class="mt-20 color-000"><span class="info-group modal-span-title"></span></h4>
-                            </div>
-                            <div class="info-group modal-span-content"></div>
-                            <div class="info-group modal-div-photos"></div>
-                        </div>
 
-                        <div class="text mt-10 mb-10 color-666">
-                            <span class="info-group text-justify modal-span-contenttype"></span>
-                        </div>
+                        <?php
+                        if ($view_post_type == "Community") {
+                            ?>
+                            <div class="blog-details-slider">
+
+
+                                <div class="d-flex align-items-center justify-content-between op-9">
+                                    <div class="d-flex">
+                                        <span class="info-group modal-span-googlepic"></span>
+                                        <h6 class="fw-bold" style="color: #000;"><span class="info-group modal-span-firstname"></span> <span class="info-group modal-span-lastname"></span></h6>
+                                    </div>
+                                    <div class="d-flex">
+                                        <small><span class="text-muted"><i class="bi bi-calendar me-1"></i> <span class="info-group modal-span-postedon"></span></span></small>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="text mt-10 mb-10 color-666">
+                                    <span class="info-group text-justify modal-span-contenttype"></span>
+                                </div>
+
+                                <div class="community-leftpanel">
+                                    <div class="info-group modal-span-content"></div>
+                                    <div class="info-group modal-div-photos"></div>
+                                </div>
+
+                            </div>
+                            <?php
+                        } else {
+                            ?> 
+
+                            <div class="blog-details-slider">
+                                <div class="section-head text-center mb-10 style-5">
+                                    <small class="d-block date text">
+                                        <a href="#" class="text-uppercase border-end brd-gray pe-3 me-3 color-blue5 fw-bold"> <span class="info-group modal-span-announce"></span> </a>
+                                        <i class="bi bi-clock me-1"></i>
+                                        <span class="op-8"><span class="info-group modal-span-postedon"></span></span>
+                                    </small>
+                                    <h4 class="mt-20 color-000"><span class="info-group modal-span-title"></span></h4>
+                                </div>
+
+                                <div class="text mt-10 mb-10 color-666">
+                                    <span class="info-group text-justify modal-span-contenttype"></span>
+                                </div>
+
+                                <div class="info-group modal-span-content"></div>
+                                <div class="info-group modal-div-photos"></div>
+
+                            </div>
+
+                            <?php
+                        }
+                        ?>
+                        
+
+                        
 
                         <div class="row text-center mt-20 mb-10 pt-10 pb-10 border-top border-bottom brd-gray" style="margin:0">
+
                             <div class="col-md-6">
                                 <div class="info-group modal-div-reacts"></div>
                             </div>
@@ -156,7 +218,7 @@ if(!empty($_GET['view'])){
                                 <div class="info-group"><i class='bi bi-chat-left-text'></i> <span class="modal-div-comments"></span></div>
                             </div>
                             <div class="col-md-3">
-                                <div class="info-group"><i class='bi bi-eye'></i> <span class="modal-div-views"></span></div>
+                                    <div class="info-group modal-div-views"></div>
                             </div>
                         </div>
 
@@ -229,6 +291,36 @@ if(!empty($_GET['view'])){
     </div>
 </div>
 
+
+<div class="modal fade zoomIn" id="modalviewers" data-bs-backdrop="static" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header modal-header-bg">
+                <h5 class="modal-title" id="exampleModalLabel">Viewer(s)</h5>
+                <button type="button" class="btn-close close-modal-viewers" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="div-viewers-list"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade zoomIn" id="modalreactors" data-bs-backdrop="static" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header modal-header-bg">
+                <h5 class="modal-title" id="exampleModalLabel">Reactor(s)</h5>
+                <button type="button" class="btn-close close-modal-reactors" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="div-reactors-list"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Modals -->
 
 <!-- ====== start footer ====== -->
@@ -236,8 +328,8 @@ if(!empty($_GET['view'])){
 <!-- ====== end footer ====== -->
 
 
-<!-- ====== chat-support ====== -->
-<?php include "chat-support.php"; ?>
+<!-- ====== widgets ====== -->
+<?php include "widgets.php"; ?>
 <!-- ====== chat-support  ====== -->
 
 <!-- ====== start to top button ====== -->
@@ -270,6 +362,9 @@ if(!empty($_GET['view'])){
 <?php include "functions/searchscript.php"; ?>
 <?php include "functions/postscript.php"; ?>
 <?php include "functions/digiofficereminders.php"?>
+
+
+
 </body>
 
 </html>

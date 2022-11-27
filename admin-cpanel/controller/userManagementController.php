@@ -85,8 +85,15 @@
             ':id' => $google_id,
             ':access' => '0,'.$access,
         ));
+
         if($res) {
+
+            if ($google_id == $_SESSION['google_id']) {
+                $_SESSION['user_level'] = '0, '.$access;
+            }
+
             echo 'success';
+            
         } else {
             echo 'error';
         }
