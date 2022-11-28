@@ -5,7 +5,10 @@ Class Connection{
     private $DB_SERVER = "mysql:host=".DB_HOST.";dbname=".DB_NAME."";
     private $DB_USERNAME = DB_USERNAME;
     private $DB_PASSWORD = DB_PASSWORD;
-    private $DB_OPTIONS  = array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC);
+    private $DB_OPTIONS  = array(
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+    );
     protected $conn;
 
     public function open(){

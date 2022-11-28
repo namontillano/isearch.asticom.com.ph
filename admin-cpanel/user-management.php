@@ -117,6 +117,9 @@ $getUserAccount = $onloadData->getUserAccount();
                                                                     if (in_array(4, $arr)) { 
                                                                         echo '<span class="badge bg-gray m-1" title="CyberTech">CYB</span>';
                                                                     }
+                                                                    if (in_array(6, $arr)) { 
+                                                                        echo '<span class="badge bg-gray m-1" title="Marketing">MAR</span>';
+                                                                    }
                                                                     ?>
                                                                 </td>
                                                                 <td class="nk-tb-col">

@@ -87,7 +87,7 @@
                         <li><a class="dropdown-item <?=($pagetitle=="Project Vega: Policies, Procedures and Guidelines") ? 'active':''; ?>" href="<?=URL_ROOT;?>project-vega.php"> Project Vega: Policies, Procedures and Guidelines </a></li>
                     </ul>
                 </li>
-
+                <li class="nav-item"><a class="nav-link <?=($pagetitle=="Marketing") ? 'active':''; ?>" href="<?=URL_ROOT;?>marketing.php">Marketing</a></li>
                 <li class="nav-item"><a class="nav-link <?=($pagetitle=="About") ? 'active':''; ?>" href="<?=URL_ROOT;?>about.php">About</a></li>
             </ul>
 

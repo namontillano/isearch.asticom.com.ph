@@ -102,6 +102,8 @@ require ("functions/userlevel.php");
                                                         </div>
                                                     </div>
 
+
+
                                                     <div class="row community-div"></div>
 
                                                 </div>
@@ -159,14 +161,10 @@ require ("functions/userlevel.php");
             fetchcommunitypost();
         });
 
-
         $('.attachphotobutton').click(function(){
             $("#communitypostattach").click();
             $('#addcommunitypostmodal').modal('show');
         })
-
-
-
 
     </script>
 

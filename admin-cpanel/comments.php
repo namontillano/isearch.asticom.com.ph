@@ -172,7 +172,7 @@ $getComment = $onloadData->getComment();
                         if(response) {
                             let status = 0;
                             let path = url + `?command=updateCommentStatus&comment_id=${id}&status=${status}`;
-                            let action = "Hide";
+                            let action = "hidden";
                             updateStatus(path, action);
                         }
                     });
@@ -185,7 +185,7 @@ $getComment = $onloadData->getComment();
                         if(response) {
                             let status = 1;
                             let path = url + `?command=updateCommentStatus&comment_id=${id}&status=${status}`;
-                            let action = "Unhide";
+                            let action = "unhide";
                             updateStatus(path, action);
                         }
                     });
@@ -195,7 +195,7 @@ $getComment = $onloadData->getComment();
                 $.SystemScript.executeGet(path).done((res) => {
                     console.log(res);
                     if(res.data.message == 'success') {
-                        $.SystemScript.swalAlertMessage('Successfully',`Comment has been ${action}`, 'success');
+                        $.SystemScript.swalAlertMessage('Success',`Comment has been ${action}`, 'success');
                         
                         $('.swal2-confirm').click(function(){
                             location.reload();

@@ -22,6 +22,10 @@
         if(isset($_GET['post_id']) && isset($_GET['status'])) {
             $announcementController->updateDelStatus($_GET['post_id'], $_GET['status']);
         }
+    } else if($_REQUEST['command'] == 'updateApproveStatus') {
+        if(isset($_GET['post_id']) && isset($_GET['status'])) {
+            $announcementController->updateApproveStatus($_GET['post_id'], $_GET['status']);
+        }
     }
 
 
@@ -211,6 +215,26 @@
     public function updateDelStatus($id, $status)
     {
         $query = "UPDATE posts SET deleted_status=:status WHERE id = :id";
+        $res = $this->conn->prepare($query);
+        $res->execute(array(
+            ':id' => $id,
+            ':status' => $status,
+        ));
+        if($res) {
+            echo json_encode(array(
+                'message' => 'success',
+                'post_id' => $id,
+                'status' => $status
+            ));
+        } else {
+            echo 'error';
+        }
+        
+    }
+
+    public function updateApproveStatus($id, $status)
+    {
+        $query = "UPDATE posts SET post_approval=:status WHERE id = :id";
         $res = $this->conn->prepare($query);
         $res->execute(array(
             ':id' => $id,

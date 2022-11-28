@@ -66,14 +66,7 @@ $getUserCategories2 = $onloadData->getUserCategories();
                                                     <thead>
                                                         <tr class="nk-tb-item nk-tb-head">
                                                             <th class="nk-tb-col d-none">ID</th>
-                                                            <!-- <th class="nk-tb-col"></th> -->
-                                                            <!-- <th class="nk-tb-col"><span class="sub-text">Title</span></th> -->
-                                                            <!-- <th class="nk-tb-col tb-col-lg">
-                                                                <span class="sub-text">Type</span>
-                                                            </th> -->
-                                                            <!-- <th class="nk-tb-col tb-col-lg">
-                                                                <span class="sub-text">Category</span>
-                                                            </th> -->
+                                                            <th class="nk-tb-col"></th>
                                                             <th class="nk-tb-col tb-col-lg">
                                                                 <span class="sub-text">User</span>
                                                             </th>
@@ -88,6 +81,9 @@ $getUserCategories2 = $onloadData->getUserCategories();
                                                             <th class="nk-tb-col tb-col-mb">
                                                                 <span class="sub-text">Posted Date</span>
                                                             </th>
+                                                            <th class="nk-tb-col tb-col-mb">
+                                                                <span class="sub-text">Status</span>
+                                                            </th>
                                                             <th class="nk-tb-col nk-tb-col-tools text-end">
                                                             </th>
                                                         </tr>
@@ -98,23 +94,15 @@ $getUserCategories2 = $onloadData->getUserCategories();
                                                             ?>
                                                             <tr class="nk-tb-item">
                                                                 <td class="d-none"><?php echo $data['id']; ?></td>
-                                                                <!-- <td class="nk-tb-col" style="cursor: pointer;">
+                                                                <td class="nk-tb-col" style="cursor: pointer;">
                                                                     <?php if ($data['post_pin'] == 1) { ?>
                                                                         <em class="icon ni ni-star-fill text-warning unpin" id="pin_<?php echo $data['id']?>"></em>
                                                                     <?php } else { ?>
                                                                         <em class="icon ni ni-star pin" id="pin_<?php echo $data['id']?>"></em>
                                                                     <?php } ?>
 
-                                                                </td> -->
-                                                                <!-- <td class="nk-tb-col"><a href="#" class="project-title">
-                                                                        <div class="project-info">
-                                                                            <strong class="text-dark"><?php echo $data['post_title']; ?></strong>
-                                                                        </div>
-                                                                    </a></td>
-                                                                <td class="nk-tb-col tb-col-lg"><span><?php echo $data['post_type']; ?></span>
                                                                 </td>
-                                                                <td class="nk-tb-col tb-col-lg"><span><?php echo $data['post_category']; ?></span>
-                                                                </td> -->
+                                                               
                                                                 <td class="nk-tb-col tb-col-lg">
                                                                     <div class="user-card">
                                                                         <div class="user-avatar bg-primary">
@@ -131,6 +119,17 @@ $getUserCategories2 = $onloadData->getUserCategories();
                                                                 <td class="nk-tb-col tb-col-lg"><span><?php echo $data['post_views']; ?></span></td>
                                                                 
                                                                 <td class="nk-tb-col tb-col-lg"><?php echo date("M d, Y", strtotime($data['post_postedon']))?></td>
+                                                                <td class="nk-tb-col tb-col-lg">
+                                                                    <?php 
+                                                                    if ($data['post_approval'] == 0) { 
+                                                                        echo '<span class="badge bg-info m-1">For approval</span>';
+                                                                    } elseif ($data['post_approval'] == 1) { 
+                                                                        echo '<span class="badge bg-success  m-1">Approved</span>';
+                                                                    } else { 
+                                                                        echo '<span class="badge bg-danger m-1">Rejected</span>';
+                                                                    }
+                                                                    ?>        
+                                                                </td>
                                                                 <td class="nk-tb-col nk-tb-col-tools">
                                                                     <ul class="nk-tb-actions gx-1">
                                                                         <li>
@@ -142,7 +141,22 @@ $getUserCategories2 = $onloadData->getUserCategories();
                                                                                             </span></a>
                                                                                         </li>
 
-
+                                                                                        <?php 
+                                                                                        if ($data['post_approval'] == 0) {
+                                                                                        ?>
+                                                                                            <li>
+                                                                                                <a href="#" class="approve_status" id="status_<?php echo $data['id']?>">
+                                                                                                    <em class="icon ni ni-check"></em><span>Approve</span>
+                                                                                                </a>
+                                                                                            </li>
+                                                                                            <li>
+                                                                                                <a href="#" class="reject_status" id="status_<?php echo $data['id']?>">
+                                                                                                    <em class="icon ni ni-cross"></em><span>Reject</span>
+                                                                                                </a>
+                                                                                            </li>
+                                                                                        <?php
+                                                                                        } elseif ($data['post_approval'] == 1) {
+                                                                                        ?>
                                                                                         <?php if ($data['deleted_status'] == 1) { ?>
                                                                                             <li>
                                                                                                 <a href="#" class="undel_status" id="del_<?php echo $data['id']?>">
@@ -155,7 +169,11 @@ $getUserCategories2 = $onloadData->getUserCategories();
                                                                                                     <em class="icon ni ni-trash"></em><span>Delete</span>
                                                                                                 </a>
                                                                                             </li>
-                                                                                        <?php } ?>
+                                                                                        <?php } ?>                                                                                        
+                                                                                        <?php
+                                                                                        }
+                                                                                        ?>  
+
                                                                                     </ul>
                                                                                 </div>
                                                                             </div>
@@ -190,9 +208,33 @@ $getUserCategories2 = $onloadData->getUserCategories();
         $(document).ready(function() {
             //dataTable 
 
-            $('#example').DataTable({ "aaSorting": [[4,'desc']],});
+            $('#example').DataTable({ "aaSorting": [[5,'desc'],[0,'desc']]});
+
+
             var url = 'controller/announcementController.php';
 
+
+
+            $(document).on('click', '.pin', function() {
+                const id = this.id.split('_')[1]; 
+                $(`#${this.id}`).removeClass('ni-star pin').addClass('ni-star-fill text-warning unpin');
+                let status_to = 1;
+                pinStatus(id, status_to);
+            });
+
+            $(document).on('click', '.unpin', function() {
+                const id = this.id.split('_')[1]; 
+                $(`#${this.id}`).addClass('ni-star pin').removeClass('ni-star-fill text-warning unpin');
+                let status_to = 0;
+                pinStatus(id, status_to);
+            });
+
+            const pinStatus = (id, status) => {
+                let path = url + `?command=updatePinStatus&post_id=${id}&status=${status}`;
+                $.SystemScript.executeGet(path).done((res) => {
+                    console.log(res);
+                });
+            }
 
 
             // delete
@@ -231,6 +273,48 @@ $getUserCategories2 = $onloadData->getUserCategories();
                     }
                 });
             }
+
+
+
+            $(document).on('click', '.approve_status', function() {
+                const id = this.id.split('_')[1]; 
+                $.SystemScript.swalConfirmMessage('Are you sure?', 
+                    'Do you want to approve this post?', 'question').done(function(response) {
+                        if(response) {
+                            let status_to = 1;
+                            approveStatus(id, status_to, 'Approved');
+                        }
+                    });
+
+            });
+
+            $(document).on('click', '.reject_status', function() {
+                const id = this.id.split('_')[1]; 
+                $.SystemScript.swalConfirmMessage('Are you sure?', 
+                    'Do you want to reject this post?', 'question').done(function(response) {
+                        if(response) {
+                            let status_to = 2;
+                            approveStatus(id, status_to, 'Rejected');
+                        }
+                    });
+
+            });
+
+          
+            const approveStatus = (id, status, action) => {
+                let path = url + `?command=updateApproveStatus&post_id=${id}&status=${status}`;
+                $.SystemScript.executeGet(path).done((res) => {
+                    console.log(res);
+                    if(res.data.message == 'success') {                   
+                        $.SystemScript.swalAlertMessage('Successfully',`Post Successfully ${action}`, 'success');
+                        $('.swal2-confirm').click(function(){
+                            location.reload();
+                        });
+                    }
+                });
+            }
+
+
 
 
         });

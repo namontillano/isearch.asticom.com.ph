@@ -33,6 +33,8 @@ if(!empty($_GET['view'])){
 
         }
 
+        
+
         if ($view_deleted_status == "1" ) {
             header('Location: error.php?code=404');
             exit;

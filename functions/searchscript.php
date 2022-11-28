@@ -24,7 +24,7 @@
 
   $("#findkeyword").onEnter( function() {
     var val = document.getElementById( "findkeyword" ).value;
-    alert('redirect to search.php?keyword='+val);                    
+    location.href = 'search.php?keyword='+val;
   });
 
 

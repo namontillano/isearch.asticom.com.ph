@@ -214,6 +214,10 @@ if (json_encode($httpcode) == "200" || json_encode($httpcode) == "201") {
       margin: 0;
       padding: 0;
     }
+
+    .anychart-credits {
+      display:none;
+    }
   </style>
 </head>
 
@@ -352,9 +356,8 @@ if (json_encode($httpcode) == "200" || json_encode($httpcode) == "201") {
                               <?php foreach ($calltree_data as $calltree) { ?>
                                 <tr>
                                   <td><?php echo substr($calltree->cdate, 0, 10); ?></td>
-                                  <!-- <td></td>
-                                    <td></td> -->
                                   <td><?php echo $calltree->employeename; ?></td>
+                                  <td><?php echo $calltree->email; ?></td>
                                   <td>
                                     <?php
                                     if ($calltree->status == "Not Done") {
@@ -362,7 +365,9 @@ if (json_encode($httpcode) == "200" || json_encode($httpcode) == "201") {
                                     } else {
                                       echo $calltree->status;
                                     }
-                                    ?></td>
+                                    ?>
+                                      
+                                    </td>
                                   <td>
                                     <?php 
                                     if($calltree->response == 'I Need Help') {
@@ -374,8 +379,6 @@ if (json_encode($httpcode) == "200" || json_encode($httpcode) == "201") {
                                   </td>
                                   <td><?php echo $calltree->supervisor_email; ?></td>
                                   <td><?php echo $calltree->supervisor_name; ?></td>
-                                  <td><?php echo $calltree->email; ?></td>
-
                                 </tr>
                               <?php } ?>
                             <?php } ?>

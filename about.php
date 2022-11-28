@@ -67,15 +67,23 @@ require ("functions/userlevel.php");
     <main >
 
 
-
-
-
-
         <header class="style-4">
             <div class="content" style="margin-bottom:150px">
                 <div class="content frs-content" style="padding:0px">
 
                     <div class="container">
+                        <div class="section-head text-center mb-80 style-5">
+                        <div class="page-links color-999">
+                            <a href="<?=URL_ROOT;?>index.php" class="me-2">
+                                Home
+                            </a>
+                            <span class="me-2">/</span>
+                            <a href="<?=URL_ROOT;?>about.php" class="color-000">
+                                About
+                            </a>
+                        </div>
+                    </div>
+
                        <div class="container">
                 <div class="section-head text-center style-4 mb-20">
                     <h2 class="mb-10"> Mission &amp; <span> Vision </span></h2>
@@ -151,6 +159,25 @@ require ("functions/userlevel.php");
                             </div>
                         </div>
 
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <div class="col-md-4">
+                            <div class="features-card text-center">
+                                <a href="https://hcx.com.ph/" target="_blank">
+                                    <img class="icons-services" src="<?=ASSETS;?>custom/img/icons/icon-hcx.png">
+                                    <h6 class="pt-10 pb-10">HCX</h6>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="features-card text-center">
+                                <a href="#" target="_blank">
+                                    <img class="icons-services" src="<?=ASSETS;?>custom/img/icons/icon-acquiro.png">
+                                    <h6 class="pt-10 pb-10">Acquiro</h6>
+                                </a>
+                            </div>
+                        </div>
+                        
                     </div>
 
                 </div>
@@ -411,22 +438,6 @@ require ("functions/userlevel.php");
 <script src="<?=ASSETS;?>js/lib/scrollIt.min.js"></script>
 <script src="<?=ASSETS;?>js/main.js"></script>
 <script src="<?=ASSETS;?>vendor/sweetalert2/sweetalert2.min.js"></script>
-
-<script type="text/javascript">
-    var containerEl = document.querySelector('.mix-container');
-    var mixer = mixitup(containerEl);
-
-    $(document).ready(function(){
-        var posttitle = $("#post-title").width();
-        document.getElementById("post-title").style.width = posttitle+"px";
-    });
-
-    window.onload = function(){
-        document.getElementById('pinnedpost').click();
-    }  
-
-
-</script>
 
 <?php include "functions/searchscript.php"; ?>
 <?php include "functions/digiofficereminders.php"?>

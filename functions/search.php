@@ -10,9 +10,13 @@ if(isset($_REQUEST['keyword']))
 	$db = $database->open();
 
 	try{    
-		$sql = 'SELECT * FROM posts where (post_title like "%'.$search.'%" OR post_content like "%'.$search.'%") AND display_status="1" AND deleted_status = "0" limit 5';
+		$sql = 'SELECT posts.id as id , posts.post_type as post_type , posts.post_category as post_category , posts.post_embed as post_embed , posts.post_thumb as post_thumb , posts.post_title as post_title , posts.post_content as post_content , posts.post_postedby as post_postedby , posts.post_postedon as post_postedon , posts.post_pin as post_pin , posts.post_views as post_views , posts.display_status as display_status , posts.deleted_status as deleted_status ,  accounts.google_first_name,  accounts.google_last_name, accounts.google_image FROM posts INNER JOIN accounts ON posts.post_postedby = accounts.google_id WHERE (posts.post_title like "%'.$search.'%" OR posts.post_content like "%'.$search.'%" OR accounts.google_first_name like "%'.$search.'%" OR accounts.google_last_name like "%'.$search.'%") AND posts.display_status="1" AND posts.deleted_status = "0"';
 		foreach ($db->query($sql) as $row) {
-			echo '<a href=post.php?view=' . $row['id'] . '>' . $row['post_title'] . "</a>\n";	
+			if ($row['post_type'] == "Community") {
+				echo '<a href=post.php?view='.$row['id'].'>'.substr_replace(strip_tags($row['post_content']), "...", 35)."</a>\n";	 
+			} else {
+				echo '<a href=post.php?view='.$row['id'].'>'.$row['post_title']."</a>\n";	
+			}
 		}
 	}
 	catch(PDOException $e){
@@ -23,7 +27,7 @@ if(isset($_REQUEST['keyword']))
 	try{    
 		$sql = 'SELECT * FROM pages where (title like "%'.$search.'%" OR content like "%'.$search.'%") limit 5';
 		foreach ($db->query($sql) as $row) {
-			echo '<a href=' . $row['url'] . '>' . $row['title'] . "</a>\n";	
+			echo '<a href='.$row['url'].'>'.$row['title']."</a>\n";	
 		}
 		if(empty($row))
 		{

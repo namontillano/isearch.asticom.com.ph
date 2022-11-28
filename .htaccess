@@ -1,0 +1,13 @@
+RewriteEngine On
+Options -Indexes
+
+<Files .env>
+    order allow,deny
+    Deny from all
+</Files>
+
+ErrorDocument 400 http://localhost/isearch.asticom.com.ph/error.php?code=400
+ErrorDocument 401 http://localhost/isearch.asticom.com.ph/error.php?code=401
+ErrorDocument 403 http://localhost/isearch.asticom.com.ph/error.php?code=403
+ErrorDocument 404 http://localhost/isearch.asticom.com.ph/error.php?code=404
+ErrorDocument 500 http://localhost/isearch.asticom.com.ph/error.php?code=500

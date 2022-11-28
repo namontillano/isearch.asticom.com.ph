@@ -73,7 +73,7 @@
                         <img src="<?=ASSETS;?>custom/img/asticom-group-of-companies.png" alt="">
                     </div>
                 </div>
-                <div class="col-lg-8">
+                <div class="col-lg-10">
                     <ul class="links">
                         <li><a class="<?=($pagetitle=="Home") ? 'active':''; ?>" href="<?=URL_ROOT;?>index.php">Home</a></li>
 
@@ -90,11 +90,12 @@
                         <li><a class="<?=($pagetitle=="Recruitment") ? 'active':''; ?>" href="<?=URL_ROOT;?>recruitment.php">Recruitment</a></li>
                         <li><a class="<?=($pagetitle=="Finance") ? 'active':''; ?>" href="<?=URL_ROOT;?>finance.php">Finance</a></li>
                         <li><a class="<?=($pagetitle=="CyberTech") ? 'active':''; ?>" href="<?=URL_ROOT;?>cybertech.php">CyberTech</a></li>
+                        <li><a class="<?=($pagetitle=="Marketing") ? 'active':''; ?>" href="<?=URL_ROOT;?>marketing.php">Marketing</a></li>
                         <li><a class="<?=($pagetitle=="About") ? 'active':''; ?>" href="<?=URL_ROOT;?>about.php">About</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-2">
-                    <div class="dropdown">
+                    <!-- <div class="dropdown">
                         <button class="icon-25 dropdown-toggle p-0 border-0 bg-transparent rounded-circle img-cover" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                             <img src="<?=ASSETS;?>img/lang.png" alt="" class="me-2">
                             <small>English</small>
@@ -102,7 +103,7 @@
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                             <li><a class="dropdown-item" href="#">English</a></li>
                         </ul>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>

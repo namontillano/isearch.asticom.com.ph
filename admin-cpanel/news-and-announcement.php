@@ -252,7 +252,7 @@ $getUserCategories2 = $onloadData->getUserCategories();
                             </div>
                             <div class="col-md-12">
                                 <div class="form-label">Thumbnail</div>
-                                <input type="file" class="form-control mt-3" accept="image/*" name="thumbnail" id="thumbnail" placeholder="Paste the link here" >
+                                <input type="file" class="form-control mt-3" accept="*.jpg, *.png" name="thumbnail" id="thumbnail" placeholder="Paste the link here" >
                             </div>
                             <!-- <div class="col-md-12">
                                 <div class="row">
@@ -274,7 +274,7 @@ $getUserCategories2 = $onloadData->getUserCategories();
                                     <input type="checkbox" class="custom-control-input" id="embed_post">
                                     <label class="custom-control-label" for="embed_post">Embed Link</label>
                                 </div>
-                                <input type="file" class="form-control" accept="image/*" name="image" id="image" placeholder="Paste the link here" >
+                                <input type="file" class="form-control" accept="*.jpg, *.png" name="image" id="image" placeholder="Paste the link here" >
                                 <input type="text" class="form-control d-none" name="link" id="link" placeholder="Paste the link here" >
                                 <label for="type" class="error" style="display: none;"  id="embed-post-error">This is required field.</label>
                             </div>

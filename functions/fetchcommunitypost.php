@@ -8,20 +8,20 @@ include_once("../functions/timeago.php");
 $database = new Connection();
 $db = $database->open();
 
-$sql = $db->query('SELECT * FROM posts WHERE post_type="Community" AND display_status="1" AND deleted_status = "0"');
+$sql = $db->query('SELECT * FROM posts WHERE post_type="Community" AND display_status="1" AND deleted_status = "0" AND post_approval ="1"');
 $postallcount = $sql->rowCount();
 
-$postrowperpage = 5;
+$postrowperpage = 10;
 
 
 
 try{
-	$sql = 'SELECT posts.id as id , posts.post_type as post_type , posts.post_category as post_category , posts.post_embed as post_embed , posts.post_thumb as post_thumb , posts.post_title as post_title , posts.post_content as post_content , posts.post_postedby as post_postedby , posts.post_postedon as post_postedon , posts.post_pin as post_pin , posts.post_views as post_views , posts.display_status as display_status , posts.deleted_status as deleted_status ,  accounts.google_first_name,  accounts.google_last_name, accounts.google_image FROM posts INNER JOIN accounts ON posts.post_postedby = accounts.google_id WHERE posts.post_type="Community" AND posts.display_status="1" AND posts.deleted_status = "0" ORDER BY posts.id desc limit 0,'.$postrowperpage;
+	$sql = 'SELECT posts.post_approval as post_approval, posts.id as id , posts.post_type as post_type , posts.post_category as post_category , posts.post_embed as post_embed , posts.post_thumb as post_thumb , posts.post_title as post_title , posts.post_content as post_content , posts.post_postedby as post_postedby , posts.post_postedon as post_postedon , posts.post_pin as post_pin , posts.post_views as post_views , posts.display_status as display_status , posts.deleted_status as deleted_status ,  accounts.google_first_name,  accounts.google_last_name, accounts.google_image FROM posts INNER JOIN accounts ON posts.post_postedby = accounts.google_id WHERE posts.post_type="Community" AND posts.display_status="1" AND posts.deleted_status = "0" AND posts.post_approval = "1" ORDER BY posts.post_pin DESC, posts.id DESC limit 0,'.$postrowperpage;
 	foreach ($db->query($sql) as $row) {
 
-		if ($row['post_embed'] == '0') {
+		if ($row['post_embed'] == '0') {			
 			$posttype = "img";
-			$postthumb = "uploads/default-thumbnail.jpg";
+			$postthumb = "uploads/default-thumbnail.jpg";	
 			$postsrc = "uploads/default-thumbnail.jpg";
 		} else {
 			$ext = array("gif", "jpeg", "png", "jpg");
@@ -47,7 +47,11 @@ try{
 		$dateinwords = new DateTime($row['post_postedon']);
 		?>
 		<div class="col-lg-12 postlist view-post-details" data-postid="<?php echo htmlentities($row['id'], ENT_QUOTES, 'UTF-8') ?>" data-posttitle="<?php echo htmlentities($row['post_title'], ENT_QUOTES, 'UTF-8'); ?>" data-posttype="<?php echo $posttype?>" data-postsrc="<?php echo $postsrc?>" data-postannounce="<?php echo htmlentities($row['post_type'], ENT_QUOTES, 'UTF-8'); ?>" data-postcontent="<?php echo htmlentities($row['post_content'], ENT_QUOTES, 'UTF-8'); ?>" data-postpostedby="<?php echo htmlentities($row['post_postedby'], ENT_QUOTES, 'UTF-8'); ?>" data-postpostedon="<?php echo strtoupper(date_format($dateinwords, "F d, Y"));?>" data-postviews="<?php echo htmlentities($row['post_views'], ENT_QUOTES, 'UTF-8'); ?>" data-googlepic="<?php echo htmlentities($row['google_image'], ENT_QUOTES, 'UTF-8'); ?>"  data-firstname="<?php echo htmlentities($row['google_first_name'], ENT_QUOTES, 'UTF-8'); ?>"  data-lastname="<?php echo htmlentities($row['google_last_name'], ENT_QUOTES, 'UTF-8'); ?>" data-postembed="<?php echo htmlentities($row['post_embed'], ENT_QUOTES, 'UTF-8'); ?>">
-			<div class="portfolio-card mb-50">
+
+			
+
+
+			<div class="portfolio-card mb-50" style="<?php if ($row['post_pin'] == 1) {echo "background: #f4f2ff; border: solid 1px #ddd4ff;"; } ?>">
 
 				<div class="info">
 					<div class="d-flex align-items-center justify-content-between op-9">

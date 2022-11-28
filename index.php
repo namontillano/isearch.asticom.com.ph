@@ -83,7 +83,7 @@ $db = $database->open();
                                 <div class="container mb-10">
                                     <div class="section-head text-center style-4">
                                         <h2 class="mb-10">News &amp; <span> Announcements </span> </h2>
-                                        <p> We have an experienced team of production and inspection personnel to ensure quality. </p>
+                                        <p> Highlights, latest news, announcements, events and updates about Asticom.</p>
                                     </div>
                                     <div class="controls mt-20 mb-20" id="fetchnewscategories" style="z-index: 999999;">
                                         <?php

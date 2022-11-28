@@ -425,7 +425,7 @@
                 $('.load-more').click(function(){
                     var postrow = Number($('#postrow').val());
                     var postallcount = Number($('#postall').val());
-                    postrow = postrow + 5;
+                    postrow = postrow + 10;
 
                     if(postrow <= postallcount){
                         $("#postrow").val(postrow);
@@ -442,7 +442,7 @@
                                 setTimeout(function() {
                                     $(".postlist:last").after(response).show().fadeIn("slow");
 
-                                    var postrowno = postrow + 5;
+                                    var postrowno = postrow + 10;
 
                                     if(postrowno > postallcount){
 
