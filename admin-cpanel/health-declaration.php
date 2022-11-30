@@ -79,8 +79,8 @@ else
                 <div class="nk-block">
                   <div class="card card-bordered card-stretch">
                     <div class="card-inner-group">
-                      <div class="card-inner p-4">
-                        <table id="example" class="table table-hover p-0 nk-tb-list nk-tb-ulist" style="width:100%">
+                      <div class="card-inner p-4 table-responsive">
+                        <table id="example" class="table table-hover p-0 ">
                           <thead>
                             <tr>
                               <th>Work Status</th>

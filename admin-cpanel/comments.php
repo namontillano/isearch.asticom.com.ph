@@ -56,19 +56,19 @@ $getComment = $onloadData->getComment();
                                 <div class="nk-block">
                                     <div class="card card-bordered card-stretch">
                                         <div class="card-inner-group">
-                                            <div class="card-inner p-4">
-                                                <table id="example" class="table table-hover p-0 nk-tb-list nk-tb-ulist" style="width:100%">
+                                            <div class="card-inner p-4 table-responsive">
+                                                <table id="example" class="table table-hover p-0">
                                                     <thead>
-                                                        <tr class="nk-tb-item nk-tb-head">
-                                                            <th class="nk-tb-col">Date</th>
-                                                            <th class="nk-tb-col"><span class="sub-text">Users</span></th>
-                                                            <th class="nk-tb-col ">
+                                                        <tr class="">
+                                                            <th class="">Date</th>
+                                                            <th class=""><span class="sub-text">Users</span></th>
+                                                            <th class=" ">
                                                                 <span class="sub-text">Message</span>
                                                             </th>
-                                                            <th class="nk-tb-col">
+                                                            <th class="">
                                                                 <span class="sub-text">Status</span>
                                                             </th>
-                                                            <th class="nk-tb-col nk-tb-col-tools text-end">
+                                                            <th class=" text-end">
                                                             </th>
                                                         </tr>
                                                     </thead>
@@ -77,9 +77,9 @@ $getComment = $onloadData->getComment();
                                                         while ($data = $getComment->fetch(PDO::FETCH_ASSOC)) {
                                                             ?>
                                                             <tr>
-                                                                <td class="nk-tb-col"><?php echo $data['comment_date_posted'] ?></td>
-                                                                <td class="nk-tb-col">
-                                                                    <div class="nk-tb-col">
+                                                                <td class=""><?php echo $data['comment_date_posted'] ?></td>
+                                                                <td class="">
+                                                                    <div class="">
                                                                         <div class="user-card">
                                                                             <div class="user-avatar bg-primary">
                                                                                 <img src="<?php echo $data['google_image'] ?>" alt="">
@@ -93,12 +93,12 @@ $getComment = $onloadData->getComment();
                                                                         </div>
                                                                     </div>
                                                                 </td>
-                                                                <td class="nk-tb-col">
+                                                                <td class="">
                                                                     <span style="cursor: pointer;" data-toggle="tooltip" data-placement="top" title="<?php echo $data['comment_message']; ?>">
                                                                         <?php echo substr_replace(strip_tags($data['comment_message']), "...", 75) ?>
                                                                     </span>
                                                                 </td>
-                                                                <td class="nk-tb-col">
+                                                                <td class="">
                                                                     <?php 
                                                                     if ($data['comment_status'] == 0) { 
                                                                         echo '<span class="badge bg-danger m-1">Hidden</span>';
@@ -108,7 +108,7 @@ $getComment = $onloadData->getComment();
                                                                     }
                                                                     ?>
                                                                 </td>
-                                                                <td class="nk-tb-col nk-tb-col-tools">
+                                                                <td class="">
                                                                     <ul class="nk-tb-actions gx-1">
                                                                         <li>
                                                                             <div class="drodown"><a href="#" class="dropdown-toggle btn btn-sm btn-icon btn-trigger" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>

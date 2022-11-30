@@ -15,8 +15,8 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-
-                        <div class="overflow-auto w-100 over-scroll view-side-right">
+                        <!-- <div class="overflow-auto w-100 over-scroll view-side-right"> -->
+                        <div class="w-100 over-scroll view-side-right">
                             <div id="profile-description">
                                 <small class="d-block date fs-10px fw-bold">
                                     <a class="text-uppercase border-end brd-gray pe-3 me-3 color-blue5"><span class="info-group modal-span-announce"></span></a>
@@ -27,26 +27,26 @@
                                 <h5 class="fw-bold mt-10 mb-10 title" id="post-title">
                                     <span class="info-group modal-span-title"></span>
                                 </h5>
-
-                                <div class="profile-description-text show-more-height">
+                                <!-- <div class="profile-description-text show-more-height"> -->
+                                <div class="profile-description-text">
                                     <span class="info-group modal-span-contenttype"></span>
                                 </div>
-                                <div class="show-more text-center">(See More)</div>
+                                <!-- <div class="show-more text-center">(See More)</div> -->
                             </div>
                             <div class="row text-center mt-10 border-top border-bottom pb-10 border-1 brd-gray pt-10" style="margin:0">
                                 <div class="col-md-6 col-6">
                                     <div class="info-group modal-div-reacts"></div>
                                 </div>
-                                <div class="col-md-3 col-3">
+                                <div class="col-md-3 col-3 d-none">
                                     <div class="info-group"><i class='bi bi-chat-left-text'></i> <span class="modal-div-comments"></span></div>
                                 </div>
-                                <div class="col-md-3 col-3">
+                                <div class="col-md-6 col-6">
                                     <div class="info-group modal-div-views"></div>
                                 </div>
                             </div>
 
                             <?php if(isset($_SESSION['google_id'])){ ?>
-                                <form id="addcommentform" class="pb-20 pt-20" style='margin-right: 15px;' novalidate>
+                                <form id="addcommentform" class="pb-20 pt-20 d-none" style='margin-right: 15px;' novalidate>
                                     <textarea placeholder="Leave your comments here..." id="comment" name="comment" rows="1" class="form-control radius-4 textarea resize-ta w-100" style="resize: none;overflow: hidden;" required></textarea>
                                     <input type="hidden" id="postid" class="postid" name="postid">
                                     <input type="hidden" id="userid" class="userid" name="userid" value="<?php echo $_SESSION['google_id'];?>">
@@ -54,15 +54,14 @@
                                     <button type="submit" class="btn btn-sm w-100 mt-10 btn-danger btn-label ms-auto" name="submit">Post Comment</button>
                                 </form>
                             <?php } else { ?>
-                                <div class=" pt-20 border-top border-1 brd-gray">
+                                <div class=" pt-20 border-top border-1 brd-gray d-none">
                                     <div class="alert alert-danger text-center" role="alert">
                                      You must be <strong>logged in</strong> to post a comment.
                                  </div>
                              </div>
                          <?php }?>
-                         <div class="info-group modal-div-usercomments comments-content">
-                         </div>
-                         <center><a class="load-morecomments text-center mb-10">View more comments</a></center>
+                         <div class="info-group modal-div-usercomments comments-content d-none"></div>
+                         <center><a class="load-morecomments text-center mb-10 d-none">View more comments</a></center>
                          <input type="hidden" id="commentrow" value="0">
                          <input type="hidden" class="commentpostid" id="commentpostid" value="0">
                          <input type="hidden" id="commentall" class="modal-div-comments">

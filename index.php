@@ -227,7 +227,7 @@ $db = $database->open();
                                                             </div>
                                                             </a>
 
-                                                            <div class="align-items-center">
+                                                            <div class="align-items-center d-none">
                                                                <i class="bi bi-chat-left-text ms-4 me-1"></i> <?php echo $post_comments; ?>
                                                            </div>
                                                            <a class='view-viewers-list'  data-bs-toggle='modal' data-bs-target='#modalviewers' data-postid='<?php echo $row['id']?>' style='cursor:pointer'>

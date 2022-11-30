@@ -238,16 +238,7 @@ if (json_encode($httpcode) == "200" || json_encode($httpcode) == "201") {
                     <div class="nk-block-head-content">
                       <h4 class="nk-block-title">Call Tree</h4>
                     </div>
-                    <div class="nk-block-head-content">
-                      <div class="toggle-wrap nk-block-tools-toggle"><a href="#" class="btn btn-icon btn-trigger toggle-expand me-n1" data-target="pageMenu"><em class="icon ni ni-menu-alt-r"></em></a>
-                        <div class="toggle-expand-content" data-content="pageMenu">
-                          <ul class="nk-block-tools g-3">
-                            <li class="nk-block-tools-opt d-none d-sm-block"><a data-bs-toggle="modal" href="#addnewmanagement" data-bs-placement="top" class="btn btn-primary"><em class="icon ni ni-info"></em><span>Initiate Call Tree</span></a></li>
-                            <li class="nk-block-tools-opt d-block d-sm-none"><a href="#" class="btn btn-icon btn-primary"><em class="icon ni ni-plus"></em></a></li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
+                    <a data-bs-toggle="modal" href="#addnewmanagement" data-bs-placement="top" class="btn btn-primary  pull-end float-end float-right"><em class="icon ni ni-info"></em><span>Initiate Call Tree</span></a>
                     <div class="modal fade" tabindex="-1" id="addnewmanagement">
                       <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -329,7 +320,7 @@ if (json_encode($httpcode) == "200" || json_encode($httpcode) == "201") {
                 <div class="nk-block-head nk-block-head-sm">
                   <div class="nk-block-between">
                     <div class="nk-block-head-content">
-                      <h4 class="nk-block-title">List of Call Tree Response</h4>
+                      <h4 class="nk-block-title">List of Call Tree Response (<span id="calamity_name">All Calamity</span>)</h4>
                     </div>
                   </div>
                 </div>
@@ -337,7 +328,6 @@ if (json_encode($httpcode) == "200" || json_encode($httpcode) == "201") {
                   <div class="card card-bordered card-stretch">
                     <div class="card-inner-group">
                       <div class="card-inner p-4 table-responsive">
-                        <h3 class="pb-3 text-primary"><span id="calamity_name">All Calamity</span></h3>
                         <table id="example1" class="table table-hover p-0 nk-tb-list nk-tb-ulist" style="width:100%">
                           <thead>
                             <tr>
@@ -348,7 +338,6 @@ if (json_encode($httpcode) == "200" || json_encode($httpcode) == "201") {
                               <th>Response</th>
                               <th>Supervisor Name</th>
                               <th>Supervisor Email</th>
-
                             </tr>
                           </thead>
                           <tbody id="call_tree">
@@ -446,10 +435,7 @@ if (json_encode($httpcode) == "200" || json_encode($httpcode) == "201") {
         reloadTable(tabledata);
         chartReload(tabledata);
       });
-      
-      
-      
-      
+        
       // reloadTable();
       function reloadTable(data) {
         $('#example1').dataTable().fnClearTable();
@@ -459,11 +445,11 @@ if (json_encode($httpcode) == "200" || json_encode($httpcode) == "201") {
             <tr>
               <td>${(item.cdate).substring(0, 10)}</td>
               <td>${item.employeename}</td>
+              <td>${item.email}</td>
               <td>${item.status == "Not Done" ? 'Ongoing' : item.status}</td>
               <td>${item.response == "I Need Help" ? '<span class="badge bg-danger">I Need Help</span>' : item.response}</td>
               <td>${item.supervisor_email}</td>
               <td>${item.supervisor_name}</td>
-              <td>${item.email}</td>
             </tr>
           `);
         })

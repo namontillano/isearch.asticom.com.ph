@@ -61,30 +61,30 @@ $getUserCategories2 = $onloadData->getUserCategories();
                                 <div class="nk-block">
                                     <div class="card card-bordered card-stretch">
                                         <div class="card-inner-group">
-                                            <div class="card-inner p-4">
-                                                <table id="example" class="table table-hover p-0 nk-tb-list nk-tb-ulist" style="width:100%">
+                                            <div class="card-inner p-4 table-responsive">
+                                                <table id="example" class="table table-hover p-0 " style="">
                                                     <thead>
                                                         <tr class="nk-tb-item nk-tb-head">
-                                                            <th class="nk-tb-col d-none">ID</th>
-                                                            <th class="nk-tb-col"></th>
-                                                            <th class="nk-tb-col tb-col-lg">
+                                                            <th class="d-none">ID</th>
+                                                            <th class=""></th>
+                                                            <th class="">
                                                                 <span class="sub-text">User</span>
                                                             </th>
-                                                            <th class="nk-tb-col tb-col-lg">
+                                                            <th class="">
                                                                 <span class="sub-text">Post</span>
                                                             </th>
 
-                                                            <th class="nk-tb-col tb-col-lg">
+                                                            <th class="">
                                                                 <span class="sub-text">Views</span>
                                                             </th>
                                                             
-                                                            <th class="nk-tb-col tb-col-mb">
+                                                            <th class="">
                                                                 <span class="sub-text">Posted Date</span>
                                                             </th>
-                                                            <th class="nk-tb-col tb-col-mb">
+                                                            <th class="">
                                                                 <span class="sub-text">Status</span>
                                                             </th>
-                                                            <th class="nk-tb-col nk-tb-col-tools text-end">
+                                                            <th class=" text-end">
                                                             </th>
                                                         </tr>
                                                     </thead>
@@ -94,7 +94,7 @@ $getUserCategories2 = $onloadData->getUserCategories();
                                                             ?>
                                                             <tr class="nk-tb-item">
                                                                 <td class="d-none"><?php echo $data['id']; ?></td>
-                                                                <td class="nk-tb-col" style="cursor: pointer;">
+                                                                <td class="" style="cursor: pointer;">
                                                                     <?php if ($data['post_pin'] == 1) { ?>
                                                                         <em class="icon ni ni-star-fill text-warning unpin" id="pin_<?php echo $data['id']?>"></em>
                                                                     <?php } else { ?>
@@ -103,7 +103,7 @@ $getUserCategories2 = $onloadData->getUserCategories();
 
                                                                 </td>
                                                                
-                                                                <td class="nk-tb-col tb-col-lg">
+                                                                <td class="">
                                                                     <div class="user-card">
                                                                         <div class="user-avatar bg-primary">
                                                                             <img src="<?php echo $data['google_image'] ?>" alt="">
@@ -115,11 +115,11 @@ $getUserCategories2 = $onloadData->getUserCategories();
                                                                         </div>
                                                                     </div>
                                                                 </td>
-                                                                <td class="nk-tb-col tb-col-lg"><span><?php echo substr_replace(strip_tags($data['post_content']), "...", 75); ?></span></td>
-                                                                <td class="nk-tb-col tb-col-lg"><span><?php echo $data['post_views']; ?></span></td>
+                                                                <td class=""><span><?php echo substr_replace(strip_tags($data['post_content']), "...", 75); ?></span></td>
+                                                                <td class=""><span><?php echo $data['post_views']; ?></span></td>
                                                                 
-                                                                <td class="nk-tb-col tb-col-lg"><?php echo date("M d, Y", strtotime($data['post_postedon']))?></td>
-                                                                <td class="nk-tb-col tb-col-lg">
+                                                                <td class=""><?php echo date("M d, Y", strtotime($data['post_postedon']))?></td>
+                                                                <td class="">
                                                                     <?php 
                                                                     if ($data['post_approval'] == 0) { 
                                                                         echo '<span class="badge bg-info m-1">For approval</span>';
@@ -130,7 +130,7 @@ $getUserCategories2 = $onloadData->getUserCategories();
                                                                     }
                                                                     ?>        
                                                                 </td>
-                                                                <td class="nk-tb-col nk-tb-col-tools">
+                                                                <td class="-tools">
                                                                     <ul class="nk-tb-actions gx-1">
                                                                         <li>
                                                                             <div class="drodown"><a href="#" class="dropdown-toggle btn btn-sm btn-icon btn-trigger" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
@@ -150,8 +150,8 @@ $getUserCategories2 = $onloadData->getUserCategories();
                                                                                                 </a>
                                                                                             </li>
                                                                                             <li>
-                                                                                                <a href="#" class="reject_status" id="status_<?php echo $data['id']?>">
-                                                                                                    <em class="icon ni ni-cross"></em><span>Reject</span>
+                                                                                                <a href="#" class="del_status" id="del_<?php echo $data['id']?>">
+                                                                                                    <em class="icon ni ni-trash"></em><span>Delete</span>
                                                                                                 </a>
                                                                                             </li>
                                                                                         <?php

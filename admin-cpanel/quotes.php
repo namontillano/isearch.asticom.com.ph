@@ -75,16 +75,7 @@ else
                     <div class="nk-block-head-content">
                       <h4 class="nk-block-title">List of Quotes</h4>
                     </div>
-                    <div class="nk-block-head-content">
-                      <div class="toggle-wrap nk-block-tools-toggle"><a href="#" class="btn btn-icon btn-trigger toggle-expand me-n1" data-target="pageMenu"><em class="icon ni ni-menu-alt-r"></em></a>
-                        <div class="toggle-expand-content" data-content="pageMenu">
-                          <ul class="nk-block-tools g-3">
-                            <li class="nk-block-tools-opt d-none d-sm-block"><a data-bs-toggle="modal" href="#addnewquotes" data-bs-placement="top" class="btn btn-primary"><em class="icon ni ni-plus"></em><span>Add New Quotes</span></a></li>
-                            <li class="nk-block-tools-opt d-block d-sm-none"><a href="#" class="btn btn-icon btn-primary"><em class="icon ni ni-plus"></em></a></li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
+                    <a data-bs-toggle="modal" href="#addnewquotes" data-bs-placement="top" class="btn btn-primary  pull-end float-end float-right"><em class="icon ni ni-plus"></em><span>Add New Quotes</span></a>
                     <div class="modal fade" tabindex="-1" id="addnewquotes">
                       <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -117,8 +108,8 @@ else
                 <div class="nk-block">
                   <div class="card card-bordered card-stretch">
                     <div class="card-inner-group">
-                      <div class="card-inner p-4">
-                        <table id="example" class="table table-hover p-0 nk-tb-list nk-tb-ulist" style="width:100%">
+                      <div class="card-inner p-4 table-responsive">
+                        <table id="example" class="table table-hover p-0 ">
                           <thead>
                             <tr>
                               <th>#</th>

@@ -216,15 +216,15 @@ if ($view_post_type == "Community") {
                             <div class="col-md-6">
                                 <div class="info-group modal-div-reacts"></div>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-3 d-none">
                                 <div class="info-group"><i class='bi bi-chat-left-text'></i> <span class="modal-div-comments"></span></div>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-6">
                                     <div class="info-group modal-div-views"></div>
                             </div>
                         </div>
 
-                        <div class="blog-content-info">
+                        <div class="blog-content-info d-none">
                             <?php if(isset($_SESSION['google_id'])){ ?>
                                 <form id="addcommentform" class="pb-20 pt-20" novalidate>
                                     <textarea placeholder="Leave your comments here..." id="comment" name="comment" rows="3" class="form-control radius-4 textarea resize-ta w-100" style="resize: none;overflow: hidden;" required></textarea>

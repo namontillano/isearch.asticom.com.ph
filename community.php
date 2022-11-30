@@ -1,6 +1,11 @@
 <?php
 $pagetitle="Community";
 $pageuserlevel=array("0");
+
+// Temp
+header('Location: error.php?code=401');
+exit;
+
 require 'core/dbcon.php';
 require "functions/session.php";
 include_once "functions/token.php";

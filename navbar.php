@@ -72,7 +72,7 @@
                 <?php } ?> 
 
 
-                <li class="nav-item"><a class="nav-link <?=($pagetitle=="Community") ? 'active':''; ?>" href="<?=URL_ROOT;?>community.php">Community</a></li>
+                <!-- <li class="nav-item"><a class="nav-link <?=($pagetitle=="Community") ? 'active':''; ?>" href="<?=URL_ROOT;?>community.php">Community</a></li> -->
                 
                 <li class="nav-item"><a class="nav-link <?=($pagetitle=="HR" || $pagetitle=="HR Offboarding") ? 'active':''; ?>" href="<?=URL_ROOT;?>hr.php">HR</a></li>
                 <li class="nav-item"><a class="nav-link <?=($pagetitle=="Recruitment") ? 'active':''; ?>" href="<?=URL_ROOT;?>recruitment.php">Recruitment</a></li>

@@ -84,7 +84,7 @@
                         <?php }
                         ?>
 
-                        <li><a class="<?=($pagetitle=="Community") ? 'active':''; ?>" href="<?=URL_ROOT;?>community.php">Community</a></li>
+                        <!-- <li><a class="<?=($pagetitle=="Community") ? 'active':''; ?>" href="<?=URL_ROOT;?>community.php">Community</a></li> -->
 
                         <li><a class="<?=($pagetitle=="HR") ? 'active':''; ?>" href="<?=URL_ROOT;?>hr.php">HR</a></li>
                         <li><a class="<?=($pagetitle=="Recruitment") ? 'active':''; ?>" href="<?=URL_ROOT;?>recruitment.php">Recruitment</a></li>

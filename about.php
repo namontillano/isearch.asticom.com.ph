@@ -171,7 +171,7 @@ require ("functions/userlevel.php");
                         </div>
                         <div class="col-md-4">
                             <div class="features-card text-center">
-                                <a href="#" target="_blank">
+                                <a href="<?=URL_ROOT;?>maintenance.php">
                                     <img class="icons-services" src="<?=ASSETS;?>custom/img/icons/icon-acquiro.png">
                                     <h6 class="pt-10 pb-10">Acquiro</h6>
                                 </a>

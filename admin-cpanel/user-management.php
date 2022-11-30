@@ -56,28 +56,28 @@ $getUserAccount = $onloadData->getUserAccount();
                                 <div class="nk-block">
                                     <div class="card card-bordered card-stretch">
                                         <div class="card-inner-group">
-                                            <div class="card-inner p-4">
-                                                <table id="example" class="table table-hover p-0 nk-tb-list nk-tb-ulist" style="width:100%">
+                                            <div class="card-inner p-4 table-responsive">
+                                                <table id="example" class="table table-hover p-0" >
                                                     <thead>
-                                                        <tr class="nk-tb-item nk-tb-head">
-                                                            <th class="nk-tb-col">ID</th>
-                                                            <th class="nk-tb-col"><span class="sub-text">Users</span></th>
-                                                            <th class="nk-tb-col">
+                                                        <tr class="">
+                                                            <th class="">ID</th>
+                                                            <th class=""><span class="sub-text">Users</span></th>
+                                                            <th class="">
                                                                 <span class="sub-text">Email</span>
                                                             </th>
-                                                            <th class="nk-tb-col ">
+                                                            <th class=" ">
                                                                 <span class="sub-text">Access Category</span>
                                                             </th>
-                                                            <th class="nk-tb-col ">
+                                                            <th class=" ">
                                                                 <span class="sub-text">Management<br>Access</span>
                                                             </th>
-                                                            <th class="nk-tb-col ">
+                                                            <th class=" ">
                                                                 <span class="sub-text">AstiGo<br>Access</span>
                                                             </th>
-                                                            <th class="nk-tb-col">
+                                                            <th class="">
                                                                 <span class="sub-text">Status</span>
                                                             </th>
-                                                            <th class="nk-tb-col nk-tb-col-tools text-end">
+                                                            <th class=" -tools text-end">
                                                             </th>
                                                         </tr>
                                                     </thead>
@@ -86,9 +86,9 @@ $getUserAccount = $onloadData->getUserAccount();
                                                         while ($data = $getUserAccount->fetch(PDO::FETCH_ASSOC)) {
                                                             ?>
                                                             <tr>
-                                                                <td class="nk-tb-col"><?php echo $data['id'] ?></td>
-                                                                <td class="nk-tb-col">
-                                                                    <div class="nk-tb-col">
+                                                                <td class=""><?php echo $data['id'] ?></td>
+                                                                <td class="">
+                                                                    <div class="">
                                                                         <div class="user-card">
                                                                             <div class="user-avatar bg-primary">
                                                                                 <img src="<?php echo $data['google_image'] ?>" alt="">
@@ -101,8 +101,8 @@ $getUserAccount = $onloadData->getUserAccount();
                                                                         </div>
                                                                     </div>
                                                                 </td>
-                                                                <td class="nk-tb-col"><?php echo $data['google_email_address'] ?></td>
-                                                                <td class="nk-tb-col">
+                                                                <td class=""><?php echo $data['google_email_address'] ?></td>
+                                                                <td class="">
                                                                     <?php 
                                                                     $arr = explode(",", $data['user_level']);
                                                                     if (in_array(1, $arr)) { 
@@ -122,22 +122,22 @@ $getUserAccount = $onloadData->getUserAccount();
                                                                     }
                                                                     ?>
                                                                 </td>
-                                                                <td class="nk-tb-col">
+                                                                <td class="">
                                                                     <?php
                                                                     if (in_array(5, $arr)) { 
                                                                         echo '<span class="badge bg-success m-1">Yes</span>';
                                                                     } 
                                                                     ?>
                                                                 </td>
-                                                                <td class="nk-tb-col">
+                                                                <td class="">
                                                                     <?php
                                                                     if (in_array(99, $arr)) { 
                                                                         echo '<span class="badge bg-success m-1">Yes</span>';
                                                                     } 
                                                                     ?>
                                                                 </td>
-                                                                <td class="nk-tb-col">
-                                                                    <div class="nk-tb-col tb-col-md">
+                                                                <td class="">
+                                                                    <div class=" tb-col-md">
                                                                         <?php 
                                                                         
                                                                         if ($data['status'] == 0) { 
@@ -149,7 +149,7 @@ $getUserAccount = $onloadData->getUserAccount();
                                                                         
                                                                     </div>
                                                                 </td>
-                                                                <td class="nk-tb-col nk-tb-col-tools">
+                                                                <td class="">
                                                                     <ul class="nk-tb-actions gx-1">
                                                                         <li>
                                                                             <div class="drodown"><a href="#" class="dropdown-toggle btn btn-sm btn-icon btn-trigger" data-bs-toggle="dropdown"><em class="icon ni ni-more-h"></em></a>
