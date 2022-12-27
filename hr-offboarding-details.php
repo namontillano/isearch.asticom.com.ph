@@ -3,7 +3,7 @@ $pagetitle="HR Offboarding";
 $pageuserlevel=array("0");
 require 'core/dbcon.php';
 require "functions/session.php";
-require ("functions/userlevel.php");
+require "functions/userlevel.php";
 ?>
 <?php
 if (empty($_GET['view'])) {
@@ -245,8 +245,7 @@ if (empty($_GET['view'])) {
 
                 </div>
 
-                <img src="<?=ASSETS;?>img/about/about_s4_lines.png" alt="" class="lines">
-                <img src="<?=ASSETS;?>img/about/about_s4_bubble.png" alt="" class="bubble">
+
 
             </div>
 

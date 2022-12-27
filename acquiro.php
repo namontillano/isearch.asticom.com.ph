@@ -3,7 +3,7 @@ $pagetitle="Acquiro";
 $pageuserlevel=array("0");
 require 'core/dbcon.php';
 require "functions/session.php";
-require ("functions/userlevel.php");
+require "functions/userlevel.php";
 
 if (preg_match('/\b@acquiro\b/', $_SESSION['google_email_address'])) { $subsidiaries = true; } else { $subsidiaries = false; }
 if (array_intersect(array(5), preg_split ("/\,/", trim($_SESSION['user_level'])))){
@@ -113,8 +113,7 @@ if ($accessible == false) {
 
                 </div>
 
-                <!-- <img src="<?=ASSETS;?>img/about/about_s4_lines.png" alt="" class="lines">
-                <img src="<?=ASSETS;?>img/about/about_s4_bubble.png" alt="" class="bubble"> -->
+              
 
             </div>
 

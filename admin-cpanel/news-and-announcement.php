@@ -242,7 +242,7 @@ $getUserCategories2 = $onloadData->getUserCategories();
                             </div>
                             <div class="col-md-12">
                                 <div class="form-label">Thumbnail</div>
-                                <input type="file" class="form-control mt-3" accept="*.jpg, *.png" name="thumbnail" id="thumbnail" placeholder="Paste the link here" >
+                                <input type="file" class="form-control mt-3" accept=".png, .jpg, .jpeg, .gif, .webp" name="thumbnail" id="thumbnail" placeholder="Paste the link here" >
                             </div>
                             <!-- <div class="col-md-12">
                                 <div class="row">
@@ -264,7 +264,7 @@ $getUserCategories2 = $onloadData->getUserCategories();
                                     <input type="checkbox" class="custom-control-input" id="embed_post">
                                     <label class="custom-control-label" for="embed_post">Embed Link</label>
                                 </div>
-                                <input type="file" class="form-control" accept="*.jpg, *.png" name="image" id="image" placeholder="Paste the link here" >
+                                <input type="file" class="form-control" accept=".png, .jpg, .jpeg, .gif, .webp, .mp4" name="image" id="image" placeholder="Paste the link here" >
                                 <input type="text" class="form-control d-none" name="link" id="link" placeholder="Paste the link here" >
                                 <label for="type" class="error" style="display: none;"  id="embed-post-error">This is required field.</label>
                             </div>
@@ -348,7 +348,7 @@ $getUserCategories2 = $onloadData->getUserCategories();
                                 <div class="form-label">Thumbnail</div>
                                 <div id="thumbnail-link" class="mb-1"></div>
                                 <input type="hidden" name="ex_thumbnail" id="ex_thumbnail">
-                                <input type="file" class="form-control mt-3" accept="image/*" name="u_thumbnail" id="u_thumbnail" placeholder="Paste the link here" >
+                                <input type="file" class="form-control mt-3" accept=".png, .jpg, .jpeg, .gif, .webp*" name="u_thumbnail" id="u_thumbnail" placeholder="Paste the link here" >
                             </div>
 
 
@@ -376,7 +376,7 @@ $getUserCategories2 = $onloadData->getUserCategories();
                                     <label class="custom-control-label" for="u_embed_post">Embed Link</label>
                                 </div> 
                                 <input type="hidden" name="ex_embed_post" id="ex_embed_post">
-                                <input type="file" class="form-control" accept="image/*" name="u_image" id="u_image" placeholder="Paste the link here" >
+                                <input type="file" class="form-control" accept=".png, .jpg, .jpeg, .gif, .webp, .mp4" name="u_image" id="u_image" placeholder="Paste the link here" >
                                 <input type="text" class="form-control d-none" name="u_link" id="u_link" placeholder="Paste the link here" >
                                 <label for="type" class="error" style="display: none;"  id="u_embed-post-error">This is required field.</label>
                             </div>
@@ -599,7 +599,9 @@ $getUserCategories2 = $onloadData->getUserCategories();
                                     location.reload();
                                 });
                                 
-                            }   
+                            }  else {
+                                $.SystemScript.swalAlertMessage('Error',`${response.data}`, 'danger');
+                            } 
                             
                         });
                     }
@@ -725,6 +727,8 @@ $getUserCategories2 = $onloadData->getUserCategories();
                                         $('.swal2-confirm').click(function(){
                                             location.reload();
                                         });
+                                    } else {
+                                        $.SystemScript.swalAlertMessage('Error',`${response.data}`, 'danger');
                                     }   
                                     $('.btn-submit').prop('disabled', false);
                                     $('.btn-submit').html('Submit');

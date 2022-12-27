@@ -1,0 +1,10 @@
+[21-Dec-2022 15:20:24 HongKong] PHP Warning:  Undefined array key "title" in C:\xampp\htdocs\isearch.asticom.com.ph\admin-cpanel\controller\announcementController.php on line 46
+[21-Dec-2022 15:20:24 HongKong] PHP Warning:  Undefined array key "types" in C:\xampp\htdocs\isearch.asticom.com.ph\admin-cpanel\controller\announcementController.php on line 47
+[21-Dec-2022 15:20:24 HongKong] PHP Warning:  Undefined array key "category" in C:\xampp\htdocs\isearch.asticom.com.ph\admin-cpanel\controller\announcementController.php on line 48
+[21-Dec-2022 15:20:24 HongKong] PHP Warning:  Undefined array key "status" in C:\xampp\htdocs\isearch.asticom.com.ph\admin-cpanel\controller\announcementController.php on line 49
+[21-Dec-2022 15:20:24 HongKong] PHP Warning:  Undefined array key "link" in C:\xampp\htdocs\isearch.asticom.com.ph\admin-cpanel\controller\announcementController.php on line 50
+[21-Dec-2022 15:20:24 HongKong] PHP Warning:  Undefined array key "content" in C:\xampp\htdocs\isearch.asticom.com.ph\admin-cpanel\controller\announcementController.php on line 51
+[21-Dec-2022 15:20:24 HongKong] PHP Warning:  Undefined array key "thumbnail" in C:\xampp\htdocs\isearch.asticom.com.ph\admin-cpanel\controller\announcementController.php on line 54
+[21-Dec-2022 15:20:24 HongKong] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\isearch.asticom.com.ph\admin-cpanel\controller\announcementController.php on line 54
+[21-Dec-2022 15:20:24 HongKong] PHP Warning:  Undefined array key "link" in C:\xampp\htdocs\isearch.asticom.com.ph\admin-cpanel\controller\announcementController.php on line 63
+[21-Dec-2022 15:20:24 HongKong] PHP Warning:  Undefined variable $image in C:\xampp\htdocs\isearch.asticom.com.ph\admin-cpanel\controller\announcementController.php on line 78

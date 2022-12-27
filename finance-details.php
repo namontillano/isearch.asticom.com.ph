@@ -3,7 +3,7 @@ $pagetitle="Finance";
 $pageuserlevel=array("0");
 require 'core/dbcon.php';
 require "functions/session.php";
-require ("functions/userlevel.php");
+require "functions/userlevel.php";
 ?>
 
 <?php
@@ -14,12 +14,12 @@ if (empty($_GET['view'])) {
     switch ($_GET['view']) {
         case "employee-payables":
         $viewpagetitle = "Employee Payables";
-        $viewpagetitleurl = "https://drive.google.com/file/d/1VwuGXpk7CKvJYchA4Pn5Mat6StQEp5bM/preview?authuser=0";
+        $viewpagetitleurl = "https://drive.google.com/file/d/1j5T4FoqgnWJJxjteQ9otxgoRmfNjfVok/preview?authuser=0";
         $viewpagetitlecat = "Finance Policies and Procedures";
         break;
         case "procure-to-pay":
         $viewpagetitle = "Procure to Pay";
-        $viewpagetitleurl = "https://drive.google.com/file/d/15EZv1iS72tI5m49NOSH0EYU2qGLS68KS/preview?authuser=0";
+        $viewpagetitleurl = "https://drive.google.com/file/d/1Ar0hnRh7b_OwUzqr0QQemgzEWDk1u1n9/preview?authuser=0";
         $viewpagetitlecat = "Finance Policies and Procedures";
         break;
         case "record-to-report":
@@ -156,8 +156,7 @@ if (empty($_GET['view'])) {
 
                 </div>
 
-                <img src="<?=ASSETS;?>img/about/about_s4_lines.png" alt="" class="lines">
-                <img src="<?=ASSETS;?>img/about/about_s4_bubble.png" alt="" class="bubble">
+
 
             </div>
 

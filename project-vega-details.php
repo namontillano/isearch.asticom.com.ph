@@ -3,7 +3,7 @@ $pagetitle="Project Vega: Policies, Procedures and Guidelines";
 $pageuserlevel=array("0");
 require 'core/dbcon.php';
 require "functions/session.php";
-require ("functions/userlevel.php");
+require "functions/userlevel.php";
 ?>
 <?php
 if (empty($_GET['view'])) {
@@ -187,55 +187,115 @@ if (empty($_GET['view'])) {
 
                 </div>
 
-                <img src="<?=ASSETS;?>img/about/about_s4_lines.png" alt="" class="lines">
-                <img src="<?=ASSETS;?>img/about/about_s4_bubble.png" alt="" class="bubble">
+
 
             </div>
 
 
 
 
-        </section>
+            <!-- Testing -->
+            <?php
+            // if (!empty($_GET['view'])) {
+            //     $stmt = $db->query("SELECT * FROM accepts WHERE page = '".$_GET['view']."' AND userid = '".$_SESSION['google_id']."'");
+            //     $checkacceptance = $stmt->rowCount();
+            //     echo "<p class='text-center'>".$checkacceptance."</p>";
+
+            //     if ($checkacceptance == "0") {
+            ?>
+                    <!-- 
+                    <button type="button" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#exampleModal">
+                      Launch demo modal
+                  </button>
+
+                  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="addcommunitypostmodalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header modal-header-bg">
+                                <h5 class="modal-title" id="addcommunitypostmodalLabel">What's on your mind, <?php //echo $_SESSION['google_first_name'];?>?</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <form id="addcommunitypostform" enctype="multipart/form-data">
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <textarea id="communitypostmessage" class="form-control" rows="5" placeholder="Your message here..." name="communitypostmessage" style="resize: none"></textarea>
+                                        </div>
+                                        <div class="col-md-12 mt-3">
+                                            <input id="communitypostattach" type="file" accept=".jpg, .jpeg" class="form-control communitypostattach" name="communitypostattach">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <input type="hidden" class="csrf_token" name="csrf_token" value="<?php //echo htmlspecialchars($_SESSION["csrf_token"]);?>">
+                                            <center><button class="btn bg-blue4 fw-bold text-white addcommunitypostsubmit" type="submit" >Post</button></center>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div> -->
+                <?php
+            // } else {
+            //     echo "<p class='text-center'>I have read and understand keme.</p>";
+            // }
+
+                //}
+                ?>
+                <!-- Testing -->
 
 
 
 
 
 
-    </main>
-    <!-- ====== end content ====== -->
-
-    <!-- ====== start footer ====== -->
-    <?php include "footer.php"; ?>
-    <!-- ====== end footer ====== -->
 
 
-    <!-- ====== widgets ====== -->
-    <?php include "widgets.php"; ?>
-    <!-- ====== chat-support  ====== -->
+            </section>
 
-    <!-- ====== start to top button ====== -->
-    <a href="#" class="to_top bg-gray rounded-circle icon-40 d-inline-flex align-items-center justify-content-center">
-        <i class="bi bi-chevron-up fs-6 text-dark"></i>
-    </a>
-    <!-- ====== end to top button ====== -->
 
-    <!-- ====== request ====== -->
-    <script src="<?=ASSETS;?>js/lib/jquery-3.0.0.min.js"></script>
-    <script src="<?=ASSETS;?>js/lib/jquery-migrate-3.0.0.min.js"></script>
-    <script src="<?=ASSETS;?>js/lib/bootstrap.bundle.min.js"></script>
-    <script src="<?=ASSETS;?>js/lib/wow.min.js"></script>
-    <script src="<?=ASSETS;?>js/lib/jquery.fancybox.js"></script>
-    <script src="<?=ASSETS;?>js/lib/lity.js"></script>
-    <script src="<?=ASSETS;?>js/lib/swiper.min.js"></script>
-    <script src="<?=ASSETS;?>js/lib/jquery.waypoints.min.js"></script>
-    <script src="<?=ASSETS;?>js/lib/jquery.counterup.js"></script>
-    <script src="<?=ASSETS;?>js/lib/pace.js"></script>
-    <script src="<?=ASSETS;?>js/lib/scrollIt.min.js"></script>
-    <script src="<?=ASSETS;?>js/main.js"></script>
-    
-    <?php include "functions/searchscript.php"; ?>
-    <?php include "functions/digiofficereminders.php"?>
-</body>
 
-</html>
+
+
+
+
+        </main>
+        <!-- ====== end content ====== -->
+
+        <!-- ====== start footer ====== -->
+        <?php include "footer.php"; ?>
+        <!-- ====== end footer ====== -->
+
+
+        <!-- ====== widgets ====== -->
+        <?php include "widgets.php"; ?>
+        <!-- ====== chat-support  ====== -->
+
+        <!-- ====== start to top button ====== -->
+        <a href="#" class="to_top bg-gray rounded-circle icon-40 d-inline-flex align-items-center justify-content-center">
+            <i class="bi bi-chevron-up fs-6 text-dark"></i>
+        </a>
+        <!-- ====== end to top button ====== -->
+
+        <!-- ====== request ====== -->
+        <script src="<?=ASSETS;?>js/lib/jquery-3.0.0.min.js"></script>
+        <script src="<?=ASSETS;?>js/lib/jquery-migrate-3.0.0.min.js"></script>
+        <script src="<?=ASSETS;?>js/lib/bootstrap.bundle.min.js"></script>
+        <script src="<?=ASSETS;?>js/lib/wow.min.js"></script>
+        <script src="<?=ASSETS;?>js/lib/jquery.fancybox.js"></script>
+        <script src="<?=ASSETS;?>js/lib/lity.js"></script>
+        <script src="<?=ASSETS;?>js/lib/swiper.min.js"></script>
+        <script src="<?=ASSETS;?>js/lib/jquery.waypoints.min.js"></script>
+        <script src="<?=ASSETS;?>js/lib/jquery.counterup.js"></script>
+        <script src="<?=ASSETS;?>js/lib/pace.js"></script>
+        <script src="<?=ASSETS;?>js/lib/scrollIt.min.js"></script>
+        <script src="<?=ASSETS;?>js/main.js"></script>
+
+        <?php include "functions/searchscript.php"; ?>
+        <?php include "functions/digiofficereminders.php"?>
+    </body>
+
+    </html>

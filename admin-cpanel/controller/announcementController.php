@@ -48,7 +48,7 @@
         $category = $_POST['category'];
         $status = $_POST['status'];
         $link = $_POST['link'];
-        $content = $_POST['content'];
+        $content = str_replace("'","\'",$_POST['content']);
         $thumbnail = 0;
         //Tumbnail 
         if($_FILES['thumbnail']['size'] != 0) {

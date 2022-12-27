@@ -97,6 +97,8 @@
         $(".modal-span-title").html('<a href="<?=URL_ROOT;?>post.php?view='+postid+'">'+posttitle+'</a>');
         if (posttype == 'img') {
             $(".modal-span-content").html('<center><a href="'+postsrc+'"  title="'+posttitle+'" style="cursor:zoom-in" data-fancybox="gallery"><img class="img-fluid" src="'+postsrc+'" style=""></a></center>');
+        } else if (posttype == 'video') {
+            $(".modal-span-content").html('<div class="ratio ratio-4x3"><video autoplay controls><source src="'+postsrc+'" title="'+posttitle+'" id="iframecontent" type="video/mp4">Your browser does not support the video tag.</video></div><a href="'+postsrc+'" data-fancybox="gallery"></a>');
         } else {
             $(".modal-span-content").html('<div class="ratio ratio-4x3"><iframe src="'+postsrc+'" title="'+posttitle+'" id="iframecontent"></iframe></div><a href="'+postsrc+'" data-fancybox="gallery"></a>');
             var iframe = document.getElementById("iframecontent");

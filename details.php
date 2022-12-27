@@ -3,7 +3,7 @@ $pagetitle="Home";
 $pageuserlevel=array("0");
 require 'core/dbcon.php';
 require "functions/session.php";
-require ("functions/userlevel.php");
+require "functions/userlevel.php";
 ?>
 <?php
 if (empty($_GET['view'])) {
@@ -83,7 +83,39 @@ if (empty($_GET['view'])) {
         $viewpagetitle = "Daily Check";
         $viewpagetitleurl = "https://drive.google.com/file/d/1OET9mOmXKBqpAYPbeRAlHAuPWCrHIPBX/preview?authuser=0";
         break;
-        default: header("Location: index.php"); die("Redirecting to: index.php");;
+
+
+        case "internal-audit-ia-asti-ssc-ppm":
+        $viewpagetitle = "IA Asti SSC PPM";
+        $viewpagetitleurl = "https://drive.google.com/file/d/1ySgoViaInfsffSXtw5TglaNXIjJMFLoe/preview?authuser=0";
+        break;
+
+        case "finance-asti-ssc-ppm":
+        $viewpagetitle = "Finance Asti SSC PPM";
+        $viewpagetitleurl = "https://drive.google.com/file/d/1WvbKmVDdJT4tKTQx8SML2yqUjDcsGsEM/preview?authuser=0";
+        break;
+
+        case "marketing-asti-ssc-ppm":
+        $viewpagetitle = "Marketing Asti SSC PPM";
+        $viewpagetitleurl = "https://drive.google.com/file/d/1jvSrstYxwpr5qMJN83cOR8PYiGx6-A0x/preview?authuser=0";
+        break;
+
+        case "ctg-asti-ssc-ppm":
+        $viewpagetitle = "CTG Asti SSC PPM";
+        $viewpagetitleurl = "https://drive.google.com/file/d/1PIYg7FTveMbWWY_r2qAtBD_8y8PfXMND/preview?authuser=0";
+        break;
+
+        case "hr-asti-ssc-ppm":
+        $viewpagetitle = "HR Asti SSC PPM";
+        $viewpagetitleurl = "https://drive.google.com/file/d/1hme_jLahohzj4RwIKj5_iYw6JQBMLg9z/preview?authuser=0";
+        break;
+
+        case "rec-ops-asti-ssc-ppm":
+        $viewpagetitle = "RecOps Asti SSC PPM";
+        $viewpagetitleurl = "https://drive.google.com/file/d/1MzV77ZxzKy0G5Yryg4t-FoaTRK2gwgFl/preview?authuser=0";
+        break;
+
+        default: header("Location: index.php"); die("Redirecting to: index.php");
     }
 
 }
@@ -172,8 +204,7 @@ if (empty($_GET['view'])) {
 
                 </div>
 
-                <img src="<?=ASSETS;?>img/about/about_s4_lines.png" alt="" class="lines">
-                <img src="<?=ASSETS;?>img/about/about_s4_bubble.png" alt="" class="bubble">
+
 
             </div>
 

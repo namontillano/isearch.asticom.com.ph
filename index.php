@@ -5,7 +5,7 @@ require 'core/dbcon.php';
 require "functions/session.php";
 include_once "functions/token.php";
 require ("functions/timeago.php");
-require ("functions/userlevel.php");
+require "functions/userlevel.php";
 $database = new Connection();
 $db = $database->open();
 ?>
@@ -124,7 +124,7 @@ $db = $database->open();
 
                                                         if ($row['post_type'] == "Broadcast") {
                                                             $posttype = "img";
-                                                            $postthumb = $row['post_embed'];  
+                                                            $postthumb = $row['post_thumb'];  
                                                             $postsrc = $row['post_embed']; 
                                                         } else {
                                                             if ($row['post_embed'] == '0') {
@@ -135,17 +135,27 @@ $db = $database->open();
                                                                 $ext = array("gif", "jpeg", "png", "jpg");
                                                                 if (in_array(pathinfo($row['post_embed'], PATHINFO_EXTENSION), $ext)) {
                                                                     $posttype = "img";
-                                                                    $postthumb = UPLOADS."posts/".$row['post_embed'];  
+                                                                    $postthumb = UPLOADS."posts/".$row['post_thumb'];  
                                                                     $postsrc = UPLOADS."posts/".$row['post_embed'];  
                                                                 } else {
-                                                                    $posttype = "iframe";
-                                                                    $postsrc = $row['post_embed'];
-
-                                                                    if ($row['post_thumb'] == "0") {
-                                                                        $postthumb = UPLOADS."default-thumbnail.jpg";
+                                                                    $ext = array("mp4", "avi");
+                                                                    if (in_array(pathinfo($row['post_embed'], PATHINFO_EXTENSION), $ext)) {
+                                                                        $posttype = "video";
+                                                                        $postthumb = UPLOADS."posts/".$row['post_thumb'];  
+                                                                        $postsrc = UPLOADS."posts/".$row['post_embed'];  
                                                                     } else {
-                                                                        $postthumb = UPLOADS."posts/".$row['post_thumb'];
+                                                                        $posttype = "iframe";
+                                                                        $postsrc = $row['post_embed'];
+
+                                                                        if ($row['post_thumb'] == "0") {
+                                                                            $postthumb = UPLOADS."default-thumbnail.jpg";
+                                                                        } else {
+                                                                            $postthumb = UPLOADS."posts/".$row['post_thumb'];
+                                                                        }
+
                                                                     }
+
+
                                                                 }
                                                             }
                                                         }
@@ -169,10 +179,10 @@ $db = $database->open();
 
                                                                         <div>
                                                                             <small>
-                                                                               <a class="text-uppercase border-end brd-gray pe-3 me-3 color-blue5"><?php echo htmlentities($row['post_type'], ENT_QUOTES, 'UTF-8'); ?></a>
-                                                                           </small>
-                                                                       </div>
-                                                                       <div>
+                                                                             <a class="text-uppercase border-end brd-gray pe-3 me-3 color-blue5"><?php echo htmlentities($row['post_type'], ENT_QUOTES, 'UTF-8'); ?></a>
+                                                                         </small>
+                                                                     </div>
+                                                                     <div>
                                                                         <small class="w-100 text-right">
                                                                             <i class="bi bi-calendar me-1"></i>
                                                                             <a class="op-8"><?php echo strtoupper(date_format($dateinwords, "F d, Y"));?></a>
@@ -183,93 +193,93 @@ $db = $database->open();
                                                                 <h5 class="fw-bold mt-10 title" id="post-title">
                                                                     <div class="limit-title" style="width: 290px">
                                                                         <?php echo htmlentities($row['post_title'], ENT_QUOTES, 'UTF-8'); ?>
-                                                                            
-                                                                        </div></h5>
-                                                                <div class="text mt-0" style="min-height: 50px;">
-                                                                    <?php
-                                                                    if ($row['post_content'] != "0") {
-                                                                        echo "<p>".substr_replace(strip_tags($row['post_content']), "...", 75)."</p>";
-                                                                    }
-                                                                    ?>
-                                                                </div>
-                                                                <div class="d-flex small mt-20 align-items-center justify-content-between op-9">
-                                                                    <div class="l_side d-flex align-items-center">
-                                                                      <img class="icon-25 rounded-circle d-inline-flex" style="margin-right:10px" src="<?php echo $row['google_image']; ?>">
-                                                                      <?php echo $row['google_first_name']; ?>
-                                                                  </div>
 
-                                                                  <?php
+                                                                    </div></h5>
+                                                                    <div class="text mt-0" style="min-height: 50px;">
+                                                                        <?php
+                                                                        if ($row['post_content'] != "0") {
+                                                                            echo "<p>".substr_replace(strip_tags($row['post_content']), "...", 75)."</p>";
+                                                                        }
+                                                                        ?>
+                                                                    </div>
+                                                                    <div class="d-flex small mt-20 align-items-center justify-content-between op-9">
+                                                                        <div class="l_side d-flex align-items-center">
+                                                                          <img class="icon-25 rounded-circle d-inline-flex" style="margin-right:10px" src="<?php echo $row['google_image']; ?>">
+                                                                          <?php echo $row['google_first_name']; ?>
+                                                                      </div>
 
-                                                                  $stmt = $db->query("SELECT * FROM comments WHERE comment_post_id = '".$row['id']."'");
-                                                                  $post_comments = $stmt->rowCount();
-
-                                                                  $stmt = $db->query("SELECT * FROM reacts WHERE react_post = '".$row['id']."'");
-                                                                  $post_reacts = $stmt->rowCount();
-
-                                                                  $stmt = $db->query("SELECT * FROM views WHERE post_id = '".$row['id']."'");
-                                                                  $post_views = $stmt->rowCount();
-
-                                                                  ?>
-
-                                                                  <a class='view-reactors-list'  data-bs-toggle='modal' data-bs-target='#modalreactors' data-postid='<?php echo $row['id']?>' style='cursor:pointer'>
-                                                                  <div class="align-items-center">
                                                                       <?php
-                                                                      $sql = "SELECT react_type FROM reacts WHERE react_post = '".$row['id']."' GROUP BY react_type";
-                                                                      foreach ($db->query($sql) as $reacts) {
-                                                                        echo "<img src='".ASSETS."custom/img/reactions/reactions_".$reacts['react_type'].".png' style='height:16px;width:16px;margin-top:-3px'>";
-                                                                    }
-                                                                    if ($post_reacts != "0") {
-                                                                     echo " ".$post_reacts;
-                                                                 } else {
-                                                                    echo "<img src='".ASSETS."custom/img/reactions/noreactions.png' style='height:16px;width:16px;margin-top:-3px'> 0";
-                                                                }
-                                                                ?>
-                                                            </div>
-                                                            </a>
 
-                                                            <div class="align-items-center d-none">
-                                                               <i class="bi bi-chat-left-text ms-4 me-1"></i> <?php echo $post_comments; ?>
-                                                           </div>
-                                                           <a class='view-viewers-list'  data-bs-toggle='modal' data-bs-target='#modalviewers' data-postid='<?php echo $row['id']?>' style='cursor:pointer'>
-                                                           <div class="align-items-center">
-                                                            <i class="bi bi-eye ms-4 me-1"></i> <?php echo $post_views;?>
-                                                        </a>
+                                                                      $stmt = $db->query("SELECT * FROM comments WHERE comment_post_id = '".$row['id']."'");
+                                                                      $post_comments = $stmt->rowCount();
+
+                                                                      $stmt = $db->query("SELECT * FROM reacts WHERE react_post = '".$row['id']."'");
+                                                                      $post_reacts = $stmt->rowCount();
+
+                                                                      $stmt = $db->query("SELECT * FROM views WHERE post_id = '".$row['id']."'");
+                                                                      $post_views = $stmt->rowCount();
+
+                                                                      ?>
+
+                                                                      <a class='view-reactors-list'  data-bs-toggle='modal' data-bs-target='#modalreactors' data-postid='<?php echo $row['id']?>' style='cursor:pointer'>
+                                                                          <div class="align-items-center">
+                                                                              <?php
+                                                                              $sql = "SELECT react_type FROM reacts WHERE react_post = '".$row['id']."' GROUP BY react_type";
+                                                                              foreach ($db->query($sql) as $reacts) {
+                                                                                echo "<img src='".ASSETS."custom/img/reactions/reactions_".$reacts['react_type'].".png' style='height:16px;width:16px;margin-top:-3px'>";
+                                                                            }
+                                                                            if ($post_reacts != "0") {
+                                                                               echo " ".$post_reacts;
+                                                                           } else {
+                                                                            echo "<img src='".ASSETS."custom/img/reactions/noreactions.png' style='height:16px;width:16px;margin-top:-3px'> 0";
+                                                                        }
+                                                                        ?>
+                                                                    </div>
+                                                                </a>
+
+                                                                <div class="align-items-center d-none">
+                                                                 <i class="bi bi-chat-left-text ms-4 me-1"></i> <?php echo $post_comments; ?>
+                                                             </div>
+                                                             <a class='view-viewers-list'  data-bs-toggle='modal' data-bs-target='#modalviewers' data-postid='<?php echo $row['id']?>' style='cursor:pointer'>
+                                                                 <div class="align-items-center">
+                                                                    <i class="bi bi-eye ms-4 me-1"></i> <?php echo $post_views;?>
+                                                                </a>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <?php 
+                                            <?php 
+                                        }
                                     }
-                                }
-                                catch(PDOException $e){
-                                    $e->getMessage();
-                                }
-                                ?>
-                            </div>
-
-                            
-                            <?php if ($post_all_count == "0") {
-                             ?>
-                             <div class="row">
-
-                                <div class="col-md-12">
-                                    <div class='text-center'>
-                                        <h5 class='text-muted mb-0'>No Post Found</h5>
-                                        <p class='text-muted mb-0'>We did not find any post for you.</p>
-                                    </div>
+                                    catch(PDOException $e){
+                                        $e->getMessage();
+                                    }
+                                    ?>
                                 </div>
 
-                            </div>
-                            <?php
-                        } ?>
 
+                                <?php if ($post_all_count == "0") {
+                                   ?>
+                                   <div class="row">
+
+                                    <div class="col-md-12">
+                                        <div class='text-center'>
+                                            <h5 class='text-muted mb-0'>No Post Found</h5>
+                                            <p class='text-muted mb-0'>We did not find any post for you.</p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <?php
+                            } ?>
+
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </div>
 </div>
 </header>

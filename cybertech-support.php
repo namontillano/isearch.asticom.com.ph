@@ -5,7 +5,7 @@ $viewpagetitlecat = "Troubleshooting";
 $pageuserlevel=array("0");
 require 'core/dbcon.php';
 require "functions/session.php";
-require ("functions/userlevel.php");
+require "functions/userlevel.php";
 ?>
 
 <!DOCTYPE html>
@@ -117,8 +117,7 @@ require ("functions/userlevel.php");
 
                 </div>
 
-                <img src="<?=ASSETS;?>img/about/about_s4_lines.png" alt="" class="lines">
-                <img src="<?=ASSETS;?>img/about/about_s4_bubble.png" alt="" class="bubble">
+                
 
             </div>
 

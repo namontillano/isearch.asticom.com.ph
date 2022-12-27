@@ -59,12 +59,14 @@
 				</a>
 			</li>
 
+			<!--
 			<li class="nk-menu-item">
 				<a href="community.php" class="nk-menu-link">
 					<span class="nk-menu-icon"><em class="icon ni ni-bell"></em></span>
 					<span class="nk-menu-text">Community</span>
 				</a>
 			</li>
+			-->
 
 			<li class="nk-menu-item">
 				<a href="profanity-list.php" class="nk-menu-link">

@@ -113,8 +113,7 @@ if ($accessible == false) {
 
                 </div>
 
-               <!--  <img src="<?=ASSETS;?>img/about/about_s4_lines.png" alt="" class="lines">
-                <img src="<?=ASSETS;?>img/about/about_s4_bubble.png" alt="" class="bubble"> -->
+
 
             </div>
 

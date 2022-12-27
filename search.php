@@ -4,7 +4,7 @@ $pageuserlevel=array("0");
 require 'core/dbcon.php';
 require "functions/session.php";
 include_once "functions/token.php";
-require ("functions/userlevel.php");
+require "functions/userlevel.php";
 
 if (empty($_GET['keyword'])) {
     header("Location: index.php"); 
