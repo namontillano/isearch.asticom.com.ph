@@ -8,3 +8,13 @@
 [21-Dec-2022 15:20:24 HongKong] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\isearch.asticom.com.ph\admin-cpanel\controller\announcementController.php on line 54
 [21-Dec-2022 15:20:24 HongKong] PHP Warning:  Undefined array key "link" in C:\xampp\htdocs\isearch.asticom.com.ph\admin-cpanel\controller\announcementController.php on line 63
 [21-Dec-2022 15:20:24 HongKong] PHP Warning:  Undefined variable $image in C:\xampp\htdocs\isearch.asticom.com.ph\admin-cpanel\controller\announcementController.php on line 78
+[27-Dec-2022 16:02:10 HongKong] PHP Notice:  Undefined index: title in C:\xampp\htdocs\isearch.asticom.com.ph\admin-cpanel\controller\announcementController.php on line 46
+[27-Dec-2022 16:02:10 HongKong] PHP Notice:  Undefined index: types in C:\xampp\htdocs\isearch.asticom.com.ph\admin-cpanel\controller\announcementController.php on line 47
+[27-Dec-2022 16:02:10 HongKong] PHP Notice:  Undefined index: category in C:\xampp\htdocs\isearch.asticom.com.ph\admin-cpanel\controller\announcementController.php on line 48
+[27-Dec-2022 16:02:10 HongKong] PHP Notice:  Undefined index: status in C:\xampp\htdocs\isearch.asticom.com.ph\admin-cpanel\controller\announcementController.php on line 49
+[27-Dec-2022 16:02:10 HongKong] PHP Notice:  Undefined index: link in C:\xampp\htdocs\isearch.asticom.com.ph\admin-cpanel\controller\announcementController.php on line 50
+[27-Dec-2022 16:02:10 HongKong] PHP Notice:  Undefined index: content in C:\xampp\htdocs\isearch.asticom.com.ph\admin-cpanel\controller\announcementController.php on line 51
+[27-Dec-2022 16:02:10 HongKong] PHP Notice:  Undefined index: thumbnail in C:\xampp\htdocs\isearch.asticom.com.ph\admin-cpanel\controller\announcementController.php on line 54
+[27-Dec-2022 16:02:10 HongKong] PHP Notice:  Trying to access array offset on value of type null in C:\xampp\htdocs\isearch.asticom.com.ph\admin-cpanel\controller\announcementController.php on line 54
+[27-Dec-2022 16:02:10 HongKong] PHP Notice:  Undefined index: link in C:\xampp\htdocs\isearch.asticom.com.ph\admin-cpanel\controller\announcementController.php on line 63
+[27-Dec-2022 16:02:10 HongKong] PHP Notice:  Undefined variable: image in C:\xampp\htdocs\isearch.asticom.com.ph\admin-cpanel\controller\announcementController.php on line 86

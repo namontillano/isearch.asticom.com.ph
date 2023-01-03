@@ -96,7 +96,7 @@ $getUserCategories2 = $onloadData->getUserCategories();
                                                                 <td class="d-none"><?php echo $data['id']; ?></td>
                                                                 <td class="" style="cursor: pointer;">
                                                                     <?php if ($data['post_pin'] == 1) { ?>
-                                                                        <em class="icon ni ni-star-fill text-warning unpin" id="pin_<?php echo $data['id']?>"></em>
+                                                                        <em class="icon ni ni-star-fill text-warning unpin" id="pin_<?php echo $data['id']?>" data-astigo="<?php echo $data['astigo_id'] ?>"></em>
                                                                     <?php } else { ?>
                                                                         <em class="icon ni ni-star pin" id="pin_<?php echo $data['id']?>"></em>
                                                                     <?php } ?>
@@ -135,7 +135,7 @@ $getUserCategories2 = $onloadData->getUserCategories();
 
                                                                                         if($onloadData->checkPostCategories($data['post_category'])) { ?>
                                                                                             <li>
-                                                                                                <a href="#" class="showUpdateModal" id="edit-news_<?php echo $data['id']; ?>">
+                                                                                                <a href="#" class="showUpdateModal" id="edit-news_<?php echo $data['id']; ?>" data-astigo="<?php echo $data['astigo_id'] ?>">
                                                                                                     <em class="icon ni ni-edit"></em><span>Edit Announcement</span>
                                                                                                 </a>
                                                                                             </li>
@@ -153,7 +153,7 @@ $getUserCategories2 = $onloadData->getUserCategories();
                                                                                             </li>
                                                                                         <?php } else { ?>
                                                                                             <li>
-                                                                                                <a href="#" class="del_status" id="del_<?php echo $data['id']?>">
+                                                                                                <a href="#" class="del_status" id="del_<?php echo $data['id']?>" data-astigo="<?php echo $data['astigo_id'] ?>">
                                                                                                     <em class="icon ni ni-trash"></em><span>Delete</span>
                                                                                                 </a>
                                                                                             </li>
@@ -433,15 +433,24 @@ $getUserCategories2 = $onloadData->getUserCategories();
 
             $(document).on('click', '.unpin', function() {
                 const id = this.id.split('_')[1]; 
+                const astigo_id = $( this ).data( "astigo" );
                 $(`#${this.id}`).addClass('ni-star pin').removeClass('ni-star-fill text-warning unpin');
                 let status_to = 0;
                 pinStatus(id, status_to);
+                deleteItemAstigo(astigo_id);
             });
 
             const pinStatus = (id, status) => {
                 let path = url + `?command=updatePinStatus&post_id=${id}&status=${status}`;
                 $.SystemScript.executeGet(path).done((res) => {
-                    console.log(res);
+                    // console.log(res);
+                    if(res.data.astigo) {
+                        let image_link = `https://${window.location.hostname}/uploads/posts/${res.data.astigo.post_thumb}`;
+                        let str = res.data.astigo.post_content;
+                        let regex = /<br\s*[\/]?>/gi;
+                        let cont = str.replace(regex, " ");
+                        broadcastToAstigo(res.data.astigo.astigo_id, res.data.astigo.post_title, cont.replace(/(<([^>]+)>)/gi, " "), image_link);
+                    }
                 });
             }
 
@@ -449,11 +458,13 @@ $getUserCategories2 = $onloadData->getUserCategories();
             // delete
             $(document).on('click', '.del_status', function() {
                 const id = this.id.split('_')[1]; 
+                const astigo_id = $( this ).data( "astigo" );
                 $.SystemScript.swalConfirmMessage('Are you sure?', 
                     'Do you want to delete this post?', 'question').done(function(response) {
                         if(response) {
                             let status_to = 1;
                             delStatus(id, status_to, 'Deleted');
+                            deleteItemAstigo(astigo_id);
                         }
                     });
 
@@ -483,16 +494,23 @@ $getUserCategories2 = $onloadData->getUserCategories();
                 });
             }
             
-
-            function broadcastToAstigo(title, message, image){
+            //adding post in astigo app
+            function broadcastToAstigo(id, title, message, image){
                 let link = 'https://dev.astigo.agc.com.ph/purego_api/isearch_notification.php';
                 let astigoData = {
+                    "id": id,
                     "title": title,
                     "message": message,
                     "image_path": image,
                 }
-                
                 $.SystemScript.executePost(link, astigoData).done((response) => {
+                    console.log(response)
+                });
+            }
+            //deleting item in astigo app
+            function deleteItemAstigo(id){
+                let link = `https://f0j3ofwbmf.execute-api.ap-southeast-1.amazonaws.com/latest/items/notification/${id}`;
+                $.SystemScript.executeDelete(link).done((response) => {
                     console.log(response)
                 });
             }
@@ -592,7 +610,7 @@ $getUserCategories2 = $onloadData->getUserCategories();
                                     let regex = /<br\s*[\/]?>/gi;
                                     let cont = str.replace(regex, " ");
                                     console.log(image_link);
-                                    broadcastToAstigo($('#title').val(), cont, image_link);
+                                    broadcastToAstigo(response.data.astigo_id, $('#title').val(), cont, image_link);
                                 }
                                 $.SystemScript.swalAlertMessage('Successfully',`Added Announcement/News Post`, 'success');
                                 $('.swal2-confirm').click(function(){
@@ -623,8 +641,10 @@ $getUserCategories2 = $onloadData->getUserCategories();
                 }
             }
             //showing modal for updating news/announcement
+            var astigo_id_update = '';
             $(document).on('click', '.showUpdateModal', function() {
                 const id = this.id.split('_')[1];
+                astigo_id_update = $( this ).data( "astigo" );
                 let path = url + `?command=showAnnouncement&post_id=${id}`;
                 $.SystemScript.executeGet(path).done((res) => {
                     astigo_status = res.data.astigo_status; 
@@ -721,7 +741,7 @@ $getUserCategories2 = $onloadData->getUserCategories();
                                             let str = response.data.content;
                                             let regex = /<br\s*[\/]?>/gi;
                                             let cont = str.replace(regex, " ");
-                                            broadcastToAstigo($('#u_title').val(), cont, image_link);
+                                            broadcastToAstigo(astigo_id_update, $('#u_title').val(), cont, image_link);
                                         }
                                         $.SystemScript.swalAlertMessage('Successfully',`Updated a Announcement/News Post`, 'success');
                                         $('.swal2-confirm').click(function(){
