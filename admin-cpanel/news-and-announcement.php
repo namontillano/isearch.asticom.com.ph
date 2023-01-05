@@ -242,7 +242,7 @@ $getUserCategories2 = $onloadData->getUserCategories();
                             </div>
                             <div class="col-md-12">
                                 <div class="form-label">Thumbnail</div>
-                                <input type="file" class="form-control mt-3" accept=".png, .jpg, .jpeg, .gif, .webp" name="thumbnail" id="thumbnail" placeholder="Paste the link here" >
+                                <input type="file" class="form-control mt-3" accept=".png, .jpg, .jpeg, .gif, .webp, .mp4" name="thumbnail" id="thumbnail" placeholder="Paste the link here" >
                             </div>
                             <!-- <div class="col-md-12">
                                 <div class="row">
@@ -348,7 +348,7 @@ $getUserCategories2 = $onloadData->getUserCategories();
                                 <div class="form-label">Thumbnail</div>
                                 <div id="thumbnail-link" class="mb-1"></div>
                                 <input type="hidden" name="ex_thumbnail" id="ex_thumbnail">
-                                <input type="file" class="form-control mt-3" accept=".png, .jpg, .jpeg, .gif, .webp*" name="u_thumbnail" id="u_thumbnail" placeholder="Paste the link here" >
+                                <input type="file" class="form-control mt-3" accept=".png, .jpg, .jpeg, .gif, .webp, .mp4" name="u_thumbnail" id="u_thumbnail" placeholder="Paste the link here" >
                             </div>
 
 
@@ -454,6 +454,15 @@ $getUserCategories2 = $onloadData->getUserCategories();
                 });
             }
 
+            // checking file size 
+            $('input[type="file"]').on('change', function() {
+                const size = 
+                    (this.files[0].size / 1024 / 1024).toFixed(2);
+                if (size > 250) {
+                    $.SystemScript.swalAlertMessage('Error',`File must not greater than 250MB`, 'error');
+                    $(this).val('');
+                } 
+            });
 
             // delete
             $(document).on('click', '.del_status', function() {
@@ -587,10 +596,12 @@ $getUserCategories2 = $onloadData->getUserCategories();
                     if($('#image').val() == '' && $('#link').val() == '') {
                         $('#embed-post-error').css('display', 'block');
                         $valid = false;
+                        resetBtn();
                     } 
                     if(editor.root.innerHTML == '<p><br></p>') {
                         $('#editor-error').css('display', 'block');
                         $valid = false;
+                        resetBtn();
                     }
                     
                     if($valid){
@@ -619,16 +630,21 @@ $getUserCategories2 = $onloadData->getUserCategories();
                                 
                             }  else {
                                 $.SystemScript.swalAlertMessage('Error',`${response.data}`, 'danger');
+                                resetBtn();
                             } 
                             
                         });
                     }
 
-                    $('.btn-submit').prop('disabled', false);
-                    $('.btn-submit').html('Submit');
+                    
                     
                 }
             });
+
+            function resetBtn() {
+                $('.btn-submit').prop('disabled', false);
+                $('.btn-submit').html('Submit');
+            }
 
 
             function validateURL(link)
@@ -695,6 +711,7 @@ $getUserCategories2 = $onloadData->getUserCategories();
                     if(u_editor.root.innerHTML == '<p><br></p>') {
                         $('#u_editor-error').css('display', 'block');
                         $valid = false;
+                        resetBtn();
                     } 
 
                     if($valid){
@@ -749,9 +766,9 @@ $getUserCategories2 = $onloadData->getUserCategories();
                                         });
                                     } else {
                                         $.SystemScript.swalAlertMessage('Error',`${response.data}`, 'danger');
+                                        resetBtn();
                                     }   
-                                    $('.btn-submit').prop('disabled', false);
-                                    $('.btn-submit').html('Submit');
+                                    
                                 });
                             }
 
