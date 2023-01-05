@@ -177,6 +177,15 @@ require "functions/userlevel.php";
 
 
                             </ul>
+
+                            <h3>
+                                <span style="font-variant: normal;">Konsulta MD Flyer</span>
+                            </h3>
+                            <ul class="mb-30" style="list-style-type: square; ">
+                                <li style="margin-left: 15pt;">
+                                    <a href="<?=URL_ROOT;?>hr-details.php?view=how-to-use-konsulta-md">How to use Konsulta MD?</a>
+                                </li>
+                            </ul>
                         </div>
                         <div class="col-md-4 mb-10">
                             <h3>
@@ -229,6 +238,54 @@ require "functions/userlevel.php";
 
 
                     </div> 
+
+                    <div class="row">
+                       
+
+                        <div class="col-md-4 mb-10">
+                            <h3>
+                                <span style="font-variant: normal;">DigiOffice Manual</span>
+                            </h3>
+                            <ul class="mb-30" style="list-style-type: square; ">
+                                <li style="margin-left: 15pt;">
+                                    <a href="<?=URL_ROOT;?>hr-details.php?view=employee-user">Employee User</a>
+                                </li>
+                                 <li style="margin-left: 15pt;">
+                                    <a href="<?=URL_ROOT;?>hr-details.php?view=manager-user">Manager User</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="col-md-4 mb-10">
+                            <h3>
+                                <span style="font-variant: normal;">BIR (Manual Registration)</span>
+                            </h3>
+                            <ul class="mb-30" style="list-style-type: square; ">
+                                <li style="margin-left: 15pt;">
+                                    <a href="<?=URL_ROOT;?>hr-details.php?view=bir-1902-guidelines">BIR 1902 Guidelines</a>
+                                </li>
+                                <li style="margin-left: 15pt;">
+                                    <a href="<?=URL_ROOT;?>hr-details.php?view=bir-1902-form">BIR 1902 Form</a>
+                                </li>
+                                <li style="margin-left: 15pt;">
+                                    <a href="<?=URL_ROOT;?>hr-details.php?view=authorization-letter-template">Authorization Letter Template</a>
+                                </li>
+                            </ul>
+                        </div>
+
+
+
+                        <div class="col-md-4 mb-10">
+                              <h5>
+                                <span style="font-variant: normal;"><a href="<?=URL_ROOT;?>hr-details.php?view=service-level-agreement">Service Level Agreement</a></span>
+                            </h5>
+
+                            
+                        </div>
+                    </div>
+
+
+
 
                     <div class="section-head text-center style-4 mb-20">
                         <h2 class="mb-10"><span> Payroll </span></h2>

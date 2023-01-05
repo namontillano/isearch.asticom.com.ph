@@ -264,6 +264,57 @@ if (empty($_GET['view'])) {
         $viewpagetitlecat = "HR";
         break;
 
+
+        case "employee-user":
+        $viewpagetitle = "Employee User";
+        $viewpagetitleurl = "https://drive.google.com/file/d/1oRNFxOKiCJc5zD7REF37uA2iGcg0nLuQ/preview";
+        $viewpagetitlecat = "HR";
+        break;
+
+        case "manager-user":
+        $viewpagetitle = "Manager User";
+        $viewpagetitleurl = "https://drive.google.com/file/d/15o4FZY7Z-_fjt3g4GOMttwH-bXWdhUg-/preview";
+        $viewpagetitlecat = "HR";
+        break;
+
+
+        case "how-to-use-konsulta-md":
+        $viewpagetitle = "How to use Konsulta MD?";
+        $viewpagetitleurl = "https://drive.google.com/file/d/1WLDYp5BZIWj013j4s2QdcMmpyMwE3JtM/preview";
+        $viewpagetitlecat = "HR";
+        break;
+
+
+
+        case "service-level-agreement":
+        $viewpagetitle = "Service Level Agreement";
+        $viewpagetitleurl = "https://drive.google.com/file/d/1_YBM9ysxDDXmvEVjyp4Jbsm5s9rLdxAN/preview";
+        $viewpagetitlecat = "HR";
+        break;
+
+
+        case "bir-1902-guidelines":
+        $viewpagetitle = "BIR 1902 Guidelines";
+        $viewpagetitleurl = "https://drive.google.com/file/d/1dOm56ZDE37iSssnCTRck2STtPgq1ErKE/preview";
+        $viewpagetitlecat = "HR";
+        break;
+
+        case "bir-1902-form":
+        $viewpagetitle = "BIR 1902 Form";
+        $viewpagetitleurl = "https://drive.google.com/file/d/15P6PvqgJADaKp2LlAb43hhI9Jpo90B51/preview";
+        $viewpagetitlecat = "HR";
+        break;
+
+
+        case "authorization-letter-template":
+        $viewpagetitle = "Authorization Letter Template";
+        $viewpagetitleurl = "https://drive.google.com/file/d/1ePksn9I_DZwgpOLLmCcRH-f42G6Il5RD/preview";
+        $viewpagetitlecat = "HR";
+        break;
+
+        
+
+
         default: header("Location: hr.php"); die("Redirecting to: hr.php");;
     }
 
