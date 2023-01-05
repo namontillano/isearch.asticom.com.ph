@@ -72,15 +72,24 @@
             }
         }
 
+        $length = 14;
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyz';
+        $charactersLength = strlen($characters);
+        $astigo_id = '';
+        for ($i = 0; $i < $length; $i++) {
+            $astigo_id .= $characters[rand(0, $charactersLength - 1)];
+        }
+
 
         $posted_by = $_SESSION['google_id'];
-        $query = "INSERT INTO posts (post_title,post_type,post_category,display_status,post_thumb,post_embed,post_content, post_postedby, post_pin)
-                  VALUES ('$title','$types','$category','$status','$thumbnail','$image','$content', '$posted_by','1')";
+        $query = "INSERT INTO posts (astigo_id, post_title,post_type,post_category,display_status,post_thumb,post_embed,post_content, post_postedby, post_pin)
+                  VALUES ('$astigo_id','$title','$types','$category','$status','$thumbnail','$image','$content', '$posted_by','1')";
         $res = $this->conn->query($query);
         
         if($res) {
             echo json_encode(array(
                 'message' => 'success',
+                'astigo_id' => $astigo_id,
                 'image' => $thumbnail,
                 'content' => strip_tags($content, '<br>')
             ));
@@ -200,11 +209,23 @@
             ':id' => $id,
             ':status' => $status,
         ));
+        $astigo = "";
+        if($status) {
+            $query2 = "SELECT * FROM posts WHERE id =".$id;
+            $res2 = $this->conn->query($query2);
+            
+            if($res2->rowCount()) {
+                foreach($res2 as $data) {
+                    $astigo = $data;
+                }
+            }
+        }
         if($res) {
             echo json_encode(array(
                 'message' => 'success',
                 'post_id' => $id,
-                'status' => $status
+                'status' => $status,
+                'astigo' => $astigo,
             ));
         } else {
             echo 'error';

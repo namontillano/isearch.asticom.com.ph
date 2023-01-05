@@ -25,7 +25,24 @@
            })
          return dfd.promise();
      };
+
+     let __executeDelete = function (path) {
  
+        let dfd = $.Deferred();
+
+        axios.delete(path)
+          .then(function (response) {
+            dfd.resolve(response);
+          })
+          .catch(function (error) {
+            dfd.resolve({
+                status : 'ERROR',
+                message : error
+            });
+
+          })
+        return dfd.promise();
+    };
      let __executePost = function(path, jsonObj) {
          path = path;
          let d = $.Deferred();
@@ -85,6 +102,7 @@
      return {
          executePost : __executePost,
          executeGet : __executeGet,
+         executeDelete: __executeDelete,
          swalAlertMessage: __swalAlertMessage,
          swalConfirmMessage: __swalConfirmMessage,
      };
