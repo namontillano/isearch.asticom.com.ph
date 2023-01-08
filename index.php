@@ -159,8 +159,8 @@ $db = $database->open();
                                                                 }
                                                             }
                                                         }
-                                                        
-                                                        
+                                                        $existfile = !file_exists('uploads/posts/'.$row['post_thumb']) || strpos($row['post_thumb'], '.mp4') ? true : false;
+                                                        if ($existfile) { $postthumb = UPLOADS."default-thumbnail.jpg"; }
                                                         ?>
                                                         <?php
                                                         $dateinwords = new DateTime($row['post_postedon']);

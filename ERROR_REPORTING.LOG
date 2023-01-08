@@ -1,0 +1,11 @@
+[06-Jan-2023 15:29:47 HongKong] PHP Fatal error:  Uncaught Error: Call to undefined function str_contains() in C:\xampp\htdocs\isearch.asticom.com.ph\index.php:162
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\isearch.asticom.com.ph\index.php on line 162
+[06-Jan-2023 15:30:01 HongKong] PHP Fatal error:  Uncaught Error: Call to undefined function str_contains() in C:\xampp\htdocs\isearch.asticom.com.ph\index.php:162
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\isearch.asticom.com.ph\index.php on line 162
+[06-Jan-2023 15:41:32 HongKong] PHP Notice:  Undefined variable: mystring in C:\xampp\htdocs\isearch.asticom.com.ph\index.php on line 162
+[06-Jan-2023 15:41:49 HongKong] PHP Notice:  Undefined variable: mystring in C:\xampp\htdocs\isearch.asticom.com.ph\index.php on line 162
+[06-Jan-2023 15:42:22 HongKong] PHP Notice:  Undefined variable: mystring in C:\xampp\htdocs\isearch.asticom.com.ph\index.php on line 162
