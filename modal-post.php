@@ -29,7 +29,7 @@
                                 </h5>
                                 <!-- <div class="profile-description-text show-more-height"> -->
                                 <div class="profile-description-text">
-                                    <span class="info-group modal-span-contenttype"></span>
+                                    <span class="info-group modal-span-contenttype" style="word-break: break-word;"></span>
                                 </div>
                                 <!-- <div class="show-more text-center">(See More)</div> -->
                             </div>
